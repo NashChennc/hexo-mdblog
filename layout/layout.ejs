@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8"/>
+        <title>
+            <% if(is_home()) { %>
+                <%= 'Home' %>
+            <% } else if(is_archive()) { %>
+                <%= 'Archive' %>
+            <% } else if(is_post()) { %>
+                <%= page.blog_title %>
+            <% } else if(is_category()) { %>
+                <%= page.category %>
+            <% } else if(page.path == 'about/index.html') { %>
+                <%= 'About' %>
+            <% } else if(page.path == 'files/index.html') { %>
+                <%= 'Files' %>
+            <% } else { %>
+                <%= page.path %>
+            <% } %> | <%= config.title %>
+        </title>
+        <%- partial('partial/head') %>
+    </head>
+    <body id="top" class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink">
+        <%- body %>
+        <script src="/mdui/js/mdui.min.js"></script>
+    </body>
+</html>

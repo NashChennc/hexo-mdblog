@@ -1,0 +1,12 @@
+<%- partial('partial/headbg') %>
+<%- partial('partial/header') %>
+<%- partial('partial/drawer') %>
+<%- partial('partial/fab') %>
+
+<div class="mdui-container mdui-p-t-2 mdui-p-b-5">
+    <% page.posts.sort('-updated').sort('priority').each(post=>{ %>
+        <%- partial("partial/postdetail",{post: post}) %>
+    <% })%>
+</div>
+<div id="bottom"></div>
+<%- partial('partial/footer') %>

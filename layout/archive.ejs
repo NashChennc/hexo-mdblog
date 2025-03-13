@@ -1,0 +1,39 @@
+<%- partial('partial/headbg') %>
+<%- partial('partial/header') %>
+<%- partial('partial/drawer') %>
+<%- partial('partial/fab') %>
+<div class="mdui-container mdui-p-t-2 mdui-p-b-5">
+    <h1>Categories</h1>
+    <div class="mdui-row">
+        <div class="mdui-panel mdui-col-xs-12" mdui-panel>
+        <% if (site.categories.length){ %>
+            <% site.categories.sort('name').each(item=>{ %>
+                <% if(item.posts.length){ %>
+            <div class="mdui-panel-item mdui-panel-item-open mdui-col-xs-4">
+                <div class="mdui-panel-item-header mdui-ripple">
+                    <div class="mdui-panel-item-title"><%= item.name %></div>
+                    <div class="mdui-panel-item-summary"><%= item.posts.length %> 篇文章</div>
+                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-panel-item-body">
+                    <ol class="mdui-list">
+                    <% item.posts.sort('title').each(post=>{ %>
+                        <li class="mdui-list-item">
+                            <div class="mdui-typo"><a href=" <%=url_for(post.path)%>">
+                                <%= post.blog_title %>
+                            </a></div>
+                        </li>
+                    <% })%>
+                    </ol>
+                </div>
+            </div>
+                <% } %>
+            <% }); %>
+        <% } %>
+        </div>
+    </div>
+    <h1>Sorted By Time</h1>
+    <%- partial('partial/postslist') %>
+</div>
+<div id="bottom"></div>
+<%- partial('partial/footer') %>

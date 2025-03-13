@@ -1,0 +1,55 @@
+<% console.log(page) %>
+<%- partial('partial/headbg') %>
+<%- partial('partial/header') %>
+<%- partial('partial/drawer') %>
+<%- partial('partial/fab') %>
+<div class="mdui-container mdui-p-t-2 mdui-p-b-5">
+    <div class="mdui-card mdui-hoverable" style="zoom:1.2">
+        <div class="mdui-card-primary mdui-p-x-5">
+            <div class="mdui-card-primary-title" style="zoom:1.4">
+                <%- page.blog_title %>
+            </div>
+            <% if(page.blog_subtitle) { %>
+                <div class="mdui-card-primary-subtitle">
+                    <%= page.blog_subtitle %>
+                </div>
+            <% } %>
+            <div class="mdui-row mdui-p-t-2">
+                <div class="mdui-col-xs-6 mdui-typo-caption-opacity">
+                    Last Update: <%= date( page.updated, 'YYYY/MM/DD HH:mm') %>
+                </div>
+                <div class="mdui-col-xs-6">
+                    <div class="mdui-float-right mdui-typo">
+                        <% page.categories.each(cat=>{ %>
+                            <a href="<%- url_for(cat.path) %>">
+                                <%- cat.name %>
+                            </a>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+            <div class="mdui-divider"></div>
+            <br/>
+        </div>
+        <div class="mdui-card-content mdui-typo mdui-p-x-5">
+            <%- page.content %>
+        </div>
+    </div>
+
+    <script>
+        var elements= document.getElementsByTagName("table");
+        for (var i=0;i<elements.length;i++) {
+            text = elements[i].getAttribute("class");
+            if(text==null)
+                elements[i].setAttribute("class","mdui-table mdui-shadow-0");
+        }
+        var elements= document.getElementsByTagName("img");
+        for (var i=0;i<elements.length;i++) {
+            text = elements[i].getAttribute("class");
+            if(text==null)
+                elements[i].setAttribute("class","mdui-img-fluid");
+        }
+    </script>
+</div>
+<div id="bottom"></div>
+<%- partial('partial/footer') %>

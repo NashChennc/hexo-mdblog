@@ -1,0 +1,68 @@
+<footer class="mdui-container-fluid mdui-color-grey-300 mdui-p-a-2">
+    <!-- <div class="mdui-row mdui-color-theme">
+        <div class="mdui-color-theme mdui-col-xs-1 mdui-p-t-5 mdui-p-b-5"></div>
+            <% if(page.prev!=null && page.prev.hidden!=true) { %>
+            <a id= "lfooter" href= "<%- url_for(page.prev.path) %>" class="mdui-ripple mdui-color-theme mdui-col-xs-5 mdui-p-t-5 mdui-p-b-5">
+                <div class="mdui-float-left">
+                    <div class="mdui-typo-caption-opacity">Previous</div>
+                    <div class="mdui-typo-headline">
+                        <i class="mdui-icon material-icons">arrow_back</i>
+                        <%= page.prev.blog_title %>
+                    </div>
+                </div>
+            </a>
+            <% } else { %>
+            <div class="mdui-color-theme mdui-col-xs-5 mdui-p-t-5 mdui-p-b-5"></div>
+            <% } if(page.next!=null && page.next.hidden!=true) { %>
+            <a id= "rfooter" href= "<%- url_for(page.next.path) %>" class="mdui-ripple mdui-color-theme mdui-col-xs-5 mdui-p-t-5 mdui-p-b-5">
+                <div class="mdui-float-right">
+                    <div class="mdui-typo-caption-opacity">Next</div>
+                    <div class="mdui-typo-headline">
+                        <%= page.next.blog_title %>
+                        <i class="mdui-icon material-icons">arrow_forward</i>
+                    </div>
+                </div>
+            </a>
+            <% } %>
+        <div class="mdui-color-theme mdui-col-xs-1 mdui-p-t-5 mdui-p-b-5"></div>
+    </div> -->
+    <div class="mdui-container">
+        <div class="mdui-row">
+            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4">
+                <h3 class="mdui-text-color-theme-text">Pages</h3>
+                <ol class="mdui-typo mdui-text-color-theme-secondary" style="list-style: none;">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/files/">文件</a></li>
+                    <!-- <li><a href="/comment/"> 留言板 | 提问箱</a></li> -->
+                    <li><a href="https://www.luogu.com.cn/blog/NashChen/">Nash 的洛谷博客</a></li>
+                </ol>
+            </div>
+            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4">
+                <h3 class="mdui-text-color-theme-text">Useful links</h3>
+                <ul class="mdui-typo mdui-text-color-theme-secondary" style="list-style: none;">
+                    <li><a href="https://www.mdui.org/docs/">MDUI Docs</a> | <a href="https://hexo.io/zh-cn/docs/index.html">Hexo Docs</a></li>
+                    <li><a href="https://paperswithcode.com/">Papers With Code</a></li>
+                    <li><a href="https://bangumi.moe/">Bangumi Moe</a></li>
+                    
+                    <li><a href="https://tool.liumingye.cn/unlock-music/">网易云解锁</a></li>
+                </ul>
+            </div>
+            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4">
+                <h3 class="mdui-text-color-theme-text">Contact</h3>
+                <ul class="mdui-typo mdui-text-color-theme-secondary" style="list-style: none;">
+                    <li>QQ : なつき. | 695977430</li>
+                    <li>EDU Mail : ncchen@mail.ustc.edu.cn</li>
+                    <li>Github : Nashchennc</li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="mdui-divider"></div>
+        <div class="mdui-row">
+            <div class="mdui-col-xs-12 mdui-text-center">
+                <p class="mdui-text-color-theme-secondary">© 2024 by NashChennc. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+  
