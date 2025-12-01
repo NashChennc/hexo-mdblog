@@ -30,7 +30,7 @@ theme: mdblog_hexo
 
 ## 依赖安装
 ```bash
-npm install hexo-wordcount hexo-renderer-markdown-it-katex --save
+npm install hexo-wordcount hexo-renderer-markdown-it-katex hexo-auto-category --save
 ```
 
 ## 主题配置

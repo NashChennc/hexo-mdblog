@@ -1,17 +1,12 @@
 <header class="appbar mdui-appbar mdui-appbar-fixed">
     <div class="mdui-toolbar mdui-color-theme">
-        <span class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: '#main-drawer', swipe: true}" mdui-tooltip="{content: 'Menu'}">
-            <i class="mdui-icon material-icons"> menu </i>
-        </span>
-        <a href="/" class="mdui-typo-title">
-            <%= config.title %>
-        </a>
         <% if (site.categories.length){ %>
+          <div class="mdui-toolbar-spacer"></div>
             <div class="mdui-tab mdui-tab-full-width">
                 <a href="/" class="mdui-ripple">
                     Home
                 </a>
-                <% site.categories.each(item=>{ %>
+                <% site.categories.sort('length').sort('-name').each(item=>{ %>
                     <% if(item.posts.length){ %>
                         <a href="/categories/<%= item.name %>" class="mdui-ripple">
                             <%= item.name %> | <%= item.posts.length %>
@@ -21,10 +16,7 @@
             </div>
         <% } %>
         <div class="mdui-toolbar-spacer"></div>
-        <!-- <a href="" class="mdui-btn mdui-btn-icon mdui-ripple">
-            <i class="mdui-icon material-icons"> search </i>
-        </a> -->
-        <a href="/" class="mdui-btn mdui-btn-icon mdui-ripple" mdui-tooltip="{content: '一个没什么用的按钮'}">
+        <a href="<%- url_for('/about') %>" class="mdui-btn mdui-btn-icon mdui-ripple" mdui-tooltip="{content: '一个没什么用的按钮'}">
             <i class="mdui-icon material-icons"> more_vert </i>
         </a>
 

@@ -3,24 +3,24 @@
         <div class="mdui-card-primary-title">
             <div class="mdui-typo">
                 <a href="<%=url_for(post.path)%>">
-                    <%= post.blog_title %>
+                    <%= post.blog_title || post.title %>
                 </a>
                 <div class="mdui-float-right">
                     <span class="mdui-typo-subheading">
-                        <%= post.rate ? post.rate :"0" %> % 
+                        <%= post.rate ? post.rate : "0" %> % 
                     </span>
                     <span class="mdui-typo-caption">Completed</span>
                 </div>
             </div>
         </div>
         <div class="mdui-card-primary-subtitle">
-            <%= date( post.updated, 'M月D日 ddd') %>
+            <%= date( post.updated, 'Y年M月D日 ddd') %>
             <div class="mdui-float-right"><% post.categories.each(cat=>{ %>
                 <%= cat.name %>
             <% }) %></div>
         </div>
         <div class="mdui-typo mdui-card-body mdui-typo-heading">
-            字数：<%= wordcount(post.content) %> &nbsp; 预计阅读时长：<%= min2read(post.content, {cn: 500, en: 500}) %> min
+            字数：<%= wordcount(post.content) %> &nbsp; 预计阅读时长：<%= min2read(post.content, {cn: 200, en: 500}) %> min
         </div>
     </div>
     <!-- <div class="mdui-card-content"> 预览功能维护中 <%= post.excerpt %></div> -->

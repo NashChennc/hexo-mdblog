@@ -1,7 +1,3 @@
-<%- partial('partial/headbg') %>
-<%- partial('partial/header') %>
-<%- partial('partial/drawer') %>
-<%- partial('partial/fab') %>
 <div class="mdui-container mdui-p-t-2 mdui-p-b-5">
     <h1>Categories</h1>
     <div class="mdui-row">
@@ -20,7 +16,7 @@
                     <% item.posts.sort('title').each(post=>{ %>
                         <li class="mdui-list-item">
                             <div class="mdui-typo"><a href=" <%=url_for(post.path)%>">
-                                <%= post.blog_title %>
+                                <%= post.title %>
                             </a></div>
                         </li>
                     <% })%>
@@ -32,8 +28,5 @@
         <% } %>
         </div>
     </div>
-    <h1>Sorted By Time</h1>
-    <%- partial('partial/postslist') %>
 </div>
 <div id="bottom"></div>
-<%- partial('partial/footer') %>

@@ -1,0 +1,53 @@
+<div style="position: relative; width: 100%; height: 770px; overflow: hidden;">
+    <div style="
+        background-image: url(<%- theme.banner.image %>); 
+        background-position: top; 
+        background-size: cover; 
+        width: 100%; 
+        height: 100%; 
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        z-index: 0;
+    "></div>
+    
+    <div class="mdui-card-media-covered" style="background: rgba(0, 0, 0, 0.4); position: absolute; bottom: 0; width: 100%; padding: 0;">
+        <div class="mdui-container">
+            <div class="mdui-card-primary mdui-float-right" style="color: #fff; padding-top: 16px; padding-bottom: 16px;">
+                <div class="mdui-card-primary-title" style="font-weight: 300;">
+                    <%= theme.banner.title %>
+                </div>
+                <div class="mdui-card-primary-subtitle mdui-float-right" style="opacity: 0.9;">
+                    <%= theme.banner.subtitle %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mdui-container mdui-p-t-3 mdui-p-b-5">
+    <div class="mdui-row">
+        <div class="mdui-col-md-9 mdui-col-xs-12">
+            <% page.posts.sort('title').sort('-updated').sort('-priority').each(function(post){ %>
+                <%- partial('partial/postinfo', {post: post}) %>
+            <% }) %>
+
+            <% if (page.total > 1){ %>
+                <div class="mdui-text-center mdui-m-t-4">
+                    <%- paginator({
+                        prev_text: '<i class="mdui-icon material-icons">chevron_left</i>',
+                        next_text: '<i class="mdui-icon material-icons">chevron_right</i>',
+                        escape: false,
+                        class: 'mdui-btn-group'
+                    }) %>
+                </div>
+            <% } %>
+        </div>
+         <div class="mdui-col-md-3 mdui-col-xs-12">
+            <div style="position: -webkit-sticky; position: sticky; top: 80px; z-index: 1;">
+                <%- partial('partial/sidebar') %>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="bottom"></div>

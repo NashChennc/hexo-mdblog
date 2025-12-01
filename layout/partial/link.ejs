@@ -1,0 +1,62 @@
+<%
+                    var prev_post = null;
+                    var next_post = null;
+                    var current_cat_name = "";
+                    
+                    if (page.categories && page.categories.length){
+                        var cat = page.categories.data[0];
+                        current_cat_name = cat.name; // 获取类别名
+                        
+                        var posts = cat.posts.sort('title').sort('-updated').sort('-priority');
+                        
+                        // 查找当前位置
+                        var current_index = -1;
+                        posts.forEach(function(p, i){
+                            if (p._id == page._id) current_index = i;
+                        });
+
+                        // 确定上一篇和下一篇
+                        if (current_index > 0) {
+                            prev_post = posts.data[current_index - 1];
+                        }
+                        if (current_index < posts.length - 1) {
+                            next_post = posts.data[current_index + 1];
+                        }
+                    }
+                %>
+
+                <% if (prev_post || next_post) { %>
+                <div class="mdui-divider"></div>
+                <div class="mdui-card-actions mdui-p-x-3 mdui-p-y-2">
+                    <div class="mdui-row">
+                        <div class="mdui-col-sm-3 mdui-text-left">
+                            <% if(prev_post){ %>
+                                <a href="<%- url_for(prev_post.path) %>" class="mdui-ripple mdui-hoverable mdui-p-a-1" style="display: block; text-decoration: none; border-radius: 4px; color: inherit;">
+                                    <div class="mdui-typo-caption mdui-text-color-theme-accent" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        <i class="mdui-icon material-icons" style="font-size: 14px; vertical-align: middle;">arrow_back</i> 
+                                        上一篇
+                                    </div>
+                                    <div class="mdui-typo-body-1 mdui-m-t-1 mdui-text-truncate" style="font-weight: 500;">
+                                        <%= current_cat_name %> | <%= prev_post.title %>
+                                    </div>
+                                </a>
+                            <% } %>
+                        </div>
+                        <div class="mdui-col-sm-6"></div>
+                        <div class="mdui-col-sm-3 mdui-text-right">
+                            <% if(next_post){ %>
+                                <a href="<%- url_for(next_post.path) %>" class="mdui-ripple mdui-hoverable mdui-p-a-1" style="display: block; text-decoration: none; border-radius: 4px; color: inherit;">
+                                    <div class="mdui-typo-caption mdui-text-color-theme-accent" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        下一篇
+                                        <i class="mdui-icon material-icons" style="font-size: 14px; vertical-align: middle;">arrow_forward</i>
+                                    </div>
+                                    <div class="mdui-typo-body-1 mdui-m-t-1 mdui-text-truncate" style="font-weight: 500;">
+                                        <%= current_cat_name %> | <%= next_post.title %>
+                                    </div>
+                                </a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                

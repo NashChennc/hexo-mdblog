@@ -1,28 +1,114 @@
-<!doctype html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8"/>
-        <title>
-            <% if(is_home()) { %>
-                <%= 'Home' %>
-            <% } else if(is_archive()) { %>
-                <%= 'Archive' %>
-            <% } else if(is_post()) { %>
-                <%= page.blog_title %>
-            <% } else if(is_category()) { %>
-                <%= page.category %>
-            <% } else if(page.path == 'about/index.html') { %>
-                <%= 'About' %>
-            <% } else if(page.path == 'files/index.html') { %>
-                <%= 'Files' %>
-            <% } else { %>
-                <%= page.path %>
-            <% } %> | <%= config.title %>
-        </title>
-        <%- partial('partial/head') %>
-    </head>
-    <body id="top" class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink">
-        <%- body %>
-        <script src="/mdui/js/mdui.min.js"></script>
-    </body>
+<!DOCTYPE html>
+<html lang="<%= config.language || 'zh-CN' %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%= page.title ? page.title + ' - ' : '' %><%= config.title %></title>
+
+  <!-- MDUI CSS -->
+  <link rel="stylesheet" href="<%- url_for('mdui/css/mdui.min.css') %>">
+
+  <!-- KaTeX CSS (If needed) -->
+  <link rel="stylesheet" href="<%- url_for('katex/katex.min.css') %>">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <meta name="theme-color" content="#3F51B5">
+
+  <style>
+    body {
+      font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+      background-color: #f5f5f5; /* 增加一点背景色对比 */
+    }
+    
+    html {
+        scroll-padding-top: 80px;
+        scroll-behavior: smooth;
+    }
+    
+    .mdui-typo a {
+      word-break: break-all;
+      overflow-wrap: break-word;
+    }
+
+    .mdui-card {
+      border-radius: 8px !important;
+      transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .mdui-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .typo-h1, h1 { font-weight: 300; letter-spacing: -0.015em; }
+    .typo-body, p { line-height: 1.8; color: rgba(0,0,0,0.87); }
+
+    footer {
+      padding: 24px 0;
+    }
+    
+    img { max-width: 100%; height: auto; }
+
+    #sidebar-wrapper {
+        margin-top: 16px;
+    }
+    @media (min-width: 992px) {
+        #sidebar-wrapper {
+            margin-top: 0;
+        }
+    }
+  </style>
+</head>
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-color-grey-100">
+  
+  <!-- Header/AppBar -->
+  <%- partial('partial/topbar') %>
+
+  <!-- Main Content (Layout control moved to individual views) -->
+  <div id="main-content">
+    <%- body %>
+  </div>
+  <!-- Footer -->
+  <%- partial('partial/footer') %>
+
+  <!-- Scripts -->
+  <script src="<%- url_for('mdui/js/mdui.min.js') %>"></script>
+  <script src="<%- url_for('katex/katex.min.js') %>"></script>
+  <script src="<%- url_for('katex/contrib/auto-render.min.js') %>"></script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        // 自定义分隔符，支持 $...$ 和 $$...$$
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ],
+        // 忽略的标签
+        ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+      });
+    });
+  </script>
+  <!-- Global helper scripts -->
+  <script>
+    // 自动为所有表格和图片添加样式，替代原 post.ejs 中的内联脚本
+    document.addEventListener("DOMContentLoaded", function() {
+        var tables = document.getElementsByTagName("table");
+        for (var i = 0; i < tables.length; i++) {
+            if (!tables[i].classList.contains("mdui-table")) {
+                tables[i].classList.add("mdui-table", "mdui-shadow-0");
+            }
+        }
+        var imgs = document.getElementsByTagName("img");
+        for (var i = 0; i < imgs.length; i++) {
+            if (!imgs[i].classList.contains("mdui-img-fluid")) {
+                imgs[i].classList.add("mdui-img-fluid");
+            }
+        }
+    });
+  </script>
+</body>
 </html>

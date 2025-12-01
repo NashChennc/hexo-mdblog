@@ -1,12 +1,54 @@
-<%- partial('partial/headbg') %>
-<%- partial('partial/header') %>
-<%- partial('partial/drawer') %>
+<!-- 全宽 Banner -->
+<!-- <%- partial('partial/banner') %> -->
 <%- partial('partial/fab') %>
 
-<div class="mdui-container mdui-p-t-2 mdui-p-b-5">
-    <% page.posts.sort('-updated').sort('priority').each(post=>{ %>
-        <%- partial("partial/postdetail",{post: post}) %>
-    <% })%>
+<div class="mdui-container mdui-p-t-3 mdui-p-b-5">
+    <div class="mdui-row">
+        <div class="mdui-col-md-9 mdui-col-xs-12">
+            <% page.posts.sort('title').sort('-updated').sort('-priority').each(post=>{ %>
+                <%- partial("partial/postinfo", {post: post}) %>
+            <% })%>
+            
+            <!-- 分页器 (如果有) -->
+            <% if (page.total > 1){ %>
+                <div class="mdui-text-center mdui-m-t-4">
+                    <%- paginator({
+                        prev_text: '<i class="mdui-icon material-icons">chevron_left</i>',
+                        next_text: '<i class="mdui-icon material-icons">chevron_right</i>',
+                        escape: false,
+                        class: 'mdui-btn-group'
+                    }) %>
+                </div>
+            <% } %>
+        </div>
+        <div class="mdui-col-md-3 mdui-col-xs-12" style="position: -webkit-sticky; position: sticky; top: 80px; z-index: 1;">
+            <%- partial('partial/sidebar') %>
+            <div class="mdui-card mdui-shadow-1 mdui-m-b-3 mdui-m-t-3 mdui-color-theme-50">
+                <div class="mdui-card-content">
+                    <!-- 背景装饰图标 -->
+                    <div class="mdui-float-right">
+                         <i class="mdui-icon material-icons mdui-text-color-theme-300" style="font-size: 48px; opacity: 0.5;">folder_open</i>
+                    </div>
+                    
+                    <div class="mdui-typo-caption-opacity">Current Category</div>
+                    <div class="mdui-typo-h2 mdui-m-y-1 mdui-text-color-theme">
+                        <%= page.category %>
+                    </div>
+                    
+                    <div class="mdui-divider mdui-m-y-1"></div>
+                    
+                    <div class="mdui-typo-caption">
+                        <%= page.posts.length %> articles
+                    </div>
+                    
+                    <!-- 返回全部分类按钮 -->
+                    <a href="<%- url_for('/archives') %>" class="mdui-btn mdui-btn-block mdui-btn-flat mdui-ripple mdui-m-t-1 mdui-text-color-theme">
+                        View All Categories
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="bottom"></div>
-<%- partial('partial/footer') %>
+

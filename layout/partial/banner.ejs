@@ -1,0 +1,26 @@
+<div style="position: relative; width: 100%; height: 350px; overflow: hidden;">
+    <div style="
+        background-image: url(<%- theme.banner.image %>); 
+        background-position: top; 
+        background-size: cover; 
+        width: 100%; 
+        height: 100%; 
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        z-index: 0;
+    "></div>
+    
+    <div class="mdui-card-media-covered" style="background: rgba(0, 0, 0, 0.4); position: absolute; bottom: 0; width: 100%; padding: 0;">
+        <div class="mdui-container">
+            <div class="mdui-card-primary mdui-float-right" style="color: #fff; padding-top: 16px; padding-bottom: 16px;">
+                <div class="mdui-card-primary-title" style="font-weight: 300;">
+                    <%= theme.banner.title %>
+                </div>
+                <div class="mdui-card-primary-subtitle mdui-float-right" style="opacity: 0.9;">
+                    <%= theme.banner.subtitle %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

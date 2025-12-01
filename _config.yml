@@ -42,5 +42,62 @@ symbols_count_time:
   separated_meta: true
   item_text_post: true
   item_text_total: false
-  awl: 4
+  awl: 2
   wpm: 275
+
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -updated  # 关键：按 updated 倒序排列
+# --------------------------------------------------------
+# Markdown-it 渲染器配置 (解决一级标题无法跳转的问题)
+# --------------------------------------------------------
+markdown:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: true
+    linkify: true
+    typographer: true
+    quotes: '“”‘’'
+  plugins:
+    - markdown-it-anchor      # 启用锚点生成插件
+    - markdown-it-toc-done-right # 可选
+  anchors:
+    level: 1                  # 【关键修改】从 1 (H1) 开始生成 ID，默认为 2
+    collisionSuffix: ''
+    permalink: false          # 是否在标题旁显示 ¶ 符号，按需开启
+    permalinkClass: header-anchor
+    permalinkSymbol: ¶
+
+# ---------------------------------------------------------------
+# Theme Settings (Moved from Layout files)
+# ---------------------------------------------------------------
+
+
+
+# Banner 设置 (首页及分类页顶部大图)
+banner:
+  enable: true
+  image: /image/banner.png  # 背景图路径
+  title: "昨日の僕守る為に / 笑うくらいなら / 泣いたっていいだろ？ ねぇ。"
+  subtitle: "「雨き声残響」Orangestar / IA"
+
+# 侧边栏设置
+sidebar_config:
+  image: /image/card.png
+  avatar: /image/avatar.jpeg
+  description: "沉入死寂的深海。。。捞点海鲜尝尝。"
+
+# 社交链接配置
+# 格式: 名称: [链接, 图标代码, 颜色样式类]
+# 颜色类参考 MDUI: mdui-text-color-xxxx (如 orange, blue, black)
+social:
+  email:
+    link: mailto:ncchen@mail.ustc.edu.cn
+    icon: email
+    color: mdui-text-color-blue
+  github:
+    link: https://github.com/nashchennc
+    icon: code
+    color: mdui-text-color-black
