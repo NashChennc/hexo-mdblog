@@ -17,3 +17,31 @@ powered_by: Powered by
 rss_feed: RSS Feed
 category: Kategorie
 tag: Tag
+home: Startseite
+about: Über
+toc: Inhaltsverzeichnis
+last_update: Letzte Aktualisierung
+uncategorized: Unkategorisiert
+min_read: Min. Lesezeit
+read_full_article: Vollständigen Artikel lesen
+articles: Artikel
+current_category: Aktuelle Kategorie
+view_all_categories: Alle Kategorien anzeigen
+prev_post: Vorheriger
+next_post: Nächster
+word_count: Wortanzahl
+reading_time: Geschätzte Lesezeit
+completed: Abgeschlossen
+goto_archive: Zum Archiv
+goto_top: Nach oben
+goto_bottom: Nach unten
+welcome: Willkommen auf meinem Blog
+posts_count: Beiträge
+invalid_folder_name: Ungültiger Ordnername
+folder_not_found: "Ordner nicht gefunden: source/%s"
+read_dir_failed: Verzeichnis konnte nicht gelesen werden
+no_files: Keine Dateien verfügbar.
+page_not_created: Seite nicht erstellt
+default_site_title: Mein Blog
+default_site_subtitle: Ein einfacher und sauberer Blog
+default_author: Autor

@@ -9,7 +9,7 @@
                     <span class="mdui-typo-subheading">
                         <%= post.rate ? post.rate : "0" %> % 
                     </span>
-                    <span class="mdui-typo-caption">Completed</span>
+                    <span class="mdui-typo-caption"><%= __('completed') %></span>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
             <% }) %></div>
         </div>
         <div class="mdui-typo mdui-card-body mdui-typo-heading">
-            字数：<%= wordcount(post.content) %> &nbsp; 预计阅读时长：<%= min2read(post.content, {cn: 200, en: 500}) %> min
+            <%= __('word_count') %>：<%= wordcount(post.content) %> &nbsp; <%= __('reading_time') %>：<%= min2read(post.content, {cn: 200, en: 500}) %> min
         </div>
     </div>
     <!-- <div class="mdui-card-content"> 预览功能维护中 <%= post.excerpt %></div> -->

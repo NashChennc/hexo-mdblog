@@ -17,3 +17,31 @@ powered_by: Powered by
 rss_feed: RSS Feed
 category: Category
 tag: Tag
+home: Home
+about: About
+toc: Table of Contents
+last_update: Last Update
+uncategorized: Uncategorized
+min_read: min read
+read_full_article: Read full article
+articles: articles
+current_category: Current Category
+view_all_categories: View All Categories
+prev_post: Previous
+next_post: Next
+word_count: Word Count
+reading_time: Reading Time
+completed: Completed
+goto_archive: goto Archive
+goto_top: goto top
+goto_bottom: goto bottom
+welcome: Welcome to my blog
+posts_count: posts
+invalid_folder_name: Invalid folder name
+folder_not_found: "Folder not found: source/%s"
+read_dir_failed: Failed to read directory
+no_files: No files available.
+page_not_created: Page not created
+default_site_title: My Blog
+default_site_subtitle: A simple and clean blog
+default_author: Author

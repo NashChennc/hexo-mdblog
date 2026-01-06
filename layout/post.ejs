@@ -4,10 +4,10 @@
 <%- partial('partial/fab') %>
 
 <div class="mdui-container">
-    <div class="mdui-row">
+    <div class="mdui-row mdui-p-t-1 mdui-p-b-1">
         <!-- 文章内容 -->
 
-        <div class="mdui-col-md-9 mdui-col-xs-12 mdui-p-t-3 mdui-p-b-5">
+        <div class="mdui-col-md-9 mdui-col-xs-12 mdui-p-t-1 mdui-p-b-4">
             <div class="mdui-card mdui-hoverable">
                 <div class="mdui-card-primary mdui-p-x-5">
                     <div class="mdui-card-primary-title mdui-typo-display-1">
@@ -15,7 +15,7 @@
                     </div>
                     <div class="mdui-row mdui-p-t-2">
                         <div class="mdui-col-xs-9 mdui-typo-caption-opacity">
-                            Last Update: <%= date( page.updated, 'YYYY/MM/DD HH:mm') %>
+                            <%= __('last_update') %>: <%= date( page.updated, 'YYYY/MM/DD HH:mm') %>
                         </div>
                         <div class="mdui-col-xs-3">
                             <div class="mdui-float-right mdui-typo">
@@ -38,19 +38,21 @@
             
         </div>
         <!-- 侧边栏 -->
-        <div class="mdui-col-md-3 mdui-col-xs-12 mdui-p-t-3 mdui-p-b-5" style="position: -webkit-sticky; position: sticky; top: 80px; z-index: 1;">
-            <%- partial('partial/sidebar') %>
+        <div class="mdui-col-md-3 mdui-col-xs-12  mdui-p-t-1 mdui-p-b-4 sticky-sidebar" id="post-sidebar">
             <% if (page.toc !== false) { %>
-                <div class="mdui-card mdui-shadow-1 mdui-m-t-2">
-                    <div class="mdui-card-content">
-                        <div class="mdui-typo-heading">目录</div>
-                        <div class="mdui-card-content" style="max-height: 35vh; overflow-y: auto;">
+                <div class="mdui-card mdui-shadow-1 toc-full-height">
+                    <div class="mdui-card-content toc-card-content">
+                        <div class="mdui-typo-heading mdui-m-b-2"><%= __('toc') %></div>
+                        <div class="toc-content">
                             <%- toc(page.content, {class:"mdui-list mdui-typo", list_number: false, max_depth: 3}) %>
                         </div>
                     </div>
                 </div>
             <% } %>
+            <div class="mdui-m-t-2">
+                <%- partial('partial/sidebar') %>
+            </div>
         </div>
     </div>
 </div>
-<div id="bottom"></div>
+<div id="page-bottom" aria-hidden="true"></div>

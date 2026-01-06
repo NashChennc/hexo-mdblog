@@ -12,53 +12,12 @@
   <!-- KaTeX CSS (If needed) -->
   <link rel="stylesheet" href="<%- url_for('katex/katex.min.css') %>">
 
+  <!-- Custom CSS (最小化，只包含无法用 MDUI 实现的部分) -->
+  <link rel="stylesheet" href="<%- url_for('css/custom.css') %>">
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <meta name="theme-color" content="#3F51B5">
-
-  <style>
-    body {
-      font-family: 'Roboto', 'Noto Sans SC', sans-serif;
-      background-color: #f5f5f5; /* 增加一点背景色对比 */
-    }
-    
-    html {
-        scroll-padding-top: 80px;
-        scroll-behavior: smooth;
-    }
-    
-    .mdui-typo a {
-      word-break: break-all;
-      overflow-wrap: break-word;
-    }
-
-    .mdui-card {
-      border-radius: 8px !important;
-      transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .mdui-card:hover {
-      transform: translateY(-2px);
-    }
-
-    .typo-h1, h1 { font-weight: 300; letter-spacing: -0.015em; }
-    .typo-body, p { line-height: 1.8; color: rgba(0,0,0,0.87); }
-
-    footer {
-      padding: 24px 0;
-    }
-    
-    img { max-width: 100%; height: auto; }
-
-    #sidebar-wrapper {
-        margin-top: 16px;
-    }
-    @media (min-width: 992px) {
-        #sidebar-wrapper {
-            margin-top: 0;
-        }
-    }
-  </style>
 </head>
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-color-grey-100">
   
@@ -78,7 +37,9 @@
   <script src="<%- url_for('katex/contrib/auto-render.min.js') %>"></script>
   
   <script>
+    // 合并所有 DOMContentLoaded 监听器
     document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX 数学公式渲染
       renderMathInElement(document.body, {
         // 自定义分隔符，支持 $...$ 和 $$...$$
         delimiters: [
@@ -90,12 +51,8 @@
         // 忽略的标签
         ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
       });
-    });
-  </script>
-  <!-- Global helper scripts -->
-  <script>
-    // 自动为所有表格和图片添加样式，替代原 post.ejs 中的内联脚本
-    document.addEventListener("DOMContentLoaded", function() {
+
+      // 自动为所有表格和图片添加 MDUI 样式类
         var tables = document.getElementsByTagName("table");
         for (var i = 0; i < tables.length; i++) {
             if (!tables[i].classList.contains("mdui-table")) {

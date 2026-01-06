@@ -3,12 +3,14 @@
         <% if (site.categories.length){ %>
           <div class="mdui-toolbar-spacer"></div>
             <div class="mdui-tab mdui-tab-full-width">
-                <a href="/" class="mdui-ripple">
-                    Home
+                
+                <a href="/" class="mdui-ripple <%= is_home() ? 'mdui-color-indigo-400' : '' %>">
+                    <%= __('home') %>
                 </a>
+                
                 <% site.categories.sort('length').sort('-name').each(item=>{ %>
                     <% if(item.posts.length){ %>
-                        <a href="/categories/<%= item.name %>" class="mdui-ripple">
+                        <a href="/categories/<%= item.name %>" class="mdui-ripple <%= is_category() && page.category === item.name ? 'mdui-color-indigo-400' : '' %>">
                             <%= item.name %> | <%= item.posts.length %>
                         </a>
                     <% } %>
@@ -16,9 +18,8 @@
             </div>
         <% } %>
         <div class="mdui-toolbar-spacer"></div>
-        <a href="<%- url_for('/about') %>" class="mdui-btn mdui-btn-icon mdui-ripple" mdui-tooltip="{content: '一个没什么用的按钮'}">
+        <a href="<%- url_for('/about') %>" class="mdui-btn mdui-btn-icon mdui-ripple" mdui-tooltip="{content: '<%= __('about') %>'}">
             <i class="mdui-icon material-icons"> more_vert </i>
         </a>
-
     </div>
 </header>

@@ -17,3 +17,31 @@ powered_by: Construido por
 rss_feed: RSS
 category: Categoría
 tag: Tag
+home: Inicio
+about: Acerca de
+toc: Tabla de Contenidos
+last_update: Última actualización
+uncategorized: Sin categoría
+min_read: min de lectura
+read_full_article: Leer artículo completo
+articles: artículos
+current_category: Categoría actual
+view_all_categories: Ver todas las categorías
+prev_post: Anterior
+next_post: Siguiente
+word_count: Recuento de palabras
+reading_time: Tiempo de lectura estimado
+completed: Completado
+goto_archive: ir al Archivo
+goto_top: ir arriba
+goto_bottom: ir abajo
+welcome: Bienvenido a mi blog
+posts_count: publicaciones
+invalid_folder_name: Nombre de carpeta inválido
+folder_not_found: "Carpeta no encontrada: source/%s"
+read_dir_failed: Error al leer el directorio
+no_files: No hay archivos disponibles.
+page_not_created: Página no creada
+default_site_title: Mi Blog
+default_site_subtitle: Un blog simple y limpio
+default_author: Autor

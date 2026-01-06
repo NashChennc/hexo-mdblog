@@ -1,192 +1,32 @@
-<style>
-    /* * 局部样式优化 
-     * 仅作用于首页，增强视觉体验
-     */
-    
-    /* 封面容器：更加大气的展示 */
-    .hero-banner {
-        position: relative;
-        width: 100%;
-        height: 95vh; /* 占满全屏 */
-        min-height: 400px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .hero-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-position: center center;
-        background-size: cover;
-        z-index: 0;
-        transition: transform 0.3s ease-out; /* 简单的视差基底 */
-    }
-
-    /* 遮罩层，保证文字可读性 */
-    .hero-mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
-        z-index: 1;
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 2;
-        text-align: center;
-        color: #fff;
-        padding: 20px;
-        opacity: 0;
-        animation: heroFadeIn 1s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
-        animation-delay: 0.3s;
-    }
-
-    /* 标题动画 */
-    @keyframes heroFadeIn {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 向下滚动指示器 */
-    .scroll-down-btn {
-        position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 5;
-        color: rgba(255,255,255,0.8);
-        animation: bounce 2s infinite;
-        cursor: pointer;
-    }
-
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
-        40% {transform: translateX(-50%) translateY(-10px);}
-        60% {transform: translateX(-50%) translateY(-5px);}
-    }
-
-    /* 文章卡片增强 */
-    .post-card {
-        height: 100%; /* 撑满父容器高度 */
-        display: flex;
-        flex-direction: column;
-        border-radius: 8px !important;
-        overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        background: #fff;
-    }
-
-    .post-card:hover {
-        transform: translateY(-6px); /* 稍微减小悬浮幅度 */
-        box-shadow: 0 8px 16px -8px rgba(0,0,0,0.2) !important;
-    }
-    
-    .post-card-media {
-        height: 160px; /* 缩小一点高度，原200px */
-        overflow: hidden;
-        background-color: #f5f5f5;
-        position: relative;
-    }
-
-    .post-card-content {
-        flex-grow: 1;
-        padding: 16px 20px; /* 稍微减小内边距 */
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* 限制摘要行数，保证高度统一 */
-    .limit-lines {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3; /* 限制显示3行 */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 1.6;
-        height: calc(1.6em * 3); /* 固定高度占位 */
-        font-size: 14px; /* 字体稍微改小一点点 */
-    }
-
-    /* 滚动出现动画类 */
-    .scroll-reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    
-    .scroll-reveal.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* 标签 Chips 样式微调 */
-    .tag-chip {
-        font-size: 11px; /* 缩小标签字体 */
-        height: 20px;
-        line-height: 20px;
-        margin-right: 4px;
-        background-color: rgba(0,0,0,0.05);
-        color: #757575;
-    }
-
-    /* 首篇文章特别样式 */
-    .featured-post .post-card-media {
-        height: 350px; /* 首图保持大气 */
-    }
-    
-    /* 强制等高列：Flexbox 布局补丁 */
-    .equal-height-row {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .equal-height-col {
-        display: flex;
-        flex-direction: column;
-    }
-</style>
 
 <!-- 1. Hero Banner 区域 -->
 <div class="hero-banner">
     <%
         // 获取本地 banner 目录下的所有文件名列表
-        var bannerList = get_banner_list();
-        var defaultBg = "";
+        var bannerImageList = get_banner_list();
+        var fallbackImage = "";
         
         // 如果有图片，随机选一张作为首页全屏背景
-        if (bannerList && bannerList.length > 0) {
-            var randomIndex = Math.floor(Math.random() * bannerList.length);
-            defaultBg = url_for('image/banner/' + bannerList[randomIndex]);
+        if (bannerImageList && bannerImageList.length > 0) {
+            var randomIndex = Math.floor(Math.random() * bannerImageList.length);
+            fallbackImage = url_for('image/banner/' + bannerImageList[randomIndex]);
         } else {
             // 兜底图片 (如果文件夹为空)
-            defaultBg = theme.banner.image
+            fallbackImage = theme.banner.image
         }
     %>
-    <div class="hero-bg" style="background-image: url(<%- theme.banner.image || config.head_bgpaper || defaultBg %>);"></div>
+    <div class="hero-bg" style="background-image: url(<%- theme.banner.image || config.head_bgpaper || fallbackImage %>);"></div>
     <div class="hero-mask"></div>
     
-    <div class="hero-content">
+    <div class="hero-content mdui-text-center mdui-text-color-white mdui-p-a-5">
         <div class="mdui-typo-display-3" style="font-weight: 300; letter-spacing: 2px;">
-            <%= theme.banner.title || config.title %>
+            <%= theme.banner.title || config.title || __('default_site_title') %>
         </div>
         <div class="mdui-typo-headline mdui-m-t-2" style="font-weight: 300; opacity: 0.9;">
-            <%= theme.banner.subtitle || config.subtitle %>
+            <%= theme.banner.subtitle || config.subtitle || __('default_site_subtitle') %>
         </div>
     </div>
-
-    <div class="scroll-down-btn" onclick="document.getElementById('main-content-anchor').scrollIntoView({behavior: 'smooth'})">
-        <i class="mdui-icon material-icons" style="font-size: 36px;">keyboard_arrow_down</i>
-    </div>
 </div>
-
-<div id="main-content-anchor"></div>
 
 <!-- 2. 主要内容区域 -->
 <div class="mdui-container mdui-p-t-4 mdui-p-b-5">
@@ -196,8 +36,8 @@
             
             <div class="mdui-row equal-height-row">
                 <% 
-                    // 简单的 Hash 函数，用于根据标题生成固定的数字
-                    var getHash = function(str) {
+                    // 根据字符串生成固定哈希值的函数，用于为文章选择对应的 banner 图片
+                    var generateHashFromString = function(str) {
                         var hash = 0;
                         if (str.length === 0) return hash;
                         for (var i = 0; i < str.length; i++) {
@@ -217,33 +57,33 @@
                     <% var isFeatured = (i === 0 && page.current === 1); %>
                     
                     <% 
-                        // 图片逻辑：优先 Banner > Photos > 文章内图片 > 本地随机图
-                        var coverUrl = null;
+                        // 封面图片选择逻辑：优先 Banner > Photos > 文章内图片 > 本地随机图
+                        var coverImageUrl = null;
 
                         // 尝试从文章内容提取第一张图片
-                        var contentImg = null;
-                        var imgRegex = /<img[^>]+src="([^">]+)"/i;
-                        var imgMatch = post.content.match(imgRegex);
-                        if (imgMatch && imgMatch[1]) {
-                            contentImg = imgMatch[1];
+                        var firstImageFromContent = null;
+                        var imageRegex = /<img[^>]+src="([^">]+)"/i;
+                        var imageMatch = post.content.match(imageRegex);
+                        if (imageMatch && imageMatch[1]) {
+                            firstImageFromContent = imageMatch[1];
                         }
 
                         if (post.banner) {
-                            coverUrl = post.banner;
+                            coverImageUrl = post.banner;
                         } else if (post.photos && post.photos.length) {
-                            coverUrl = post.photos[0];
-                        } else if (contentImg) {
-                             coverUrl = contentImg;
+                            coverImageUrl = post.photos[0];
+                        } else if (firstImageFromContent) {
+                             coverImageUrl = firstImageFromContent;
                         } else {
-                            var localBanners = get_banner_list();
+                            var localBannerImages = get_banner_list();
                             
-                            if (localBanners && localBanners.length > 0) {
-                                var seed = getHash(post.title);
-                                var index = seed % localBanners.length;
-                                coverUrl = url_for('image/banner/' + localBanners[index]);
+                            if (localBannerImages && localBannerImages.length > 0) {
+                                var hashSeed = generateHashFromString(post.title);
+                                var bannerIndex = hashSeed % localBannerImages.length;
+                                coverImageUrl = url_for('image/banner/' + localBannerImages[bannerIndex]);
                             } else {
                                 // 最后的兜底
-                                coverUrl = ""; 
+                                coverImageUrl = ""; 
                             }
                         }
                     %>
@@ -253,12 +93,12 @@
                         <article class="mdui-card mdui-shadow-2 post-card">
                             
                             <!-- 卡片头部：图片 -->
-                            <a href="<%- url_for(post.path) %>" class="post-card-media mdui-ripple">
-                                <% if (coverUrl) { %>
-                                    <img src="<%= coverUrl %>" style="width: 100%; height: 100%; object-fit: cover;">
+                            <a href="<%- url_for(post.path) %>" class="post-card-media mdui-ripple mdui-color-grey-100">
+                                <% if (coverImageUrl) { %>
+                                    <img src="<%= coverImageUrl %>" class="mdui-img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
                                 <% } else { %>
                                     <!-- 确实没有任何图片时的 fallback -->
-                                    <div style="width: 100%; height: 100%; background: #eee; display: flex; align-items: center; justify-content: center;">
+                                    <div class="mdui-flex mdui-flex-center mdui-flex-middle" style="width: 100%; height: 100%;">
                                         <i class="mdui-icon material-icons mdui-text-color-grey-400">image</i>
                                     </div>
                                 <% } %>
@@ -275,7 +115,7 @@
                             </a>
 
                             <!-- 卡片内容 -->
-                            <div class="post-card-content">
+                            <div class="post-card-content mdui-p-x-5 mdui-p-y-4">
                                 <!-- 分类标签 -->
                                 <div class="mdui-m-b-1">
                                     <% if (post.categories && post.categories.length) { %>
@@ -285,14 +125,14 @@
                                             </a>
                                         <% }) %>
                                     <% } else { %>
-                                        <span class="mdui-chip"><span class="mdui-chip-title">未分类</span></span>
+                                        <span class="mdui-chip"><span class="mdui-chip-title"><%= __('uncategorized') %></span></span>
                                     <% } %>
                                 </div>
 
                                 <!-- 标题 (非 Featured 时显示) -->
                                 <% if (!isFeatured) { %>
                                     <a href="<%- url_for(post.path) %>" class="mdui-text-color-theme-text" style="text-decoration: none;">
-                                        <div class="mdui-typo-headline mdui-m-b-1" style="font-size: 18px; line-height: 1.4; font-weight: 500;">
+                                        <div class="mdui-typo-subheading mdui-m-b-1" style="font-weight: 500;">
                                             <%= post.title %>
                                         </div>
                                     </a>
@@ -314,11 +154,11 @@
 
                                 <!-- 底部操作 -->
                                 <div class="mdui-row-xs-2">
-                                    <div class="mdui-col mdui-text-left mdui-typo-caption-opacity" style="line-height: 36px; font-size: 12px;">
-                                        <%= min2read(post.content, {cn: 200, en: 500}) %> min read
+                                    <div class="mdui-col mdui-text-left mdui-typo-caption-opacity">
+                                        <%= min2read(post.content, {cn: 200, en: 500}) %> <%= __('min_read') %>
                                     </div>
                                     <div class="mdui-col mdui-text-right">
-                                        <a href="<%- url_for(post.path) %>" class="mdui-btn mdui-btn-icon mdui-text-color-theme mdui-ripple" mdui-tooltip="{content: 'Read full article'}">
+                                        <a href="<%- url_for(post.path) %>" class="mdui-btn mdui-btn-icon mdui-text-color-theme mdui-ripple" mdui-tooltip="{content: '<%= __('read_full_article') %>'}">
                                             <i class="mdui-icon material-icons">arrow_forward</i>
                                         </a>
                                     </div>
@@ -343,12 +183,12 @@
         </div>
 
         <!-- 侧边栏：保持在右侧但增加粘性效果 -->
-        <div class="mdui-col-md-3 mdui-col-xs-12"  style="position: -webkit-sticky; position: sticky; top: 80px; z-index: 1;">
+        <div class="mdui-col-md-3 mdui-col-xs-12 sticky-sidebar">
             <%- partial('partial/sidebar') %>
         </div>
     </div>
 </div>
-<div id="bottom"></div>
+<div id="page-bottom" aria-hidden="true"></div>
 
 <!-- 3. 简单的滚动显现脚本 -->
 <script>

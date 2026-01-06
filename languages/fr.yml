@@ -17,3 +17,31 @@ powered_by: Propulsé par
 rss_feed: Flux RSS
 category: Catégorie
 tag: Mot-clé
+home: Accueil
+about: À propos
+toc: Table des matières
+last_update: Dernière mise à jour
+uncategorized: Non catégorisé
+min_read: min de lecture
+read_full_article: Lire l'article complet
+articles: articles
+current_category: Catégorie actuelle
+view_all_categories: Voir toutes les catégories
+prev_post: Précédent
+next_post: Suivant
+word_count: Nombre de mots
+reading_time: Temps de lecture estimé
+completed: Terminé
+goto_archive: aller aux Archives
+goto_top: aller en haut
+goto_bottom: aller en bas
+welcome: Bienvenue sur mon blog
+posts_count: articles
+invalid_folder_name: Nom de dossier invalide
+folder_not_found: "Dossier introuvable: source/%s"
+read_dir_failed: Échec de la lecture du répertoire
+no_files: Aucun fichier disponible.
+page_not_created: Page non créée
+default_site_title: Mon Blog
+default_site_subtitle: Un blog simple et épuré
+default_author: Auteur

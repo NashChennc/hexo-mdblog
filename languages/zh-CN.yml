@@ -17,3 +17,31 @@ powered_by: Powered by
 rss_feed: RSS Feed
 category: Category
 tag: Tag
+home: 首页
+about: 关于
+toc: 目录
+last_update: 最后更新
+uncategorized: 未分类
+min_read: 分钟阅读
+read_full_article: 阅读全文
+articles: 篇文章
+current_category: 当前分类
+view_all_categories: 查看全部分类
+prev_post: 上一篇
+next_post: 下一篇
+word_count: 字数
+reading_time: 预计阅读时长
+completed: 完成度
+goto_archive: 前往归档
+goto_top: 返回顶部
+goto_bottom: 跳到底部
+welcome: 欢迎来到我的博客
+posts_count: 篇文章
+invalid_folder_name: 无效的文件夹名称
+folder_not_found: "目录不存在: source/%s"
+read_dir_failed: 读取目录失败
+no_files: 暂无文件。
+page_not_created: 页面未创建
+default_site_title: 我的博客
+default_site_subtitle: 一个简洁的博客
+default_author: 作者

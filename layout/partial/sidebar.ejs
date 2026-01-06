@@ -1,20 +1,20 @@
-<div class="mdui-card mdui-shadow-1" style="border-radius: 8px;">
+<div class="mdui-card mdui-shadow-1">
   <div class="mdui-card-media" style="height: 120px; overflow: hidden;">
-    <img src="<%- theme.sidebar_config.image || theme.banner %>" style="width: 100%; height: 100%; object-fit: cover;">
+    <img src="<%- theme.sidebar_config.image || theme.banner %>" class="mdui-img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
   </div>
 
-  <div class="mdui-card-content mdui-text-center" style="position: relative; margin-top: -50px;">
+  <div class="mdui-card-content mdui-text-center" style="position: relative;">
     <% if (theme.sidebar_config.avatar || theme.avatar) { %>
-      <img src="<%- theme.sidebar_config.avatar || theme.avatar %>" class="mdui-img-circle mdui-shadow-4" style="width: 80px; height: 80px; border: 2px solid white; display: inline-flex; align-items: center; justify-content: center;">
+      <img src="<%- theme.sidebar_config.avatar || theme.avatar %>" class="mdui-img-circle mdui-shadow-4 sidebar-avatar-offset" style="width: 80px; height: 80px; border: 2px solid white; display: block; margin-left: auto; margin-right: auto;">
     <% } else { %>
-      <div class="mdui-img-circle mdui-shadow-4 mdui-color-white" style="width: 80px; height: 80px; border: 2px solid white; display: inline-flex; align-items: center; justify-content: center;">
+      <div class="mdui-img-circle mdui-shadow-4 mdui-color-white sidebar-avatar-offset mdui-flex mdui-flex-center mdui-flex-middle" style="width: 80px; height: 80px; border: 2px solid white; margin-left: auto; margin-right: auto;">
          <i class="material-icons mdui-text-color-theme" style="font-size: 40px;">person</i>
       </div>
     <% } %>
 
     <div class="mdui-typo-headline mdui-m-t-2"><%= config.author %></div>
     <div class="mdui-typo-caption mdui-text-color-grey-600 mdui-m-t-1">
-      <%= theme.sidebar_config.description || config.description || 'Welcome to my blog' %>
+      <%= theme.sidebar_config.description || config.description || __('welcome') %>
     </div>
   </div>
 
@@ -23,15 +23,15 @@
   <div class="mdui-row mdui-text-center mdui-p-y-2">
     <div class="mdui-col-xs-4">
       <div class="mdui-typo-subheading"><%= site.posts.length %></div>
-      <div class="mdui-typo-caption mdui-text-color-grey-600">文章</div>
+      <div class="mdui-typo-caption mdui-text-color-grey-600"><%= __('posts_count') %></div>
     </div>
     <div class="mdui-col-xs-4">
       <div class="mdui-typo-subheading"><%= site.categories.length %></div>
-      <div class="mdui-typo-caption mdui-text-color-grey-600">分类</div>
+      <div class="mdui-typo-caption mdui-text-color-grey-600"><%= __('categories') %></div>
     </div>
     <div class="mdui-col-xs-4">
       <div class="mdui-typo-subheading"><%= site.tags.length %></div>
-      <div class="mdui-typo-caption mdui-text-color-grey-600">标签</div>
+      <div class="mdui-typo-caption mdui-text-color-grey-600"><%= __('tags') %></div>
     </div>
   </div>
 

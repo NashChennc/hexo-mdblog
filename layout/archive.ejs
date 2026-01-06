@@ -1,5 +1,5 @@
 <div class="mdui-container mdui-p-t-2 mdui-p-b-5">
-    <h1>Categories</h1>
+    <h1><%= __('categories') %></h1>
     <div class="mdui-row">
         <div class="mdui-panel mdui-col-xs-12" mdui-panel>
         <% if (site.categories.length){ %>
@@ -8,7 +8,7 @@
             <div class="mdui-panel-item mdui-panel-item-open mdui-col-xs-4">
                 <div class="mdui-panel-item-header mdui-ripple">
                     <div class="mdui-panel-item-title"><%= item.name %></div>
-                    <div class="mdui-panel-item-summary"><%= item.posts.length %> 篇文章</div>
+                    <div class="mdui-panel-item-summary"><%= item.posts.length %> <%= __('posts_count') %></div>
                     <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                 </div>
                 <div class="mdui-panel-item-body">
@@ -29,4 +29,4 @@
         </div>
     </div>
 </div>
-<div id="bottom"></div>
+<div id="page-bottom" aria-hidden="true"></div>

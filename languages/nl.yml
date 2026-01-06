@@ -18,3 +18,31 @@ powered_by: Powered by
 rss_feed: RSS Feed
 category: Categorie
 tag: Label
+home: Home
+about: Over
+toc: Inhoudsopgave
+last_update: Laatste update
+uncategorized: Niet gecategoriseerd
+min_read: min lezen
+read_full_article: Volledig artikel lezen
+articles: artikelen
+current_category: Huidige categorie
+view_all_categories: Alle categorieën bekijken
+prev_post: Vorige
+next_post: Volgende
+word_count: Woordentelling
+reading_time: Geschatte leestijd
+completed: Voltooid
+goto_archive: ga naar Archief
+goto_top: ga naar boven
+goto_bottom: ga naar beneden
+welcome: Welkom op mijn blog
+posts_count: berichten
+invalid_folder_name: Ongeldige mapnaam
+folder_not_found: "Map niet gevonden: source/%s"
+read_dir_failed: Kan map niet lezen
+no_files: Geen bestanden beschikbaar.
+page_not_created: Pagina niet gemaakt
+default_site_title: Mijn Blog
+default_site_subtitle: Een eenvoudige en schone blog
+default_author: Auteur

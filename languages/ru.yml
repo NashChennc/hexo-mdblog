@@ -17,3 +17,31 @@ powered_by: Создано с помощью
 rss_feed: RSS-каналы
 category: Категория
 tag: Метка
+home: Главная
+about: О нас
+toc: Содержание
+last_update: Последнее обновление
+uncategorized: Без категории
+min_read: мин чтения
+read_full_article: Прочитать полную статью
+articles: статей
+current_category: Текущая категория
+view_all_categories: Просмотреть все категории
+prev_post: Предыдущий
+next_post: Следующий
+word_count: Количество слов
+reading_time: Примерное время чтения
+completed: Завершено
+goto_archive: перейти в Архив
+goto_top: перейти вверх
+goto_bottom: перейти вниз
+welcome: Добро пожаловать в мой блог
+posts_count: записей
+invalid_folder_name: Неверное имя папки
+folder_not_found: "Папка не найдена: source/%s"
+read_dir_failed: Не удалось прочитать каталог
+no_files: Нет доступных файлов.
+page_not_created: Страница не создана
+default_site_title: Мой Блог
+default_site_subtitle: Простой и чистый блог
+default_author: Автор

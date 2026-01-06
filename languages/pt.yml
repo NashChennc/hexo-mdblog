@@ -17,3 +17,31 @@ powered_by: Desenvolvido por
 rss_feed: Feed RSS
 category: Categoria
 tag: Tag
+home: Início
+about: Sobre
+toc: Índice
+last_update: Última atualização
+uncategorized: Sem categoria
+min_read: min de leitura
+read_full_article: Ler artigo completo
+articles: artigos
+current_category: Categoria atual
+view_all_categories: Ver todas as categorias
+prev_post: Anterior
+next_post: Próximo
+word_count: Contagem de palavras
+reading_time: Tempo de leitura estimado
+completed: Concluído
+goto_archive: ir para Arquivo
+goto_top: ir para o topo
+goto_bottom: ir para o fundo
+welcome: Bem-vindo ao meu blog
+posts_count: postagens
+invalid_folder_name: Nome de pasta inválido
+folder_not_found: "Pasta não encontrada: source/%s"
+read_dir_failed: Falha ao ler diretório
+no_files: Nenhum arquivo disponível.
+page_not_created: Página não criada
+default_site_title: Meu Blog
+default_site_subtitle: Um blog simples e limpo
+default_author: Autor

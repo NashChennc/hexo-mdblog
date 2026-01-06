@@ -17,3 +17,31 @@ powered_by: Powered by
 rss_feed: RSS Feed
 category: Category
 tag: Tag
+home: Hjem
+about: Om
+toc: Innholdsfortegnelse
+last_update: Siste oppdatering
+uncategorized: Ukategorisert
+min_read: min lesing
+read_full_article: Les hele artikkelen
+articles: artikler
+current_category: Gjeldende kategori
+view_all_categories: Vis alle kategorier
+prev_post: Forrige
+next_post: Neste
+word_count: Ordtelling
+reading_time: Estimert lesetid
+completed: Fullført
+goto_archive: gå til Arkiv
+goto_top: gå til toppen
+goto_bottom: gå til bunnen
+welcome: Velkommen til min blogg
+posts_count: innlegg
+invalid_folder_name: Ugyldig mappenavn
+folder_not_found: "Mappe ikke funnet: source/%s"
+read_dir_failed: Kunne ikke lese mappe
+no_files: Ingen filer tilgjengelig.
+page_not_created: Side ikke opprettet
+default_site_title: Min Blogg
+default_site_subtitle: En enkel og ren blogg
+default_author: Forfatter
