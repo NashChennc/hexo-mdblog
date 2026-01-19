@@ -18,12 +18,12 @@
     <div class="hero-bg" style="background-image: url(<%- theme.banner.image || config.head_bgpaper || fallbackImage %>);"></div>
     <div class="hero-mask"></div>
     
-    <div class="hero-content mdui-text-center mdui-text-color-white mdui-p-a-5">
+    <div class="hero-content mdui-text-center mdui-text-color-white mdui-p-b-4">
         <div class="mdui-typo-display-3" style="font-weight: 300; letter-spacing: 2px;">
-            <%= theme.banner.title || config.title || __('default_site_title') %>
+            <%- theme.banner.index_title || theme.banner.title || config.title || __('default_site_title') %>
         </div>
         <div class="mdui-typo-headline mdui-m-t-2" style="font-weight: 300; opacity: 0.9;">
-            <%= theme.banner.subtitle || config.subtitle || __('default_site_subtitle') %>
+            <%- theme.banner.index_subtitle || theme.banner.subtitle || config.subtitle || __('default_site_subtitle') %>
         </div>
     </div>
 </div>

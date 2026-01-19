@@ -1,14 +1,14 @@
-<div class="banner-container" style="height: 350px;">
+<div class="banner-container" style="height: 320px;">
     <div class="banner-bg" style="background-image: url(<%- theme.banner.image || '/image/banner.png' %>);"></div>
     
     <div class="mdui-card-media-covered banner-overlay" style="background: rgba(0, 0, 0, 0.4);">
         <div class="mdui-container">
             <div class="mdui-card-primary mdui-float-right mdui-text-color-white mdui-p-y-2">
                 <div class="mdui-card-primary-title" style="font-weight: 300;">
-                    <%= theme.banner.title || config.title || __('default_site_title') %>
+                    <%- theme.banner.title || config.title || __('default_site_title') %>
                 </div>
                 <div class="mdui-card-primary-subtitle mdui-float-right" style="opacity: 0.9;">
-                    <%= theme.banner.subtitle || config.subtitle || __('default_site_subtitle') %>
+                    <%- theme.banner.subtitle || config.subtitle || __('default_site_subtitle') %>
                 </div>
             </div>
         </div>
