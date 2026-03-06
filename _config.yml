@@ -194,42 +194,26 @@ sidebar_config:
 # 支持多个社交平台，每个平台包含 link、icon、color 三个属性
 # ============================================
 social:
-  # 邮箱链接示例
-  email:
-    # 链接地址
-    # 类型: String
-    # 格式: mailto:your@email.com 或 https://...
-    link: mailto:your@email.com
-    
-    # Material Icons 图标名称
-    # 类型: String
-    # 参考: https://fonts.google.com/icons
-    # 常用图标: email, code, link, share, favorite, etc.
-    icon: email
-    
-    # MDUI 颜色类名
-    # 类型: String
-    # 格式: mdui-text-color-{颜色名}
-    # 可用颜色: blue, red, green, orange, purple, pink, indigo, teal, cyan, etc.
-    # 参考: https://www.mdui.org/docs/color
-    color: mdui-text-color-blue
-  
-  # GitHub 链接示例
+  qq:
+    text: "695977430"
+    link: "https://qm.qq.com/q/RPs1VkX9OU"
+    icon: fa-brands fa-qq
+    color: mdui-text-color-light-blue
+  # x:
+  #   text: "Nachuan04"
+  #   link: "https://x.com/Nachuan04"
+  #   icon: fa-brands fa-x-twitter
+  #   color: mdui-text-color-black
   github:
-    link: https://github.com/yourusername
-    icon: code
+    text: "NashChennc"
+    link: "https://github.com/nashchennc"
+    icon: fa-brands fa-github
     color: mdui-text-color-black
-  
-  # 可以添加更多社交链接...
-  # twitter:
-  #   link: https://twitter.com/yourusername
-  #   icon: share
-  #   color: mdui-text-color-blue
-  # 
-  # weibo:
-  #   link: https://weibo.com/yourusername
-  #   icon: favorite
-  #   color: mdui-text-color-red
+  email:
+    text: "chennachuan0423@gmail.com"
+    link: "mailto:chennachuan0423@gmail.com"
+    icon: fa-solid fa-envelope
+    color: mdui-text-color-blue
 
 # ============================================
 # 四、其他配置项
