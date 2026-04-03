@@ -11,12 +11,24 @@
   --mdui-shape-corner-medium: 8px;
   /* 与 mdui-top-app-bar 视觉高度对齐，用于锚点滚动与 sticky 侧栏 */
   --app-top-bar-offset: 64px;
+  /* 文章主栏与目录卡片共用内边距，避免正文贴边、与目录视觉不对齐 */
+  --post-content-pad: clamp(1.25rem, 5vw, 2rem);
 }
 
 /* ============================================
  * 全局样式（无法用 MDUI 类替代的部分）
  * ============================================ */
-/* 字体已在 body 标签的类中设置，这里只保留必要的全局样式 */
+/* 系统 UI + 中文无衬线：比纯 Material/Roboto 默认更克制、阅读感更稳 */
+body#top {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.mdui-prose {
+  font-family: inherit;
+}
+
 html {
   scroll-padding-top: var(--app-top-bar-offset);
   /* scroll-behavior: smooth; 已移除，防止首页自动下滑 */
@@ -203,7 +215,7 @@ img {
 .hero-content__title {
   margin: 0;
   font-weight: 300;
-  letter-spacing: 2px;
+  letter-spacing: 0.02em;
 }
 
 .hero-content__subtitle {
@@ -236,24 +248,20 @@ img {
   max-width: min(92vw, 42rem);
   margin-left: auto;
   margin-right: auto;
-  border-radius: var(--mdui-shape-corner-large, 16px);
-  background-color: rgba(0, 0, 0, 0.38);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
 }
 
 .hero-content--index .hero-content__title {
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: clamp(1.75rem, 5vw, 2.85rem);
   font-weight: 300;
-  letter-spacing: 2px;
-  line-height: 1.15;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
 }
 
 .hero-content--index .hero-content__subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-size: clamp(0.95rem, 2.2vw, 1.2rem);
   font-weight: 300;
   opacity: 0.9;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .hero-content__subtitle--spaced {
@@ -356,7 +364,7 @@ mdui-card.post-card {
 
 .post-card-title-text {
   margin-bottom: 0.25rem;
-  font-weight: 500;
+  font-weight: 400;
   font-size: var(--mdui-typescale-title-medium-size, 1rem);
   line-height: var(--mdui-typescale-title-medium-line-height, 1.5rem);
 }
@@ -388,36 +396,6 @@ mdui-card.post-card {
 .post-card-footer__meta {
   font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
   color: rgb(var(--mdui-color-on-surface-variant));
-}
-
-.post-card-media__overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  padding: 1rem 1.25rem;
-  box-sizing: border-box;
-  pointer-events: none;
-}
-
-.post-card-media__overlay--gradient {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.2) 55%, transparent 100%);
-}
-
-.post-card-media__titles {
-  color: #fff;
-}
-
-.post-card-media__title {
-  font-size: var(--mdui-typescale-title-large-size, 1.375rem);
-  font-weight: 500;
-  line-height: var(--mdui-typescale-title-large-line-height, 1.75rem);
-}
-
-.post-card-media__subtitle {
-  margin-top: 0.25rem;
-  font-size: var(--mdui-typescale-label-large-size, 0.875rem);
-  opacity: 0.9;
 }
 
 .post-card-cover-placeholder {
@@ -478,7 +456,7 @@ mdui-card.post-card {
 .mdui-btn-group .current {
   background-color: rgb(var(--mdui-color-primary-container));
   color: rgb(var(--mdui-color-on-primary-container));
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .mdui-btn-group .space {
@@ -519,7 +497,7 @@ mdui-card.post-card {
 }
 
 .categories-collapse__name {
-  font-weight: 500;
+  font-weight: 400;
   color: rgb(var(--mdui-color-on-surface));
 }
 
@@ -601,7 +579,7 @@ mdui-card.post-card {
 .post-nav__title {
   margin-top: 0.35rem;
   font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
-  font-weight: 500;
+  font-weight: 400;
   color: rgb(var(--mdui-color-on-surface));
   overflow: hidden;
   text-overflow: ellipsis;
@@ -632,7 +610,7 @@ mdui-card.post-card {
   color: rgb(var(--mdui-color-primary));
   text-decoration: none;
   font-size: var(--mdui-typescale-title-large-size, 1.375rem);
-  font-weight: 500;
+  font-weight: 400;
   line-height: var(--mdui-typescale-title-large-line-height, 1.75rem);
 }
 
@@ -739,7 +717,7 @@ footer.site-footer {
 
 .site-footer .site-footer__author {
   color: rgb(var(--mdui-color-primary));
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .post-card-cover-img {
@@ -966,7 +944,7 @@ footer.site-footer {
   font-size: 0.35em;
   opacity: 0.7;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.06em;
   margin-right: -1px;
   line-height: 1.2;
 }
@@ -1013,7 +991,7 @@ footer.site-footer {
 .banner-hero-subtitle__cite-upper {
   font-size: 0.7em;
   opacity: 0.7;
-  letter-spacing: 1px;
+  letter-spacing: 0.06em;
   margin-bottom: 2px;
   text-transform: uppercase;
 }
@@ -1054,23 +1032,17 @@ footer.site-footer {
 }
 
 /* ============================================
- * 文章页（post.ejs）标题与元信息
+ * 文章页（post.ejs）：标题、正文、上下篇共用 --post-content-pad
  * ============================================ */
-.post-page-card {
-  display: block;
-  width: 100%;
-}
-
 .post-page-card__header {
-  padding: 20px 20px 0;
-  box-sizing: border-box;
+  padding: var(--post-content-pad) var(--post-content-pad) 0;
 }
 
 .post-page__title {
   margin: 0;
-  font-size: var(--mdui-typescale-headline-large-size, 2rem);
-  font-weight: var(--mdui-typescale-headline-large-weight, 400);
-  line-height: var(--mdui-typescale-headline-large-line-height, 2.5rem);
+  font-size: var(--mdui-typescale-headline-medium-size, 1.75rem);
+  font-weight: 400;
+  line-height: var(--mdui-typescale-headline-medium-line-height, 2rem);
   color: rgb(var(--mdui-color-on-surface));
 }
 
@@ -1080,8 +1052,7 @@ footer.site-footer {
   align-items: baseline;
   justify-content: space-between;
   gap: 0.5rem 1rem;
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
+  margin: 0.75rem 0;
 }
 
 .post-page__meta {
@@ -1104,13 +1075,11 @@ footer.site-footer {
 }
 
 .post-page-card__body {
-  padding: 8px 20px 20px;
-  box-sizing: border-box;
+  padding: 1.25rem var(--post-content-pad) var(--post-content-pad);
 }
 
 .post-page-card .post-nav {
-  padding: 0.75rem 20px 1rem;
-  box-sizing: border-box;
+  padding: 0.75rem var(--post-content-pad) var(--post-content-pad);
 }
 
 .post-page-sidebar-stack {
@@ -1126,27 +1095,21 @@ footer.site-footer {
   border-radius: 12px;
 }
 
-/* ============================================
- * 目录窗口高度样式
- * ============================================ */
-.toc-full-height {
+/* 文章侧栏目录：与正文卡片同内边距 + 长文时内部滚动 */
+.post-toc-card.toc-full-height {
   display: flex;
   flex-direction: column;
   max-height: calc(100vh - var(--app-top-bar-offset) - 28px);
-}
-
-.post-toc-card {
-  display: flex;
-  flex-direction: column;
   min-height: 0;
   width: 100%;
 }
 
-.toc-card-content {
+.post-toc-inner {
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  min-height: 0; /* 允许 flex 子元素缩小 */
+  flex: 1;
+  min-height: 0;
+  padding: var(--post-content-pad);
 }
 
 .post-toc__title {
@@ -1157,30 +1120,29 @@ footer.site-footer {
   color: rgb(var(--mdui-color-on-surface));
 }
 
-.toc-content {
-  overflow-y: auto;
-  overflow-x: hidden;
-  flex: 1 1 auto; /* 自动适应内容，但可以缩小 */
-  min-height: 0; /* 允许缩小到内容高度 */
+.post-toc-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
 }
 
-/* 侧栏目录：在 mdui-prose 内收紧列表，避免像正文一样松散 */
-.toc-card-content .toc-content.mdui-prose .post-toc,
-.toc-card-content .toc-content.mdui-prose .post-toc ol {
+/* 目录列表收紧（不比照正文 ol/ul 松排） */
+.post-toc-card .mdui-prose .post-toc,
+.post-toc-card .mdui-prose .post-toc ol {
   list-style: none;
   margin: 0;
   padding-left: 0.75rem;
 }
 
-.toc-card-content .toc-content.mdui-prose .post-toc {
+.post-toc-card .mdui-prose .post-toc {
   padding-left: 0;
 }
 
-.toc-card-content .toc-content.mdui-prose .post-toc > li {
+.post-toc-card .mdui-prose .post-toc > li {
   margin: 0.2em 0;
 }
 
-.toc-card-content .toc-content.mdui-prose .post-toc a {
+.post-toc-card .mdui-prose .post-toc a {
   font-size: var(--mdui-typescale-body-small-size, 0.75rem);
   line-height: var(--mdui-typescale-body-small-line-height, 1rem);
   color: rgb(var(--mdui-color-primary));

@@ -34,10 +34,10 @@
         <!-- 侧边栏 -->
         <aside class="page-sidebar mdui-p-t-1 mdui-p-b-4 sticky-sidebar" id="post-sidebar">
             <% if (page.toc !== false) { %>
-                <mdui-card variant="elevated" class="toc-full-height post-toc-card">
-                    <div class="toc-card-content">
+                <mdui-card variant="elevated" class="post-toc-card toc-full-height">
+                    <div class="post-toc-inner">
                         <div class="post-toc__title"><%= __('toc') %></div>
-                        <div class="toc-content mdui-prose">
+                        <div class="post-toc-scroll mdui-prose">
                             <%- toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 }) %>
                         </div>
                     </div>
