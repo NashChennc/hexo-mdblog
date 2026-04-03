@@ -58,11 +58,6 @@ html {
   text-underline-offset: 0.18em;
 }
 
-/* Footer 间距（使用 MDUI 类可能不够精确） */
-footer {
-  padding: 24px 0;
-}
-
 /* 图片响应式（MDUI 的 mdui-img-fluid 类已处理，但保留作为兜底） */
 img {
   max-width: 100%;
@@ -156,11 +151,11 @@ img {
 }
 
 /* ============================================
- * 粘性侧边栏工具类（与 --app-top-bar-offset 一致）
+ * 粘性侧边栏：top 须含 --app-sticky-stack-gap，与 TOC max-height 共用 --app-sticky-offset
  * ============================================ */
 .sticky-sidebar {
   position: -webkit-sticky;
   position: sticky;
-  top: var(--app-top-bar-offset);
+  top: var(--app-sticky-offset);
   z-index: 1;
 }

@@ -74,7 +74,7 @@
   position: relative;
 }
 
-/* 字号设在 wrap 上，使 punct_after_* 与 upper 同源；避免逗号继承标题大字而法语行仍是 0.35em */
+/* 字号设在 wrap 上，使 upper 与法语行比例一致 */
 .banner-hero-title__upper-wrap {
   font-size: 0.35em;
 }
@@ -96,18 +96,6 @@
   font-size: 1em;
   font-weight: 400;
   line-height: 1.2;
-}
-
-.banner-hero-title__punct-after-upper {
-  position: absolute;
-  right: -0.8em;
-  font-size: 1em;
-}
-
-.banner-hero-title__punct-after-lower {
-  position: absolute;
-  right: -1em;
-  font-size: 1em;
 }
 
 .banner-hero-title--inner {
@@ -153,14 +141,6 @@
   text-align: right;
 }
 
-.banner-hero-title--inner.banner-hero-title--punct-inline .banner-hero-title__punct-after-upper,
-.banner-hero-title--inner.banner-hero-title--punct-inline .banner-hero-title__punct-after-lower {
-  position: static;
-  right: auto;
-  margin-left: 0.08em;
-  white-space: nowrap;
-}
-
 .banner-hero-subtitle {
   display: flex;
   justify-content: center;
@@ -199,12 +179,6 @@
 .banner-hero-subtitle.is-banner-title-stack .banner-hero-subtitle__aside {
   text-align: right;
   max-width: 100%;
-}
-
-.banner-hero-subtitle.banner-hero-subtitle--punct-inline .banner-hero-subtitle__dash {
-  position: static;
-  left: auto;
-  margin-right: 0.25em;
 }
 
 .banner-hero-subtitle__left {

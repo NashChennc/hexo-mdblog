@@ -1,9 +1,59 @@
+<% var foot = theme.footer || {}; %>
+<% var navItems = foot.nav || []; %>
+<% var social = theme.social || {}; %>
+<% var socialKeys = Object.keys(social); %>
+<% var showSocial = foot.show_social !== false && socialKeys.length > 0; %>
+<% var socialIntroRaw = foot.social_intro; %>
+<% var socialIntro = (socialIntroRaw !== undefined && socialIntroRaw !== null && String(socialIntroRaw).trim() !== '') ? String(socialIntroRaw).trim() : __('footer_social_intro'); %>
 <footer class="site-footer">
-  <div class="mdui-container">
-    <div class="site-footer__inner">
-      &copy; <%= date(new Date(), 'YYYY') %> <span class="site-footer__author"><%= config.author || config.title || __('default_author') %></span>
-      <br>
-      <%= __('powered_by') %> <a href="https://hexo.io/">Hexo</a> | <a href="https://www.mdui.org/">MDUI 2</a>
+  <div class="mdui-container site-footer__container">
+    <% if (showSocial) { %>
+    <div class="site-footer__social-wrap">
+      <% if (socialIntro) { %>
+      <p class="site-footer__social-intro"><%= socialIntro %></p>
+      <% } %>
+    <nav class="site-footer__social" aria-label="<%= __('topbar_social_links') %>">
+      <% socialKeys.forEach(function (k) { %>
+        <% var s = social[k]; %>
+      <mdui-button-icon
+        class="site-footer__social-btn"
+        variant="standard"
+        href="<%- url_for(s.link) %>"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="<%- s.text || s.link %>"
+        aria-label="<%- s.text || s.link %>"
+      >
+        <i class="<%- s.icon %> <%- s.color %> site-footer__social-icon" aria-hidden="true"></i>
+      </mdui-button-icon>
+      <% }); %>
+    </nav>
+    </div>
+    <% } %>
+    <div class="site-footer__bottom">
+      <div class="site-footer__meta">
+        <p class="site-footer__copyright">
+          <span class="site-footer__copyright-line">&copy; <%= date(new Date(), 'YYYY') %> <span class="site-footer__author"><%= config.author || config.title || __('default_author') %></span></span><span class="site-footer__sep" aria-hidden="true"> · </span><span class="site-footer__powered">
+            <%= __('powered_by') %>
+            <span class="mdui-prose site-footer__powered-prose">
+              <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a><span class="site-footer__powered-sep" aria-hidden="true"> | </span><a href="https://www.mdui.org/" target="_blank" rel="noopener noreferrer">MDUI 2</a>
+            </span>
+          </span>
+        </p>
+      </div>
+      <% if (navItems.length) { %>
+      <nav class="site-footer__nav" aria-label="<%= __('footer_nav_aria') %>">
+        <div class="site-footer__nav-inner">
+          <% navItems.forEach(function (item) { %>
+            <% var label = item.i18n ? __(item.i18n) : (item.text || ''); %>
+            <% var href = item.path; %>
+            <% if (href && label) { %>
+          <mdui-button variant="text" href="<%- url_for(href) %>" class="site-footer__nav-btn"><%= label %></mdui-button>
+            <% } %>
+          <% }); %>
+        </div>
+      </nav>
+      <% } %>
     </div>
   </div>
 </footer>

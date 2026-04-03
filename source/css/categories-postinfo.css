@@ -75,48 +75,45 @@
   text-align: right;
 }
 
-mdui-button.post-nav__btn {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  color: inherit;
-  text-align: start;
-}
-
-mdui-button.post-nav__btn::part(button) {
+/* 块级链接，避免 mdui-button 内部行高/单行省略把标题挤扁；结构对齐分类页 note-card（标签行 + 标题区） */
+.post-nav__link {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 0.5rem;
   width: 100%;
   max-width: 100%;
-  min-height: auto;
-  padding: 0.35rem 0.25rem;
+  box-sizing: border-box;
+  padding: 0.65rem 0.75rem;
   border-radius: var(--mdui-shape-corner-medium, 8px);
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  transition: background-color 0.15s ease;
 }
 
-.post-nav__side--next mdui-button.post-nav__btn {
-  text-align: end;
-}
-
-.post-nav__side--next mdui-button.post-nav__btn::part(button) {
-  align-items: flex-end;
-}
-
-mdui-button.post-nav__btn:hover::part(button) {
+.post-nav__link:hover {
   background-color: var(--app-hover-on-surface-subtle);
+}
+
+.post-nav__side--next .post-nav__link {
+  align-items: flex-end;
+  text-align: right;
 }
 
 .post-nav__label {
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
-  font-size: var(--mdui-typescale-label-large-size, 0.875rem);
+  flex-shrink: 0;
+  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
+  line-height: var(--mdui-typescale-label-medium-line-height, 1rem);
+  font-weight: 500;
   color: rgb(var(--mdui-color-primary));
 }
 
 .post-nav__side--next .post-nav__label {
   justify-content: flex-end;
-  width: 100%;
 }
 
 .post-nav__label mdui-icon {
@@ -125,14 +122,28 @@ mdui-button.post-nav__btn:hover::part(button) {
   height: 14px;
 }
 
+.post-nav__body {
+  display: flex;
+  flex-direction: column;
+  align-items: inherit;
+  gap: 0.2rem;
+  width: 100%;
+  min-width: 0;
+  text-align: inherit;
+}
+
+.post-nav__category {
+  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
+  line-height: var(--mdui-typescale-label-medium-line-height, 1rem);
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
 .post-nav__title {
-  margin-top: 0.35rem;
-  font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
-  font-weight: 400;
-  color: rgb(var(--mdui-color-on-surface));
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: var(--mdui-typescale-title-medium-size, 1rem);
+  line-height: var(--mdui-typescale-title-medium-line-height, 1.5rem);
+  font-weight: 600;
+  color: rgb(var(--mdui-color-primary));
+  word-break: break-word;
 }
 
 /* 分类索引页（category.ejs）：Notes 式页头 + mdui-card 网格 */
@@ -268,34 +279,3 @@ mdui-button.post-nav__btn:hover::part(button) {
 .category-index .paginator-wrap {
   margin-top: 1.25rem;
 }
-
-footer.site-footer {
-  padding: 0;
-}
-
-.site-footer {
-  background-color: rgb(var(--mdui-color-surface-container-high));
-  color: rgb(var(--mdui-color-on-surface-variant));
-  text-align: center;
-  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
-  line-height: var(--mdui-typescale-label-medium-line-height, 1rem);
-}
-
-.site-footer__inner {
-  padding: 1rem 0;
-}
-
-.site-footer a {
-  color: rgb(var(--mdui-color-primary));
-  text-decoration: none;
-}
-
-.site-footer a:hover {
-  text-decoration: underline;
-}
-
-.site-footer .site-footer__author {
-  color: rgb(var(--mdui-color-primary));
-  font-weight: 400;
-}
-

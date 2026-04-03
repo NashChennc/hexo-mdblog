@@ -1,44 +1,47 @@
 /* ============================================
  * 文章页（post.ejs）：标题、正文、上下篇共用 --post-content-pad
  * ============================================ */
+.page-shell:has(.post-page-card) > .page-grid {
+  margin-top: var(--post-page-stack-pad-top);
+}
+
 .post-page-card__header {
   padding: var(--post-content-pad) var(--post-content-pad) 0;
 }
 
-.post-page__title {
-  margin: 0;
-  font-size: var(--mdui-typescale-headline-medium-size, 1.75rem);
-  font-weight: 400;
-  line-height: var(--mdui-typescale-headline-medium-line-height, 2rem);
-  color: rgb(var(--mdui-color-on-surface));
+/* 标题与分类页 note-card .note-card-title 共用类名 */
+.post-page__title.note-card-title {
+  margin: 0 0 0.75rem;
 }
 
+/* 与分类卡片 .note-meta 同一套字号/行高/间距；不加 .note-meta 以免带入卡片底部 padding */
 .post-page__meta-row {
   display: flex;
-  flex-wrap: wrap;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem 1rem;
-  margin: 0.75rem 0;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin: 0 0 0.75rem;
+  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
+  line-height: var(--mdui-typescale-label-medium-line-height, 1rem);
 }
 
-.post-page__meta {
-  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
-  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
+.post-page__meta-row .note-read {
+  margin-left: auto;
+}
+
+.post-page-card__header .post-page__meta--cats {
+  display: contents;
+}
+
+.post-page-card__header .post-page__meta--cats a.note-tag {
+  text-decoration: none;
   color: rgb(var(--mdui-color-on-surface-variant));
 }
 
-.post-page__meta--cats {
-  text-align: right;
-}
-
-.post-page__meta--cats a {
-  color: rgb(var(--mdui-color-primary));
-  margin-left: 0.5rem;
-}
-
-.post-page__meta--cats a:first-child {
-  margin-left: 0;
+.post-page-card__header .post-page__meta--cats a.note-tag:hover,
+.post-page-card__header .post-page__meta--cats a.note-tag:focus {
+  background-color: var(--app-hover-on-surface-subtle);
+  text-decoration: none;
 }
 
 .post-page-card__body {
@@ -178,7 +181,7 @@ main.page-shell .mdui-prose.page-page__prose {
 .post-toc-card.toc-full-height {
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - var(--app-top-bar-offset) - 28px);
+  max-height: calc(100vh - var(--app-sticky-offset) - var(--post-toc-viewport-bottom));
   min-height: 0;
   width: 100%;
 }

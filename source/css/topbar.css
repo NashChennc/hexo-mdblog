@@ -32,7 +32,7 @@
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  margin-inline-end: 0.5rem;
+  margin-inline-end: 0.75rem;
 }
 
 /* 相对顶栏水平居中：左右预留首页槽位 + 右侧控件区 */
@@ -45,7 +45,7 @@
   display: flex;
   flex-wrap: nowrap;
   flex: none;
-  gap: 0.4rem 0.9rem;
+  gap: 0.55rem 1.15rem;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
@@ -78,7 +78,7 @@ mdui-button.topbar-nav-btn {
 mdui-button.topbar-nav-btn::part(button) {
   min-height: var(--app-top-bar-row);
   /* 纵向交给 flex 居中，避免再叠一层 padding 造成字块上下留白不均 */
-  padding: 0 0.875rem;
+  padding: 0 1rem;
   border-radius: var(--mdui-shape-corner-medium, 8px);
   border: none;
   background: transparent;
@@ -106,8 +106,8 @@ mdui-button.topbar-nav-btn--active::part(button) {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  gap: 0.125rem;
-  margin-left: 0.5rem;
+  gap: 0.25rem;
+  margin-left: 0.75rem;
   /* 右缘留白由 .app-top-bar padding-inline + safe-area 承担 */
   margin-right: 0;
 }
@@ -116,7 +116,7 @@ mdui-button.topbar-nav-btn--active::part(button) {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  gap: 0.1rem;
+  gap: 0.2rem;
 }
 
 .topbar-profile-dropdown {
@@ -197,7 +197,7 @@ mdui-button-icon.topbar-profile-trigger-btn::part(button) {
 
 mdui-button-icon.topbar-theme-toggle {
   flex-shrink: 0;
-  margin-inline-end: 0.75rem;
+  margin-inline-end: 0.875rem;
   color: rgb(var(--mdui-color-on-surface-variant));
   box-sizing: border-box;
   width: var(--app-top-bar-row);

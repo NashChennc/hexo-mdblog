@@ -28,28 +28,34 @@
                 <div class="post-nav">
                     <div class="post-nav__side post-nav__side--prev">
                             <% if(prevPost){ %>
-                                <mdui-button variant="text" href="<%- url_for(prevPost.path) %>" class="post-nav__btn">
+                                <a class="post-nav__link" href="<%- url_for(prevPost.path) %>">
                                     <span class="post-nav__label">
                                         <mdui-icon name="arrow_back"></mdui-icon>
                                         <%= __('prev_post') %>
                                     </span>
-                                    <span class="post-nav__title">
-                                        <%= currentCatName %> | <%= prevPost.title %>
+                                    <span class="post-nav__body">
+                                        <% if (currentCatName) { %>
+                                        <span class="post-nav__category"><%= currentCatName %></span>
+                                        <% } %>
+                                        <span class="post-nav__title"><%= prevPost.title %></span>
                                     </span>
-                                </mdui-button>
+                                </a>
                             <% } %>
                     </div>
                     <div class="post-nav__side post-nav__side--next">
                             <% if(nextPost){ %>
-                                <mdui-button variant="text" href="<%- url_for(nextPost.path) %>" class="post-nav__btn">
+                                <a class="post-nav__link" href="<%- url_for(nextPost.path) %>">
                                     <span class="post-nav__label">
                                         <%= __('next_post') %>
                                         <mdui-icon name="arrow_forward"></mdui-icon>
                                     </span>
-                                    <span class="post-nav__title">
-                                        <%= currentCatName %> | <%= nextPost.title %>
+                                    <span class="post-nav__body">
+                                        <% if (currentCatName) { %>
+                                        <span class="post-nav__category"><%= currentCatName %></span>
+                                        <% } %>
+                                        <span class="post-nav__title"><%= nextPost.title %></span>
                                     </span>
-                                </mdui-button>
+                                </a>
                             <% } %>
                     </div>
                 </div>

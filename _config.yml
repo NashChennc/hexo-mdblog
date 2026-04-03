@@ -25,26 +25,31 @@ banner:
   image: /image/banner.jpeg
 
   # 首页主标题：多行，每行为「列」数组；每列 upper=小字（法语）/ lower=大字（中文）
-  # punct_after_upper / punct_after_lower 可选，用于外挂标点（原内联绝对定位效果）
   title_index_rows:
     -
       - { upper: "NOUS SOMMES", lower: "我们是" }
-      - { upper: "DES ENFANTS", lower: "孩子", punct_after_lower: "，" }
+      - { upper: "DES ENFANTS", lower: "孩子"}
+      - { lower: "，" }
     -
       - { upper: "MAIS", lower: "但" }
       - { upper: "DES ENFANTS", lower: "我们" }
-      - { upper: "PROGRESSIFS", lower: "精力充沛", punct_after_lower: "，" }
+      - { upper: "PROGRESSIFS", lower: "精力充沛"}
+      - { lower: "，" }
     -
-      - { upper: "PLEINS DE FORCE ET DE COURAGE", lower: "勇往直前", punct_after_lower: "。" }
+      - { upper: "PLEINS DE FORCE ET DE COURAGE", lower: "勇往直前"}
+      - { lower: "。" }
 
   # 分类/文章顶栏：单行横向，列结构与首页语义一致
   title_inner_columns:
     - { upper: "NOUS SOMMES", lower: "我们是" }
-    - { upper: "DES ENFANTS", lower: "孩子", punct_after_upper: ",", punct_after_lower: "，" }
+    - { upper: "DES ENFANTS", lower: "孩子"}
+    - { lower: "，" }
     - { upper: "MAIS", lower: "但" }
     - { upper: "DES ENFANTS", lower: "我们" }
-    - { upper: "PROGRESSIFS", lower: "精力充沛", punct_after_upper: ",", punct_after_lower: "，" }
-    - { upper: "PLEINS DE FORCE ET DE COURAGE", lower: "勇往直前", punct_after_lower: "。" }
+    - { upper: "PROGRESSIFS", lower: "精力充沛"}
+    - { lower: "，" }
+    - { upper: "PLEINS DE FORCE ET DE COURAGE", lower: "勇往直前"}
+    - { lower: "。" }
 
   subtitle_block:
     cite_upper: "ÉVARISTE GALOIS (1811-1832)"
@@ -98,7 +103,7 @@ category_page:
       class_name: 散文  Essays
       class_description: 只是一些比较长的文字。
     碎碎念:
-      class_name: 碎碎念  Ephemera
+      class_name: 碎碎念  Ramblings
       class_description: 突发奇想，还有突发恶疾。
     专栏:
       class_name: 专栏  Columns
@@ -162,6 +167,21 @@ favicon: /favicon.png
 
 # 浏览器 UI 主题色（meta theme-color），建议与品牌主色一致
 theme_color: '#6750A4'
+
+# ============================================
+# 页脚（社交图标 + 底栏导航 + 版权）
+# show_social: 是否显示社交图标行（数据来自上方 social；默认 true）
+# social_intro: 社交图标上方的短句；留空则使用当前语言的 i18n footer_social_intro
+# nav: 每项 path 必填；文案用 text（任意语言字符串）或 i18n（对应 languages 中的键）
+# ============================================
+footer:
+  show_social: true
+  social_intro: "无聊死了。来找我聊会天。"
+  nav:
+    - { i18n: home, path: "/" }
+    - { i18n: categories, path: "/categories" }
+    - { i18n: archive_a, path: "/archives" }
+    - { i18n: about, path: "/about" }
 
 # ============================================
 # 五、Hexo 内置配置（保留用于兼容性）

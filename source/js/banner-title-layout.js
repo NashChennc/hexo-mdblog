@@ -1,5 +1,5 @@
 /**
- * 解析 banner-title-layout.json，为内页横幅标题/副标题应用对齐、换行、列距与标点模式。
+ * 解析 banner-title-layout.json，为内页横幅标题/副标题应用对齐、换行与列距。
  * 挂载点：含 [data-banner-layout-config] 的节点（与 [data-banner-layout-root] 可同一元素）。
  */
 (function () {
@@ -7,8 +7,6 @@
 
   var CLS_WRAP = 'is-banner-title-wrap';
   var CLS_STACK = 'is-banner-title-stack';
-  var CLS_PUNCT_INLINE = 'banner-hero-title--punct-inline';
-  var CLS_SUB_PUNCT_INLINE = 'banner-hero-subtitle--punct-inline';
 
   function getMetricChildren(root, childSelector) {
     if (childSelector === ':scope > *') {
@@ -39,21 +37,6 @@
     }
     if (entry.columnGap) {
       root.style.setProperty('--banner-layout-gap', entry.columnGap);
-    }
-    var punct = entry.punctMode || 'absolute';
-    if (root.classList.contains('banner-hero-title--inner')) {
-      if (punct === 'inline') {
-        root.classList.add(CLS_PUNCT_INLINE);
-      } else {
-        root.classList.remove(CLS_PUNCT_INLINE);
-      }
-    }
-    if (root.classList.contains('banner-hero-subtitle')) {
-      if (punct === 'inline') {
-        root.classList.add(CLS_SUB_PUNCT_INLINE);
-      } else {
-        root.classList.remove(CLS_SUB_PUNCT_INLINE);
-      }
     }
   }
 
