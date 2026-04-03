@@ -39,12 +39,22 @@ html {
   align-items: center;
   flex-shrink: 0;
   min-height: 44px;
-  padding: 0.35rem 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 500;
+  padding: 0.45rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 200;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   word-break: normal;
   overflow-wrap: normal;
+}
+
+.mdui-prose--inline-nav a[aria-current='page'] {
+  font-weight: 400;
+}
+
+.mdui-prose--inline-nav a:hover,
+.mdui-prose--inline-nav a:focus {
+  text-underline-offset: 0.18em;
 }
 
 /* Footer 间距（使用 MDUI 类可能不够精确） */
