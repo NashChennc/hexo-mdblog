@@ -9,6 +9,8 @@
   <!-- MDUI 2 核心样式（先于图标与站点覆盖） -->
   <link rel="stylesheet" href="<%- url_for('mdui2/mdui.css') %>">
   <link rel="stylesheet" href="<%- url_for('mdui2/outlined.css') %>">
+  <!-- 与 MDUI mdui-icon 使用的 Material Icons* 家族名对齐，否则仅 outlined.css 时图标不显示 -->
+  <link rel="stylesheet" href="<%- url_for('mdui2/mdui-material-font-aliases.css') %>">
 
   <!-- Font Awesome 6 for brand icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
