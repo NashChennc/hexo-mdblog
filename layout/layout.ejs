@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="<%= config.language || 'zh-CN' %>">
+<html lang="<%= config.language || 'zh-CN' %>" class="mdui-theme-auto">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><%= page.title ? page.title + ' - ' : '' %><%= config.title %></title>
 
-  <!-- MDUI CSS -->
-  <link rel="stylesheet" href="<%- url_for('mdui/css/mdui.min.css') %>">
+  <!-- MDUI 2 核心样式（先于图标与站点覆盖） -->
+  <link rel="stylesheet" href="<%- url_for('mdui2/mdui.css') %>">
+  <link rel="stylesheet" href="<%- url_for('mdui2/outlined.css') %>">
+  <link rel="stylesheet" href="<%- url_for('mdui2/material-icons-compat.css') %>">
 
   <!-- Font Awesome 6 for brand icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -18,13 +20,9 @@
   <!-- Custom CSS (最小化，只包含无法用 MDUI 实现的部分) -->
   <link rel="stylesheet" href="<%- url_for('css/custom.css') %>">
 
-  <!-- MDUI2 资源目录：Material Symbols Outlined（本地） + legacy material-icons 兼容 -->
-  <link rel="stylesheet" href="<%- url_for('mdui2/outlined.css') %>">
-  <link rel="stylesheet" href="<%- url_for('mdui2/material-icons-compat.css') %>">
-
   <meta name="theme-color" content="#3F51B5">
 </head>
-<body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-color-grey-100">
+<body>
   
   <!-- Header/AppBar -->
   <%- partial('partial/topbar') %>
@@ -37,39 +35,26 @@
   <%- partial('partial/footer') %>
 
   <!-- Scripts -->
-  <script src="<%- url_for('mdui/js/mdui.min.js') %>"></script>
+  <script src="<%- url_for('mdui2/mdui.global.js') %>"></script>
+  <script>
+    if (typeof mdui !== 'undefined' && typeof mdui.setTheme === 'function') {
+      mdui.setTheme('auto');
+    }
+  </script>
   <script src="<%- url_for('katex/katex.min.js') %>"></script>
   <script src="<%- url_for('katex/contrib/auto-render.min.js') %>"></script>
   
   <script>
-    // 合并所有 DOMContentLoaded 监听器
     document.addEventListener("DOMContentLoaded", function() {
-      // KaTeX 数学公式渲染
       renderMathInElement(document.body, {
-        // 自定义分隔符，支持 $...$ 和 $$...$$
         delimiters: [
           {left: '$$', right: '$$', display: true},
           {left: '$', right: '$', display: false},
           {left: '\\(', right: '\\)', display: false},
           {left: '\\[', right: '\\]', display: true}
         ],
-        // 忽略的标签
         ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
       });
-
-      // 自动为所有表格和图片添加 MDUI 样式类
-        var tables = document.getElementsByTagName("table");
-        for (var i = 0; i < tables.length; i++) {
-            if (!tables[i].classList.contains("mdui-table")) {
-                tables[i].classList.add("mdui-table", "mdui-shadow-0");
-            }
-        }
-        var imgs = document.getElementsByTagName("img");
-        for (var i = 0; i < imgs.length; i++) {
-            if (!imgs[i].classList.contains("mdui-img-fluid")) {
-                imgs[i].classList.add("mdui-img-fluid");
-            }
-        }
     });
   </script>
   <% if (config.mermaid && config.mermaid.enable) { %>
