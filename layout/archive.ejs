@@ -1,32 +1,41 @@
-<div class="mdui-container mdui-p-t-2 mdui-p-b-5">
-    <h1><%= __('categories') %></h1>
-    <div class="mdui-row">
-        <div class="mdui-panel mdui-col-xs-12" mdui-panel>
-        <% if (site.categories.length){ %>
-            <% site.categories.sort('name').each(item=>{ %>
+<div class="page-shell mdui-container mdui-p-t-2 mdui-p-b-5">
+    <h1 class="categories-page__title"><%= __('categories') %></h1>
+    <% if (site.categories.length){ %>
+    <div class="categories-page__grid">
+        <mdui-collapse class="categories-collapse" accordion="false">
+            <% site.categories.sort('name').each(function(item){ %>
                 <% if(item.posts.length){ %>
-            <div class="mdui-panel-item mdui-panel-item-open mdui-col-xs-4">
-                <div class="mdui-panel-item-header mdui-ripple">
-                    <div class="mdui-panel-item-title"><%= item.name %></div>
-                    <div class="mdui-panel-item-summary"><%= item.posts.length %> <%= __('posts_count') %></div>
-                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+            <mdui-collapse-item value="<%= item.slug || item.name %>">
+                <div slot="header" class="categories-collapse__header">
+                    <span class="categories-collapse__name"><%= item.name %></span>
+                    <span class="categories-collapse__count"><%= item.posts.length %> <%= __('posts_count') %></span>
                 </div>
-                <div class="mdui-panel-item-body">
-                    <ol class="mdui-list">
-                    <% item.posts.sort('title').each(post=>{ %>
-                        <li class="mdui-list-item">
-                            <div class="mdui-typo"><a href=" <%=url_for(post.path)%>">
-                                <%= post.title %>
-                            </a></div>
-                        </li>
-                    <% })%>
+                <div class="categories-collapse__body">
+                    <ol class="categories-post-list">
+                    <% item.posts.sort('title').each(function(post){ %>
+                        <li><a href="<%- url_for(post.path) %>"><%= post.title %></a></li>
+                    <% }) %>
                     </ol>
                 </div>
-            </div>
+            </mdui-collapse-item>
                 <% } %>
             <% }); %>
-        <% } %>
-        </div>
+        </mdui-collapse>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        customElements.whenDefined('mdui-collapse').then(function () {
+            document.querySelectorAll('mdui-collapse.categories-collapse').forEach(function (el) {
+                var vals = Array.prototype.map.call(el.querySelectorAll('mdui-collapse-item'), function (node) {
+                    return node.getAttribute('value');
+                }).filter(Boolean);
+                if (vals.length) {
+                    el.value = vals;
+                }
+            });
+        });
+    });
+    </script>
+    <% } %>
 </div>
 <div id="page-bottom" aria-hidden="true"></div>

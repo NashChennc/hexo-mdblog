@@ -23,10 +23,10 @@
             <% }) %>
 
             <% if (page.total > 1){ %>
-                <div class="mdui-text-center mdui-m-t-4">
+                <div class="paginator-wrap">
                     <%- paginator({
-                        prev_text: '<i class="mdui-icon material-icons">chevron_left</i>',
-                        next_text: '<i class="mdui-icon material-icons">chevron_right</i>',
+                        prev_text: '<mdui-icon name="chevron_left"></mdui-icon>',
+                        next_text: '<mdui-icon name="chevron_right"></mdui-icon>',
                         escape: false,
                         class: 'mdui-btn-group'
                     }) %>

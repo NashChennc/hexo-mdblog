@@ -74,23 +74,14 @@ module.exports = function(hexo) {
         url = escapeUrl(url);
         const titleEscaped = escapeHtml(post.title || '');
 
-        return `<span class="mdui-chip mdui-hoverable mdui-ripple mdui-color-deep-purple-50 mdui-text-color-indigo" \
-                      onclick="window.location.href='${url}'" \
-                      title="${titleEscaped}" \
-                      style="cursor: pointer; vertical-align: middle; user-select: none;"> \
-                  <span class="mdui-chip-title">${displayEscaped}</span> \
-                </span>`;
+        return `<mdui-chip variant="assist" elevated href="${url}" title="${titleEscaped}">${displayEscaped}</mdui-chip>`;
       }
 
       // Image Safety Net
       if (/\.(png|jpg|jpeg|gif|webp|svg)$/i.test(target)) return match;
 
       // Dead Link (Keep Debug Info)
-      return `<span class="mdui-chip mdui-color-grey-200 mdui-text-color-grey-500" \
-                    title="${escapeHtml('Missing: ' + target + ' | Try Key: ' + nameKey)}" \
-                    style="cursor: not-allowed; vertical-align: middle; user-select: none;"> \
-                <span class="mdui-chip-title">${displayEscaped}</span> \
-              </span>`;
+      return `<mdui-chip variant="assist" disabled title="${escapeHtml('Missing: ' + target + ' | Try Key: ' + nameKey)}">${displayEscaped}</mdui-chip>`;
     });
 
     return data;

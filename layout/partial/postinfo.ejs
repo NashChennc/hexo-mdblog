@@ -1,28 +1,19 @@
-<div class="mdui-card mdui-hoverable">
-    <div class="mdui-card-primary">
-        <div class="mdui-card-primary-title">
-            <div class="mdui-typo">
-                <a href="<%=url_for(post.path)%>">
-                    <%= post.blog_title || post.title %>
-                </a>
-                <div class="mdui-float-right">
-                    <span class="mdui-typo-subheading">
-                        <%= post.rate ? post.rate : "0" %> % 
-                    </span>
-                    <span class="mdui-typo-caption"><%= __('completed') %></span>
-                </div>
-            </div>
-        </div>
-        <div class="mdui-card-primary-subtitle">
-            <%= date( post.updated, 'Y年M月D日 ddd') %>
-            <div class="mdui-float-right"><% post.categories.each(cat=>{ %>
-                <%= cat.name %>
-            <% }) %></div>
-        </div>
-        <div class="mdui-typo mdui-card-body mdui-typo-heading">
-            <%= __('word_count') %>：<%= wordcount(post.content) %> &nbsp; <%= __('reading_time') %>：<%= min2read(post.content, {cn: 200, en: 500}) %> min
+<mdui-card variant="elevated" class="postinfo-card">
+    <div class="postinfo-card__title-row">
+        <a href="<%=url_for(post.path)%>">
+            <%= post.blog_title || post.title %>
+        </a>
+        <div class="postinfo-card__rate">
+            <span><%= post.rate ? post.rate : "0" %>%</span>
+            <span class="postinfo-card__rate-label"><%= __('completed') %></span>
         </div>
     </div>
-    <!-- <div class="mdui-card-content"> 预览功能维护中 <%= post.excerpt %></div> -->
-</div>
-<br/>
+    <div class="postinfo-card__meta">
+        <span><%= date( post.updated, 'Y年M月D日 ddd') %></span>
+        <span><% var _cats = []; post.categories.each(function(cat){ _cats.push(cat.name); }); %><%= _cats.join('，') %></span>
+    </div>
+    <mdui-divider></mdui-divider>
+    <div class="postinfo-card__stats">
+        <%= __('word_count') %>：<%= wordcount(post.content) %> &nbsp; <%= __('reading_time') %>：<%= min2read(post.content, {cn: 200, en: 500}) %> min
+    </div>
+</mdui-card>

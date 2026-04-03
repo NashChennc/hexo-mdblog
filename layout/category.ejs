@@ -5,16 +5,15 @@
 <div class="page-shell mdui-container mdui-p-t-3 mdui-p-b-5">
     <div class="page-grid">
         <main class="page-main">
-            <% page.posts.sort('title').sort('-updated').sort('-priority').each(post=>{ %>
+            <% page.posts.sort('title').sort('-updated').sort('-priority').each(function(post){ %>
                 <%- partial("partial/postinfo", {post: post}) %>
             <% })%>
             
-            <!-- 分页器 (如果有) -->
             <% if (page.total > 1){ %>
-                <div class="mdui-text-center mdui-m-t-4">
+                <div class="paginator-wrap">
                     <%- paginator({
-                        prev_text: '<i class="mdui-icon material-icons">chevron_left</i>',
-                        next_text: '<i class="mdui-icon material-icons">chevron_right</i>',
+                        prev_text: '<mdui-icon name="chevron_left"></mdui-icon>',
+                        next_text: '<mdui-icon name="chevron_right"></mdui-icon>',
                         escape: false,
                         class: 'mdui-btn-group'
                     }) %>
@@ -23,32 +22,21 @@
         </main>
         <aside class="page-sidebar sticky-sidebar">
             <%- partial('partial/sidebar') %>
-            <div class="mdui-card mdui-shadow-1 mdui-m-b-3 mdui-m-t-3 mdui-color-theme-50">
-                <div class="mdui-card-content">
-                    <!-- 背景装饰图标 -->
-                    <div class="mdui-float-right">
-                         <i class="mdui-icon material-icons mdui-text-color-theme-300" style="font-size: 48px; opacity: 0.5;">folder_open</i>
-                    </div>
-                    
-                    <div class="mdui-typo-caption-opacity"><%= __('current_category') %></div>
-                    <div class="mdui-typo-h2 mdui-m-y-1 mdui-text-color-theme">
-                        <%= page.category %>
-                    </div>
-                    
-                    <div class="mdui-divider mdui-m-y-1"></div>
-                    
-                    <div class="mdui-typo-caption">
+            <mdui-card variant="filled" class="category-aside-card">
+                <div class="category-aside-card__inner">
+                    <mdui-icon name="folder_open" class="category-aside-card__icon"></mdui-icon>
+                    <div class="category-aside-card__label"><%= __('current_category') %></div>
+                    <div class="category-aside-card__name"><%= page.category %></div>
+                    <mdui-divider></mdui-divider>
+                    <div class="category-aside-card__count">
                         <%= page.posts.length %> <%= __('articles') %>
                     </div>
-                    
-                    <!-- 返回全部分类按钮 -->
-                    <a href="<%- url_for('/archives') %>" class="mdui-btn mdui-btn-block mdui-btn-flat mdui-ripple mdui-m-t-1 mdui-text-color-theme">
-                        <%= __('view_all_categories') %>
-                    </a>
+                    <div class="category-aside-card__actions">
+                        <mdui-button variant="text" href="<%- url_for('/archives') %>" full-width><%= __('view_all_categories') %></mdui-button>
+                    </div>
                 </div>
-            </div>
+            </mdui-card>
         </aside>
     </div>
 </div>
 <div id="page-bottom" aria-hidden="true"></div>
-

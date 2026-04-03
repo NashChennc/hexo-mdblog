@@ -18,11 +18,11 @@
     <div class="hero-bg" style="--banner-bg-image: url(<%- theme.banner.image || config.head_bgpaper || fallbackImage %>);"></div>
     <div class="hero-mask"></div>
     
-    <div class="hero-content mdui-text-center mdui-text-color-white mdui-p-b-4">
-        <div class="mdui-typo-display-3 hero-content__title">
+    <div class="hero-content hero-content--index">
+        <div class="hero-content__title">
             <%- partial('partial/banner-hero-titles', { variant: 'index', role: 'title' }) %>
         </div>
-        <div class="mdui-typo-headline mdui-m-t-2 hero-content__subtitle">
+        <div class="hero-content__subtitle hero-content__subtitle--spaced">
             <%- partial('partial/banner-hero-titles', { variant: 'index', role: 'subtitle' }) %>
         </div>
     </div>
@@ -33,7 +33,7 @@
     <div class="page-grid">
         <main class="page-main">
             
-            <div class="mdui-row equal-height-row">
+            <div class="post-index-grid">
                 <% 
                     // 根据字符串生成固定哈希值的函数，用于为文章选择对应的 banner 图片
                     var generateHashFromString = function(str) {
@@ -48,11 +48,6 @@
                 %>
                 
                 <% page.posts.sort('title').sort('-updated').sort('-priority').each(function(post, i){ %>
-                    <!-- 
-                        布局逻辑：
-                        第一页的第一篇：Full Width (12 cols)
-                        其他：3 cols (md-4) -> 这样卡片会变小
-                    -->
                     <% var isFeatured = (i === 0 && page.current === 1); %>
                     
                     <% 
@@ -87,61 +82,49 @@
                         }
                     %>
                     
-                    <div class="mdui-col-xs-12 <%= isFeatured ? 'mdui-col-md-12 featured-post' : 'mdui-col-sm-6 mdui-col-md-4 equal-height-col' %> mdui-m-b-4 scroll-reveal">
+                    <div class="post-index-grid__cell scroll-reveal <%= isFeatured ? 'featured-post' : '' %>">
                         
-                        <article class="mdui-card mdui-shadow-2 post-card">
+                        <mdui-card variant="elevated" class="post-card">
                             
                             <!-- 卡片头部：图片 -->
-                            <a href="<%- url_for(post.path) %>" class="post-card-media mdui-ripple mdui-color-grey-100">
+                            <a href="<%- url_for(post.path) %>" class="post-card-media">
                                 <% if (coverImageUrl) { %>
-                                    <img src="<%= coverImageUrl %>" class="mdui-img-fluid post-card-cover-img" alt="">
+                                    <img src="<%= coverImageUrl %>" class="post-card-cover-img" alt="">
                                 <% } else { %>
-                                    <!-- 确实没有任何图片时的 fallback -->
-                                    <div class="mdui-flex mdui-flex-center mdui-flex-middle post-card-cover-placeholder">
-                                        <i class="mdui-icon material-icons mdui-text-color-grey-400">image</i>
+                                    <div class="post-card-cover-placeholder">
+                                        <mdui-icon name="image" class="post-card-cover-placeholder__icon"></mdui-icon>
                                     </div>
                                 <% } %>
                                 
-                                <!-- 覆盖层标题 (仅在特色文章显示) -->
                                 <% if (isFeatured) { %>
-                                    <div class="mdui-card-media-covered mdui-card-media-covered-gradient">
-                                        <div class="mdui-card-primary">
-                                            <div class="mdui-card-primary-title"><%= post.title %></div>
-                                            <div class="mdui-card-primary-subtitle"><%= date(post.updated, 'YYYY-MM-DD') %></div>
+                                    <div class="post-card-media__overlay post-card-media__overlay--gradient">
+                                        <div class="post-card-media__titles">
+                                            <div class="post-card-media__title"><%= post.title %></div>
+                                            <div class="post-card-media__subtitle"><%= date(post.updated, 'YYYY-MM-DD') %></div>
                                         </div>
                                     </div>
                                 <% } %>
                             </a>
 
-                            <!-- 卡片内容 -->
-                            <div class="post-card-content mdui-p-x-5 mdui-p-y-4">
-                                <!-- 分类标签 -->
-                                <div class="mdui-m-b-1">
+                            <div class="post-card-content">
+                                <div class="post-card-chips">
                                     <% if (post.categories && post.categories.length) { %>
                                         <% post.categories.each(function(cat){ %>
-                                            <a href="<%- url_for(cat.path) %>" class="mdui-chip mdui-ripple mdui-text-color-theme">
-                                                <span class="mdui-chip-title"><%= cat.name %></span>
-                                            </a>
+                                            <mdui-chip variant="assist" elevated href="<%- url_for(cat.path) %>"><%= cat.name %></mdui-chip>
                                         <% }) %>
                                     <% } else { %>
-                                        <span class="mdui-chip"><span class="mdui-chip-title"><%= __('uncategorized') %></span></span>
+                                        <mdui-chip variant="assist" elevated><%= __('uncategorized') %></mdui-chip>
                                     <% } %>
                                 </div>
 
-                                <!-- 标题 (非 Featured 时显示) -->
                                 <% if (!isFeatured) { %>
-                                    <a href="<%- url_for(post.path) %>" class="mdui-text-color-theme-text post-card-title-link">
-                                        <div class="mdui-typo-subheading mdui-m-b-1 post-card-title-text">
-                                            <%= post.title %>
-                                        </div>
+                                    <a href="<%- url_for(post.path) %>" class="post-card-title-link">
+                                        <div class="post-card-title-text"><%= post.title %></div>
                                     </a>
-                                    <div class="mdui-typo-caption-opacity mdui-m-b-2">
-                                        <%= date(post.updated, 'YYYY-MM-DD') %>
-                                    </div>
+                                    <div class="post-card-date"><%= date(post.updated, 'YYYY-MM-DD') %></div>
                                 <% } %>
 
-                                <!-- 摘要 -->
-                                <div class="mdui-typo-body-1 mdui-text-color-grey-700 mdui-m-b-2 limit-lines post-card-excerpt">
+                                <div class="limit-lines post-card-excerpt">
                                     <% if(post.excerpt) { %>
                                         <%- post.excerpt %>
                                     <% } else { %>
@@ -149,31 +132,26 @@
                                     <% } %>
                                 </div>
                                 
-                                <div class="mdui-divider mdui-m-y-1"></div>
+                                <mdui-divider class="post-card-divider"></mdui-divider>
 
-                                <!-- 底部操作 -->
-                                <div class="mdui-row-xs-2">
-                                    <div class="mdui-col mdui-text-left mdui-typo-caption-opacity">
-                                        <%= min2read(post.content, {cn: 200, en: 500}) %> <%= __('min_read') %>
-                                    </div>
-                                    <div class="mdui-col mdui-text-right">
-                                        <a href="<%- url_for(post.path) %>" class="mdui-btn mdui-btn-icon mdui-text-color-theme mdui-ripple" mdui-tooltip="{content: '<%= __('read_full_article') %>'}">
-                                            <i class="mdui-icon material-icons">arrow_forward</i>
-                                        </a>
-                                    </div>
+                                <div class="post-card-footer">
+                                    <span class="post-card-footer__meta"><%= min2read(post.content, {cn: 200, en: 500}) %> <%= __('min_read') %></span>
+                                    <mdui-tooltip content="<%= __('read_full_article').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;') %>">
+                                        <mdui-button-icon icon="arrow_forward" href="<%- url_for(post.path) %>"></mdui-button-icon>
+                                    </mdui-tooltip>
                                 </div>
                             </div>
-                        </article>
+                        </mdui-card>
                     </div>
                 <% }) %>
             </div>
 
             <!-- 分页器 -->
             <% if (page.total > 1){ %>
-                <div class="mdui-text-center mdui-m-t-4 scroll-reveal">
+                <div class="paginator-wrap scroll-reveal">
                     <%- paginator({
-                        prev_text: '<i class="mdui-icon material-icons">chevron_left</i>',
-                        next_text: '<i class="mdui-icon material-icons">chevron_right</i>',
+                        prev_text: '<mdui-icon name="chevron_left"></mdui-icon>',
+                        next_text: '<mdui-icon name="chevron_right"></mdui-icon>',
                         escape: false,
                         class: 'mdui-btn-group'
                     }) %>
@@ -192,7 +170,6 @@
 <!-- 3. 简单的滚动显现脚本 -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // 简单的 Intersection Observer 实现卡片滚动淡入
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -202,16 +179,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                // 添加延迟，制造交错感 (Stagger effect)
                 setTimeout(() => {
                     entry.target.classList.add('is-visible');
-                }, index * 100); // 每个元素延迟 100ms
+                }, index * 100);
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    const elements = document.querySelectorAll('.scroll-reveal');
-    elements.forEach(el => observer.observe(el));
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 });
 </script>
