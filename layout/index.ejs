@@ -29,10 +29,9 @@
 </div>
 
 <!-- 2. 主要内容区域 -->
-<div class="mdui-container mdui-p-t-4 mdui-p-b-5">
-    <div class="mdui-row">
-        <!-- 左侧文章列表 -->
-        <div class="mdui-col-md-9 mdui-col-xs-12">
+<div class="page-shell mdui-container mdui-p-t-4 mdui-p-b-5">
+    <div class="page-grid">
+        <main class="page-main">
             
             <div class="mdui-row equal-height-row">
                 <% 
@@ -180,12 +179,12 @@
                     }) %>
                 </div>
             <% } %>
-        </div>
+        </main>
 
         <!-- 侧边栏：保持在右侧但增加粘性效果 -->
-        <div class="mdui-col-md-3 mdui-col-xs-12 sticky-sidebar">
+        <aside class="page-sidebar sticky-sidebar">
             <%- partial('partial/sidebar') %>
-        </div>
+        </aside>
     </div>
 </div>
 <div id="page-bottom" aria-hidden="true"></div>

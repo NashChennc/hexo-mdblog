@@ -37,6 +37,59 @@ img {
   height: auto;
 }
 
+/* ============================================
+ * 页面版心与两栏 Grid（MDUI 2 核心包不含 v1 .mdui-container）
+ * ============================================ */
+.mdui-container,
+.mdui-container-fluid {
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.mdui-container::after,
+.mdui-container-fluid::after {
+  display: table;
+  clear: both;
+  content: '';
+}
+
+.mdui-container {
+  width: 96%;
+  max-width: 1280px;
+}
+
+@media (min-width: 600px) {
+  .mdui-container {
+    width: 94%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mdui-container {
+    width: 92%;
+  }
+}
+
+.page-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 840px) {
+  .page-grid {
+    grid-template-columns: 3fr 1fr;
+    align-items: start;
+  }
+}
+
+.page-main {
+  min-width: 0;
+}
+
 /* 侧边栏包装器响应式 */
 #sidebar-wrapper {
   margin-top: 16px;
@@ -50,6 +103,8 @@ img {
 
 /* ============================================
  * 粘性侧边栏工具类
+ * （top / scroll-padding-top / .toc-full-height 均假设固定顶栏约 80px；
+ *  Phase 4 替换为 mdui-top-app-bar 后请复测并统一调整。）
  * ============================================ */
 .sticky-sidebar {
   position: -webkit-sticky;

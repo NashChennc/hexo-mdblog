@@ -15,9 +15,9 @@
     </div>
 </div>
 
-<div class="mdui-container mdui-p-t-3 mdui-p-b-5">
-    <div class="mdui-row">
-        <div class="mdui-col-md-9 mdui-col-xs-12">
+<div class="page-shell mdui-container mdui-p-t-3 mdui-p-b-5">
+    <div class="page-grid">
+        <main class="page-main">
             <% page.posts.sort('title').sort('-updated').sort('-priority').each(function(post){ %>
                 <%- partial('partial/postinfo', {post: post}) %>
             <% }) %>
@@ -32,10 +32,10 @@
                     }) %>
                 </div>
             <% } %>
-        </div>
-         <div class="mdui-col-md-3 mdui-col-xs-12 sticky-sidebar">
+        </main>
+        <aside class="page-sidebar sticky-sidebar">
             <%- partial('partial/sidebar') %>
-        </div>
+        </aside>
     </div>
 </div>
 <div id="page-bottom" aria-hidden="true"></div>

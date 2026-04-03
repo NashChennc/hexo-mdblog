@@ -3,11 +3,11 @@
 <!-- FAB -->
 <%- partial('partial/fab') %>
 
-<div class="mdui-container">
-    <div class="mdui-row mdui-p-t-1 mdui-p-b-1">
+<div class="page-shell mdui-container">
+    <div class="page-grid mdui-p-t-1 mdui-p-b-1">
         <!-- 文章内容 -->
 
-        <div class="mdui-col-md-9 mdui-col-xs-12 mdui-p-t-1 mdui-p-b-4">
+        <main class="page-main mdui-p-t-1 mdui-p-b-4">
             <div class="mdui-card mdui-hoverable">
                 <div class="mdui-card-primary mdui-p-x-5">
                     <div class="mdui-card-primary-title mdui-typo-display-1">
@@ -36,9 +36,9 @@
                 <%- partial('partial/link') %>
             </div>
             
-        </div>
+        </main>
         <!-- 侧边栏 -->
-        <div class="mdui-col-md-3 mdui-col-xs-12  mdui-p-t-1 mdui-p-b-4 sticky-sidebar" id="post-sidebar">
+        <aside class="page-sidebar mdui-p-t-1 mdui-p-b-4 sticky-sidebar" id="post-sidebar">
             <% if (page.toc !== false) { %>
                 <div class="mdui-card mdui-shadow-1 toc-full-height">
                     <div class="mdui-card-content toc-card-content">
@@ -52,7 +52,7 @@
             <div class="mdui-m-t-2">
                 <%- partial('partial/sidebar') %>
             </div>
-        </div>
+        </aside>
     </div>
 </div>
 <div id="page-bottom" aria-hidden="true"></div>
