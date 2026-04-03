@@ -3,9 +3,7 @@
     <a href="<%= url_for(post.path) %>" class="postinfo-card__title-link">
       <%= post.blog_title || post.title %>
     </a>
-    <mdui-chip variant="assist" icon="checklist" disabled class="postinfo-card__progress-chip">
-      <%= post.rate ? post.rate : "0" %>% <%= __('completed') %>
-    </mdui-chip>
+    <span class="postinfo-card__progress"><%= post.rate ? post.rate : "0" %>% <%= __('completed') %></span>
   </div>
   <div class="postinfo-card__meta">
     <span class="postinfo-card__meta-item">

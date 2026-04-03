@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "selector": ".banner-hero-title--inner",
+      "align": "end",
+      "wrapMode": "responsive",
+      "columnGap": "0.5rem",
+      "punctMode": "inline",
+      "responsive": {
+        "overflowRatio": 1.02,
+        "stackMaxWidth": 420
+      },
+      "childSelector": ".banner-hero-title__col"
+    },
+    {
+      "selector": ".banner-hero-subtitle.banner-hero-subtitle--inner",
+      "align": "end",
+      "wrapMode": "responsive",
+      "columnGap": "1.5rem",
+      "punctMode": "absolute",
+      "responsive": {
+        "overflowRatio": 1.02,
+        "stackMaxWidth": 480
+      },
+      "childSelector": ":scope > *"
+    }
+  ]
+}

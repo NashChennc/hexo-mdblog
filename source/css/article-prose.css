@@ -1,0 +1,158 @@
+/* ============================================
+ * 文章页（post.ejs）：标题、正文、上下篇共用 --post-content-pad
+ * ============================================ */
+.post-page-card__header {
+  padding: var(--post-content-pad) var(--post-content-pad) 0;
+}
+
+.post-page__title {
+  margin: 0;
+  font-size: var(--mdui-typescale-headline-medium-size, 1.75rem);
+  font-weight: 400;
+  line-height: var(--mdui-typescale-headline-medium-line-height, 2rem);
+  color: rgb(var(--mdui-color-on-surface));
+}
+
+.post-page__meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin: 0.75rem 0;
+}
+
+.post-page__meta {
+  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
+  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+.post-page__meta--cats {
+  text-align: right;
+}
+
+.post-page__meta--cats a {
+  color: rgb(var(--mdui-color-primary));
+  margin-left: 0.5rem;
+}
+
+.post-page__meta--cats a:first-child {
+  margin-left: 0;
+}
+
+.post-page-card__body {
+  padding: 1.25rem var(--post-content-pad) var(--post-content-pad);
+}
+
+.post-page-card .post-nav {
+  padding: 0.75rem var(--post-content-pad) var(--post-content-pad);
+}
+
+.post-page-sidebar-stack {
+  margin-top: 1rem;
+}
+
+/* ============================================
+ * 正文内图片（mdui-prose）
+ * ============================================ */
+.mdui-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* 文章侧栏目录：与正文卡片同内边距 + 长文时内部滚动 */
+.post-toc-card.toc-full-height {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - var(--app-top-bar-offset) - 28px);
+  min-height: 0;
+  width: 100%;
+}
+
+.post-toc-inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: var(--post-content-pad);
+}
+
+.post-toc__title {
+  margin: 0 0 0.5rem;
+  font-size: var(--mdui-typescale-title-medium-size, 1rem);
+  font-weight: 500;
+  line-height: var(--mdui-typescale-title-medium-line-height, 1.5rem);
+  color: rgb(var(--mdui-color-on-surface));
+}
+
+.post-toc-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* 目录列表收紧（不比照正文 ol/ul 松排） */
+.post-toc-card .mdui-prose .post-toc,
+.post-toc-card .mdui-prose .post-toc ol {
+  list-style: none;
+  margin: 0;
+  padding-left: 0.75rem;
+}
+
+.post-toc-card .mdui-prose .post-toc {
+  padding-left: 0;
+}
+
+.post-toc-card .mdui-prose .post-toc > li {
+  margin: 0.2em 0;
+}
+
+.post-toc-card .mdui-prose .post-toc a {
+  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
+  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
+  color: rgb(var(--mdui-color-primary));
+}
+
+/* ============================================
+ * 代码块适配 (Hexo highlight & mdui-prose 冲突修复)
+ * ============================================ */
+.mdui-prose .highlight {
+  overflow: auto;
+  margin: 1.5em 0;
+  background: rgb(var(--mdui-color-surface-container-low, 244, 244, 244));
+  border-radius: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mdui-prose figure.highlight {
+  margin: 1.5em 0;
+}
+
+.mdui-prose figure.highlight table {
+  margin: 0;
+  display: block;
+  overflow-x: auto;
+  width: auto !important;
+  border: none !important;
+}
+
+.mdui-prose .highlight table {
+  width: auto !important; /* 允许表格根据代码长度伸展 */
+  margin: 0 !important;
+  border: none !important;
+}
+
+.mdui-prose figure.highlight td,
+.mdui-prose .highlight td {
+  padding: 0 !important;
+  border: none !important;
+}
+
+.mdui-prose .highlight pre {
+  margin: 0 !important;
+  padding: 12px 16px !important;
+  white-space: pre !important; /* 强制不换行以触发滚动条 */
+  word-break: normal !important;
+}

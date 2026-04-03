@@ -17,7 +17,8 @@
 # - 首页主标题：title_index_rows → 否则 config.title
 # - 内页主标题：title_inner_columns → 否则 config.title
 # - 副标题：subtitle_block（cite_upper / cite_lower / aside）→ 否则 config.subtitle
-# 文案均为纯文本，版式由 layout/partial/banner-hero-titles.ejs + custom.css 负责
+# 文案均为纯文本，版式由 layout/partial/banner-hero-titles.ejs + banner-page.css 负责；
+# 内页多列挤碰、换行、对齐等由 source/js/banner-title-layout.json + banner-title-layout.js 调整（可站点 source/js/ 覆盖）
 # ============================================
 banner:
   enable: true
@@ -131,6 +132,9 @@ excerpt_link: Read More
 # 类型: String
 # 默认值: /favicon.png
 favicon: /favicon.png
+
+# 浏览器 UI 主题色（meta theme-color），建议与品牌主色一致
+theme_color: '#6750A4'
 
 # ============================================
 # 五、Hexo 内置配置（保留用于兼容性）

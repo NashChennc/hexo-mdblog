@@ -1,16 +1,23 @@
-<div class="banner-container banner-container--page">
-    <div class="banner-bg" style="--banner-bg-image: url(<%- theme.banner.image || '/image/banner.png' %>);"></div>
-    
-    <div class="mdui-card-media-covered banner-overlay banner-overlay--tint">
-        <div class="mdui-container">
-            <div class="mdui-card-primary mdui-float-right mdui-text-color-white mdui-p-y-2">
-                <div class="mdui-card-primary-title banner-card-title">
-                    <%- partial('partial/banner-hero-titles', { variant: 'inner', role: 'title' }) %>
-                </div>
-                <div class="mdui-card-primary-subtitle mdui-float-right banner-card-subtitle">
-                    <%- partial('partial/banner-hero-titles', { variant: 'inner', role: 'subtitle' }) %>
-                </div>
-            </div>
+<div
+  class="banner-container banner-container--page"
+  data-banner-layout-root
+  data-banner-layout-config="<%- url_for('/js/banner-title-layout.json') %>"
+>
+  <div class="banner-bg" style="--banner-bg-image: url(<%- theme.banner.image || '/image/banner.png' %>);"></div>
+
+  <div class="banner-overlay banner-overlay--tint">
+    <div class="banner-inner">
+      <div class="mdui-container">
+        <div class="banner-inner__content">
+          <div class="banner-card-title">
+            <%- partial('partial/banner-hero-titles', { variant: 'inner', role: 'title' }) %>
+          </div>
+          <div class="banner-card-subtitle">
+            <%- partial('partial/banner-hero-titles', { variant: 'inner', role: 'subtitle' }) %>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+<script src="<%- url_for('/js/banner-title-layout.js') %>" defer></script>

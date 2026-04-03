@@ -10,14 +10,7 @@
             <% })%>
             
             <% if (page.total > 1){ %>
-                <div class="paginator-wrap">
-                    <%- paginator({
-                        prev_text: '<mdui-icon name="chevron_left"></mdui-icon>',
-                        next_text: '<mdui-icon name="chevron_right"></mdui-icon>',
-                        escape: false,
-                        class: 'mdui-btn-group'
-                    }) %>
-                </div>
+                <%- partial('partial/paginator') %>
             <% } %>
         </main>
         <aside class="page-sidebar sticky-sidebar">
@@ -32,7 +25,7 @@
                         <%= page.posts.length %> <%= __('articles') %>
                     </div>
                     <div class="category-aside-card__actions">
-                        <mdui-button variant="text" href="<%- url_for('/archives') %>" full-width><%= __('view_all_categories') %></mdui-button>
+                        <a href="<%- url_for('/archives') %>" class="category-aside-card__link"><%= __('view_all_categories') %></a>
                     </div>
                 </div>
             </mdui-card>

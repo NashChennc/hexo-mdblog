@@ -21,19 +21,18 @@
   <mdui-divider></mdui-divider>
 
   <% if (theme.social) { %>
-    <mdui-list class="sidebar-social-list">
+    <nav class="sidebar-social" aria-label="Social">
       <% for (var i in theme.social) { %>
-        <mdui-list-item
+        <a
+          class="sidebar-social-link"
           href="<%- url_for(theme.social[i].link) %>"
           target="_blank"
           rel="noopener noreferrer"
-          alignment="start"
-          headline-line="1"
         >
-          <i slot="icon" class="<%- theme.social[i].icon %> <%- theme.social[i].color %> sidebar-social-icon-fa"></i>
-          <%- theme.social[i].text || theme.social[i].link %>
-        </mdui-list-item>
+          <i class="<%- theme.social[i].icon %> <%- theme.social[i].color %> sidebar-social-icon-fa" aria-hidden="true"></i>
+          <span class="sidebar-social-link__label"><%- theme.social[i].text || theme.social[i].link %></span>
+        </a>
       <% } %>
-    </mdui-list>
+    </nav>
   <% } %>
 </mdui-card>

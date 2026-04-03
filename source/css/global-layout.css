@@ -1,0 +1,109 @@
+/* ============================================
+ * 全局样式（无法用 MDUI 类替代的部分）
+ * ============================================ */
+/* 系统 UI + 中文无衬线：比纯 Material/Roboto 默认更克制、阅读感更稳 */
+body#top {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.mdui-prose {
+  font-family: inherit;
+}
+
+html {
+  scroll-padding-top: var(--app-top-bar-offset);
+  /* scroll-behavior: smooth; 已移除，防止首页自动下滑 */
+}
+
+/* 链接换行处理（MDUI 没有提供此功能） */
+.mdui-prose a {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+/* Footer 间距（使用 MDUI 类可能不够精确） */
+footer {
+  padding: 24px 0;
+}
+
+/* 图片响应式（MDUI 的 mdui-img-fluid 类已处理，但保留作为兜底） */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================
+ * 页面版心与两栏 Grid（MDUI 2 核心包不含 v1 .mdui-container）
+ * ============================================ */
+.mdui-container,
+.mdui-container-fluid {
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.mdui-container::after,
+.mdui-container-fluid::after {
+  display: table;
+  clear: both;
+  content: '';
+}
+
+.mdui-container {
+  width: 96%;
+  max-width: 1280px;
+}
+
+@media (min-width: 600px) {
+  .mdui-container {
+    width: 94%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mdui-container {
+    width: 92%;
+  }
+}
+
+.page-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 840px) {
+  .page-grid {
+    grid-template-columns: 3fr 1fr;
+    align-items: start;
+  }
+}
+
+.page-main {
+  min-width: 0;
+}
+
+/* 侧边栏包装器响应式 */
+#sidebar-wrapper {
+  margin-top: 16px;
+}
+
+@media (min-width: 992px) {
+  #sidebar-wrapper {
+    margin-top: 0;
+  }
+}
+
+/* ============================================
+ * 粘性侧边栏工具类（与 --app-top-bar-offset 一致）
+ * ============================================ */
+.sticky-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: var(--app-top-bar-offset);
+  z-index: 1;
+}

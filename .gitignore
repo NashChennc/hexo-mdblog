@@ -20,3 +20,5 @@ Thumbs.db
 public/
 db.json
 
+# sources
+image/

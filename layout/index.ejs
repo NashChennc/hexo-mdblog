@@ -34,117 +34,13 @@
         <main class="page-main">
             
             <div class="post-index-grid">
-                <% 
-                    // 根据字符串生成固定哈希值的函数，用于为文章选择对应的 banner 图片
-                    var generateHashFromString = function(str) {
-                        var hash = 0;
-                        if (str.length === 0) return hash;
-                        for (var i = 0; i < str.length; i++) {
-                            hash = (hash << 5) - hash + str.charCodeAt(i);
-                            hash |= 0; 
-                        }
-                        return Math.abs(hash);
-                    };
-                %>
-                
                 <% page.posts.sort('title').sort('-updated').sort('-priority').each(function(post, i){ %>
-                    <% var isFeatured = (i === 0 && page.current === 1); %>
-                    
-                    <% 
-                        // 封面图片选择逻辑：优先 Banner > Photos > 文章内图片 > 本地随机图
-                        var coverImageUrl = null;
-
-                        // 尝试从文章内容提取第一张图片
-                        var firstImageFromContent = null;
-                        var imageRegex = /<img[^>]+src="([^">]+)"/i;
-                        var imageMatch = post.content.match(imageRegex);
-                        if (imageMatch && imageMatch[1]) {
-                            firstImageFromContent = imageMatch[1];
-                        }
-
-                        if (post.banner) {
-                            coverImageUrl = post.banner;
-                        } else if (post.photos && post.photos.length) {
-                            coverImageUrl = post.photos[0];
-                        } else if (firstImageFromContent) {
-                             coverImageUrl = firstImageFromContent;
-                        } else {
-                            var localBannerImages = get_banner_list();
-                            
-                            if (localBannerImages && localBannerImages.length > 0) {
-                                var hashSeed = generateHashFromString(post.title);
-                                var bannerIndex = hashSeed % localBannerImages.length;
-                                coverImageUrl = url_for('image/banner/' + localBannerImages[bannerIndex]);
-                            } else {
-                                // 最后的兜底
-                                coverImageUrl = ""; 
-                            }
-                        }
-                    %>
-                    
-                    <div class="post-index-grid__cell scroll-reveal <%= isFeatured ? 'featured-post' : '' %>">
-                        
-                        <mdui-card variant="elevated" class="post-card">
-                            
-                            <!-- 卡片头部：图片 -->
-                            <a href="<%- url_for(post.path) %>" class="post-card-media">
-                                <% if (coverImageUrl) { %>
-                                    <img src="<%= coverImageUrl %>" class="post-card-cover-img" alt="<%= post.title %>" loading="<%= (page.current === 1 && i === 0) ? 'eager' : 'lazy' %>">
-                                <% } else { %>
-                                    <div class="post-card-cover-placeholder">
-                                        <mdui-icon name="image" class="post-card-cover-placeholder__icon"></mdui-icon>
-                                    </div>
-                                <% } %>
-                            </a>
-
-                            <div class="post-card-content">
-                                <div class="post-card-chips">
-                                    <% if (post.categories && post.categories.length) { %>
-                                        <% post.categories.each(function(cat){ %>
-                                            <mdui-chip variant="assist" elevated href="<%- url_for(cat.path) %>"><%= cat.name %></mdui-chip>
-                                        <% }) %>
-                                    <% } else { %>
-                                        <mdui-chip variant="assist" elevated><%= __('uncategorized') %></mdui-chip>
-                                    <% } %>
-                                </div>
-
-                                <a href="<%- url_for(post.path) %>" class="post-card-title-link">
-                                    <div class="post-card-title-text"><%= post.title %></div>
-                                </a>
-                                <div class="post-card-date"><%= date(post.updated, 'YYYY-MM-DD') %></div>
-
-                                <div class="limit-lines post-card-excerpt">
-                                    <% if(post.excerpt) { %>
-                                        <%- post.excerpt %>
-                                    <% } else { %>
-                                        <%= strip_html(post.content).substring(0, 100) %>...
-                                    <% } %>
-                                </div>
-                                
-                                <mdui-divider class="post-card-divider"></mdui-divider>
-
-                                <div class="post-card-footer">
-                                    <span class="post-card-footer__meta"><%= min2read(post.content, {cn: 200, en: 500}) %> <%= __('min_read') %></span>
-                                    <mdui-tooltip content="<%= __('read_full_article').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;') %>">
-                                        <mdui-button-icon icon="arrow_forward" href="<%- url_for(post.path) %>"></mdui-button-icon>
-                                    </mdui-tooltip>
-                                </div>
-                            </div>
-                        </mdui-card>
-                    </div>
+                    <%- partial('partial/post-index-card', { post: post, i: i }) %>
                 <% }) %>
             </div>
 
-            <!-- 分页器 -->
             <% if (page.total > 1){ %>
-                <div class="paginator-wrap scroll-reveal">
-                    <%- paginator({
-                        prev_text: '<mdui-icon name="chevron_left"></mdui-icon>',
-                        next_text: '<mdui-icon name="chevron_right"></mdui-icon>',
-                        escape: false,
-                        class: 'mdui-btn-group'
-                    }) %>
-                </div>
+                <%- partial('partial/paginator', { paginatorWrapClass: 'scroll-reveal' }) %>
             <% } %>
         </main>
 

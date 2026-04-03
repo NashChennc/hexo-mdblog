@@ -2,19 +2,17 @@
   <% if (site.categories.length) { %>
     <div class="topbar-spacer" aria-hidden="true"></div>
     <nav class="topbar-nav">
-      <a href="<%- url_for('/') %>" class="topbar-nav__link<%= is_home() ? ' topbar-nav__link--active' : '' %>"><%= __('home') %></a>
+      <a href="<%- url_for('/') %>" class="topbar-nav__link<%= is_home() ? ' topbar-nav__link--active' : '' %>"<% if (is_home()) { %> aria-current="page"<% } %>><%= __('home') %></a>
       <% site.categories.sort('length').sort('-name').each(item => { %>
         <% if (item.posts.length) { %>
-          <a href="<%- url_for('categories/' + item.name) %>" class="topbar-nav__link<%= is_category() && page.category === item.name ? ' topbar-nav__link--active' : '' %>"><%= item.name %> | <%= item.posts.length %></a>
+          <a href="<%- url_for('categories/' + item.name) %>" class="topbar-nav__link<%= is_category() && page.category === item.name ? ' topbar-nav__link--active' : '' %>"<% if (is_category() && page.category === item.name) { %> aria-current="page"<% } %>><%= item.name %> | <%= item.posts.length %></a>
         <% } %>
       <% }); %>
     </nav>
     <div class="topbar-spacer" aria-hidden="true"></div>
   <% } else { %>
     <mdui-top-app-bar-title><%= config.title %></mdui-top-app-bar-title>
-    <div style="flex-grow: 1"></div>
+    <div class="topbar-spacer" aria-hidden="true"></div>
   <% } %>
-  <mdui-tooltip content="<%= __('about').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;') %>" placement="bottom">
-    <mdui-button-icon icon="more_vert" href="<%- url_for('/about') %>"></mdui-button-icon>
-  </mdui-tooltip>
+  <a href="<%- url_for('/about') %>" class="topbar-about-link"<% if (typeof page !== 'undefined' && page.path && /^about(\/|$)/.test(page.path)) { %> aria-current="page"<% } %>><%= __('about') %></a>
 </mdui-top-app-bar>
