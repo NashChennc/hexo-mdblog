@@ -71,7 +71,7 @@ hexo.extend.tag.register('list_files', function(args) {
   // 验证文件夹名称，防止路径遍历攻击
   if (folderName.includes('..') || folderName.includes('/') || folderName.includes('\\')) {
     const msg = getI18nText('invalid_folder_name', hexo);
-    return `<div class="mdui-typo"><p>${escapeHtml(msg)}</p></div>`;
+    return `<div class="mdui-prose"><p>${escapeHtml(msg)}</p></div>`;
   }
   
   const baseDir = hexo.source_dir;
@@ -80,7 +80,7 @@ hexo.extend.tag.register('list_files', function(args) {
   // 1. 检查目录是否存在
   if (!fs.existsSync(targetDir)) {
     const msg = getI18nText('folder_not_found', hexo).replace('%s', escapeHtml(folderName));
-    return `<div class="mdui-typo"><p>${msg}</p></div>`;
+    return `<div class="mdui-prose"><p>${msg}</p></div>`;
   }
 
   // 2. 读取并过滤文件
@@ -93,16 +93,16 @@ hexo.extend.tag.register('list_files', function(args) {
   } catch (err) {
     console.error('list_files error reading dir:', targetDir, err);
     const msg = getI18nText('read_dir_failed', hexo);
-    return `<div class="mdui-typo"><p>${escapeHtml(msg)}</p></div>`;
+    return `<div class="mdui-prose"><p>${escapeHtml(msg)}</p></div>`;
   }
 
   if (files.length === 0) {
     const msg = getI18nText('no_files', hexo);
-    return `<div class="mdui-typo"><p>${escapeHtml(msg)}</p></div>`;
+    return `<div class="mdui-prose"><p>${escapeHtml(msg)}</p></div>`;
   }
 
-  // 3. 生成简洁的 HTML 列表 (利用 mdui-typo 的默认列表样式)
-  let html = '<div class="mdui-typo"><ul>';
+  // 3. 生成简洁的 HTML 列表 (mdui-prose 列表样式)
+  let html = '<div class="mdui-prose"><ul>';
   
   files.forEach(file => {
     // 验证文件名，防止路径遍历

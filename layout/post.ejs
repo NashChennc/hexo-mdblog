@@ -8,48 +8,42 @@
         <!-- 文章内容 -->
 
         <main class="page-main mdui-p-t-1 mdui-p-b-4">
-            <div class="mdui-card mdui-hoverable">
-                <div class="mdui-card-primary mdui-p-x-5">
-                    <div class="mdui-card-primary-title mdui-typo-display-1">
-                        <%- page.blog_title || page.title %>
-                    </div>
-                    <div class="mdui-row mdui-p-t-2">
-                        <div class="mdui-col-xs-9 mdui-typo-caption-opacity">
+            <mdui-card variant="elevated" class="post-page-card">
+                <div class="post-page-card__header">
+                    <h1 class="post-page__title"><%- page.blog_title || page.title %></h1>
+                    <div class="post-page__meta-row">
+                        <div class="post-page__meta post-page__meta--date">
                             <%= __('last_update') %>: <%= date( page.updated, 'YYYY/MM/DD HH:mm') %>
                         </div>
-                        <div class="mdui-col-xs-3">
-                            <div class="mdui-float-right mdui-typo">
-                                <% page.categories.each(cat=>{ %>
-                                    <a href="<%- url_for(cat.path) %>">
-                                        <%- cat.name %>
-                                    </a>
-                                <% }) %>
-                            </div>
+                        <div class="post-page__meta post-page__meta--cats">
+                            <% page.categories.each(cat=>{ %>
+                                <a href="<%- url_for(cat.path) %>"><%- cat.name %></a>
+                            <% }) %>
                         </div>
                     </div>
-                    <div class="mdui-divider"></div>
-                    <br/>
+                    <mdui-divider></mdui-divider>
                 </div>
-                <div class="mdui-card-content mdui-typo mdui-p-x-5">
-                    <%- page.content %>
+                <div class="post-page-card__body">
+                    <div class="mdui-prose">
+                        <%- page.content %>
+                    </div>
                 </div>
                 <%- partial('partial/link') %>
-            </div>
-            
+            </mdui-card>
         </main>
         <!-- 侧边栏 -->
         <aside class="page-sidebar mdui-p-t-1 mdui-p-b-4 sticky-sidebar" id="post-sidebar">
             <% if (page.toc !== false) { %>
-                <div class="mdui-card mdui-shadow-1 toc-full-height">
-                    <div class="mdui-card-content toc-card-content">
-                        <div class="mdui-typo-heading mdui-m-b-2"><%= __('toc') %></div>
-                        <div class="toc-content">
-                            <%- toc(page.content, {class:"mdui-list mdui-typo", list_number: false, max_depth: 3}) %>
+                <mdui-card variant="elevated" class="toc-full-height post-toc-card">
+                    <div class="toc-card-content">
+                        <div class="post-toc__title"><%= __('toc') %></div>
+                        <div class="toc-content mdui-prose">
+                            <%- toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 }) %>
                         </div>
                     </div>
-                </div>
+                </mdui-card>
             <% } %>
-            <div class="mdui-m-t-2">
+            <div class="post-page-sidebar-stack">
                 <%- partial('partial/sidebar') %>
             </div>
         </aside>

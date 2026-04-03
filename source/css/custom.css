@@ -23,7 +23,7 @@ html {
 }
 
 /* 链接换行处理（MDUI 没有提供此功能） */
-.mdui-typo a {
+.mdui-prose a {
   word-break: break-all;
   overflow-wrap: break-word;
 }
@@ -1016,12 +1016,92 @@ footer.site-footer {
 }
 
 /* ============================================
+ * 文章页（post.ejs）标题与元信息
+ * ============================================ */
+.post-page-card {
+  display: block;
+  width: 100%;
+}
+
+.post-page-card__header {
+  padding: 20px 20px 0;
+  box-sizing: border-box;
+}
+
+.post-page__title {
+  margin: 0;
+  font-size: var(--mdui-typescale-headline-large-size, 2rem);
+  font-weight: var(--mdui-typescale-headline-large-weight, 400);
+  line-height: var(--mdui-typescale-headline-large-line-height, 2.5rem);
+  color: rgb(var(--mdui-color-on-surface));
+}
+
+.post-page__meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.post-page__meta {
+  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
+  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+.post-page__meta--cats {
+  text-align: right;
+}
+
+.post-page__meta--cats a {
+  color: rgb(var(--mdui-color-primary));
+  margin-left: 0.5rem;
+}
+
+.post-page__meta--cats a:first-child {
+  margin-left: 0;
+}
+
+.post-page-card__body {
+  padding: 8px 20px 20px;
+  box-sizing: border-box;
+}
+
+.post-page-card .post-nav {
+  padding: 0.75rem 20px 1rem;
+  box-sizing: border-box;
+}
+
+.post-page-sidebar-stack {
+  margin-top: 1rem;
+}
+
+/* ============================================
+ * 正文内图片（mdui-prose）
+ * ============================================ */
+.mdui-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* ============================================
  * 目录窗口高度样式
  * ============================================ */
 .toc-full-height {
   display: flex;
   flex-direction: column;
   max-height: calc(100vh - var(--app-top-bar-offset) - 28px);
+}
+
+.post-toc-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
 }
 
 .toc-card-content {
@@ -1031,6 +1111,14 @@ footer.site-footer {
   min-height: 0; /* 允许 flex 子元素缩小 */
 }
 
+.post-toc__title {
+  margin: 0 0 0.5rem;
+  font-size: var(--mdui-typescale-title-medium-size, 1rem);
+  font-weight: 500;
+  line-height: var(--mdui-typescale-title-medium-line-height, 1.5rem);
+  color: rgb(var(--mdui-color-on-surface));
+}
+
 .toc-content {
   overflow-y: auto;
   overflow-x: hidden;
@@ -1038,29 +1126,64 @@ footer.site-footer {
   min-height: 0; /* 允许缩小到内容高度 */
 }
 
+/* 侧栏目录：在 mdui-prose 内收紧列表，避免像正文一样松散 */
+.toc-card-content .toc-content.mdui-prose .post-toc,
+.toc-card-content .toc-content.mdui-prose .post-toc ol {
+  list-style: none;
+  margin: 0;
+  padding-left: 0.75rem;
+}
+
+.toc-card-content .toc-content.mdui-prose .post-toc {
+  padding-left: 0;
+}
+
+.toc-card-content .toc-content.mdui-prose .post-toc > li {
+  margin: 0.2em 0;
+}
+
+.toc-card-content .toc-content.mdui-prose .post-toc a {
+  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
+  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
+  color: rgb(var(--mdui-color-primary));
+}
+
 /* ============================================
- * 代码块适配 (Hexo highlight & MDUI Typo 冲突修复)
+ * 代码块适配 (Hexo highlight & mdui-prose 冲突修复)
  * ============================================ */
-.mdui-typo .highlight {
+.mdui-prose .highlight {
   overflow: auto;
   margin: 1.5em 0;
-  background: #f8f8f8;
+  background: rgb(var(--mdui-color-surface-container-low, 244, 244, 244));
   border-radius: 4px;
   -webkit-overflow-scrolling: touch;
 }
 
-.mdui-typo .highlight table {
+.mdui-prose figure.highlight {
+  margin: 1.5em 0;
+}
+
+.mdui-prose figure.highlight table {
+  margin: 0;
+  display: block;
+  overflow-x: auto;
+  width: auto !important;
+  border: none !important;
+}
+
+.mdui-prose .highlight table {
   width: auto !important; /* 允许表格根据代码长度伸展 */
   margin: 0 !important;
   border: none !important;
 }
 
-.mdui-typo .highlight td {
+.mdui-prose figure.highlight td,
+.mdui-prose .highlight td {
   padding: 0 !important;
   border: none !important;
 }
 
-.mdui-typo .highlight pre {
+.mdui-prose .highlight pre {
   margin: 0 !important;
   padding: 12px 16px !important;
   white-space: pre !important; /* 强制不换行以触发滚动条 */
