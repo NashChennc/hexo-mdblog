@@ -1,0 +1,71 @@
+<%
+  /**
+   * role: 'title' | 'subtitle'
+   * variant: 'index' | 'inner'
+   * 数据来自 theme.banner.title_index_rows / title_inner_columns / subtitle_block
+   */
+  var r = typeof role !== 'undefined' ? role : 'title';
+  var v = typeof variant !== 'undefined' ? variant : 'index';
+%>
+<% if (r === 'title') { %>
+  <% if (v === 'index') { %>
+    <% if (theme.banner.title_index_rows && theme.banner.title_index_rows.length) { %>
+      <div class="banner-hero-title banner-hero-title--index">
+        <% theme.banner.title_index_rows.forEach(function (row, rowIndex) { %>
+          <div class="banner-hero-title__row<%= rowIndex < theme.banner.title_index_rows.length - 1 ? ' banner-hero-title__row--spaced' : '' %>">
+            <% row.forEach(function (col) { %>
+              <div class="banner-hero-title__col">
+                <span class="banner-hero-title__upper-wrap">
+                  <span class="banner-hero-title__upper"><%= col.upper %></span><% if (col.punct_after_upper) { %><span class="banner-hero-title__punct-after-upper"><%= col.punct_after_upper %></span><% } %>
+                </span>
+                <span class="banner-hero-title__lower-wrap">
+                  <span class="banner-hero-title__lower"><%= col.lower %></span><% if (col.punct_after_lower) { %><span class="banner-hero-title__punct-after-lower"><%= col.punct_after_lower %></span><% } %>
+                </span>
+              </div>
+            <% }) %>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <%= config.title || __('default_site_title') %>
+    <% } %>
+  <% } else { %>
+    <% if (theme.banner.title_inner_columns && theme.banner.title_inner_columns.length) { %>
+      <div class="banner-hero-title banner-hero-title--inner">
+        <% theme.banner.title_inner_columns.forEach(function (col) { %>
+          <div class="banner-hero-title__col">
+            <span class="banner-hero-title__upper-wrap">
+              <span class="banner-hero-title__upper"><%= col.upper %></span><% if (col.punct_after_upper) { %><span class="banner-hero-title__punct-after-upper"><%= col.punct_after_upper %></span><% } %>
+            </span>
+            <span class="banner-hero-title__lower-wrap">
+              <span class="banner-hero-title__lower"><%= col.lower %></span><% if (col.punct_after_lower) { %><span class="banner-hero-title__punct-after-lower"><%= col.punct_after_lower %></span><% } %>
+            </span>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <%= config.title || __('default_site_title') %>
+    <% } %>
+  <% } %>
+<% } else { %>
+  <% var sub = theme.banner.subtitle_block; %>
+  <% if (sub && (sub.cite_upper || sub.cite_lower || sub.aside)) { %>
+    <div class="banner-hero-subtitle<%= v === 'inner' ? ' banner-hero-subtitle--inner' : '' %>">
+      <div class="banner-hero-subtitle__left">
+        <% if (sub.cite_upper) { %>
+          <span class="banner-hero-subtitle__cite-upper"><%= sub.cite_upper %></span>
+        <% } %>
+        <% if (sub.cite_lower) { %>
+          <span class="banner-hero-subtitle__cite-lower">
+            <span class="banner-hero-subtitle__dash" aria-hidden="true">—— </span><%= sub.cite_lower %>
+          </span>
+        <% } %>
+      </div>
+      <% if (sub.aside) { %>
+        <div class="banner-hero-subtitle__aside"><%= sub.aside %></div>
+      <% } %>
+    </div>
+  <% } else { %>
+    <%= config.subtitle || __('default_site_subtitle') %>
+  <% } %>
+<% } %>

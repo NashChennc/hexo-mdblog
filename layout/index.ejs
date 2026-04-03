@@ -15,15 +15,15 @@
             fallbackImage = theme.banner.image
         }
     %>
-    <div class="hero-bg" style="background-image: url(<%- theme.banner.image || config.head_bgpaper || fallbackImage %>);"></div>
+    <div class="hero-bg" style="--banner-bg-image: url(<%- theme.banner.image || config.head_bgpaper || fallbackImage %>);"></div>
     <div class="hero-mask"></div>
     
     <div class="hero-content mdui-text-center mdui-text-color-white mdui-p-b-4">
-        <div class="mdui-typo-display-3" style="font-weight: 300; letter-spacing: 2px;">
-            <%- theme.banner.index_title || theme.banner.title || config.title || __('default_site_title') %>
+        <div class="mdui-typo-display-3 hero-content__title">
+            <%- partial('partial/banner-hero-titles', { variant: 'index', role: 'title' }) %>
         </div>
-        <div class="mdui-typo-headline mdui-m-t-2" style="font-weight: 300; opacity: 0.9;">
-            <%- theme.banner.index_subtitle || theme.banner.subtitle || config.subtitle || __('default_site_subtitle') %>
+        <div class="mdui-typo-headline mdui-m-t-2 hero-content__subtitle">
+            <%- partial('partial/banner-hero-titles', { variant: 'index', role: 'subtitle' }) %>
         </div>
     </div>
 </div>
@@ -95,10 +95,10 @@
                             <!-- 卡片头部：图片 -->
                             <a href="<%- url_for(post.path) %>" class="post-card-media mdui-ripple mdui-color-grey-100">
                                 <% if (coverImageUrl) { %>
-                                    <img src="<%= coverImageUrl %>" class="mdui-img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+                                    <img src="<%= coverImageUrl %>" class="mdui-img-fluid post-card-cover-img" alt="">
                                 <% } else { %>
                                     <!-- 确实没有任何图片时的 fallback -->
-                                    <div class="mdui-flex mdui-flex-center mdui-flex-middle" style="width: 100%; height: 100%;">
+                                    <div class="mdui-flex mdui-flex-center mdui-flex-middle post-card-cover-placeholder">
                                         <i class="mdui-icon material-icons mdui-text-color-grey-400">image</i>
                                     </div>
                                 <% } %>
@@ -131,8 +131,8 @@
 
                                 <!-- 标题 (非 Featured 时显示) -->
                                 <% if (!isFeatured) { %>
-                                    <a href="<%- url_for(post.path) %>" class="mdui-text-color-theme-text" style="text-decoration: none;">
-                                        <div class="mdui-typo-subheading mdui-m-b-1" style="font-weight: 500;">
+                                    <a href="<%- url_for(post.path) %>" class="mdui-text-color-theme-text post-card-title-link">
+                                        <div class="mdui-typo-subheading mdui-m-b-1 post-card-title-text">
                                             <%= post.title %>
                                         </div>
                                     </a>
@@ -142,7 +142,7 @@
                                 <% } %>
 
                                 <!-- 摘要 -->
-                                <div class="mdui-typo-body-1 mdui-text-color-grey-700 mdui-m-b-2 limit-lines" style="flex-grow: 1;">
+                                <div class="mdui-typo-body-1 mdui-text-color-grey-700 mdui-m-b-2 limit-lines post-card-excerpt">
                                     <% if(post.excerpt) { %>
                                         <%- post.excerpt %>
                                     <% } else { %>

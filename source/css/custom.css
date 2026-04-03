@@ -78,10 +78,21 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
+  background-image: var(--banner-bg-image);
   background-position: center center;
   background-size: cover;
   z-index: 0;
   transition: transform 0.3s ease-out;
+}
+
+.hero-content__title {
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.hero-content__subtitle {
+  font-weight: 300;
+  opacity: 0.9;
 }
 
 .hero-mask {
@@ -148,6 +159,29 @@ img {
   flex-direction: column;
 }
 
+.post-card-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-card-cover-placeholder {
+  width: 100%;
+  height: 100%;
+}
+
+.post-card-title-link {
+  text-decoration: none;
+}
+
+.post-card-title-text {
+  font-weight: 500;
+}
+
+.post-card-excerpt {
+  flex-grow: 1;
+}
+
 /* 限制摘要行数 */
 .limit-lines {
   display: -webkit-box;
@@ -201,9 +235,18 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
+  background-image: var(--banner-bg-image);
   background-position: top;
   background-size: cover;
   z-index: 0;
+}
+
+.banner-container--page {
+  height: 320px;
+}
+
+.banner-container--tall {
+  height: 770px;
 }
 
 .banner-overlay {
@@ -213,11 +256,193 @@ img {
   z-index: 1;
 }
 
+.banner-overlay--tint {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.banner-card-title {
+  font-weight: 300;
+}
+
+.banner-card-subtitle {
+  opacity: 0.9;
+}
+
 /* ============================================
  * 侧边栏头像负边距（无法用 MDUI 类实现）
  * ============================================ */
 .sidebar-avatar-offset {
   margin-top: -50px;
+}
+
+.sidebar-card-media {
+  height: 120px;
+  overflow: hidden;
+}
+
+.sidebar-card-media__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sidebar-card-content--main {
+  position: relative;
+}
+
+.sidebar-avatar {
+  width: 80px;
+  height: 80px;
+  border: 2px solid white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sidebar-avatar--placeholder {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sidebar-avatar__icon {
+  font-size: 40px;
+}
+
+.sidebar-social-link {
+  min-height: 40px;
+  height: 40px;
+}
+
+.sidebar-social-icon {
+  font-size: 18px;
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar-social-text {
+  font-size: 12.5px;
+  opacity: 0.8;
+  margin-left: 12px;
+}
+
+/* Banner 标题区：数据来自 YAML，版式由类名控制（Phase 1） */
+.banner-hero-title--index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.banner-hero-title__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.banner-hero-title__row--spaced {
+  margin-bottom: 0.4em;
+}
+
+.banner-hero-title__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.banner-hero-title__upper-wrap,
+.banner-hero-title__lower-wrap {
+  position: relative;
+}
+
+.banner-hero-title__upper {
+  font-size: 0.35em;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: -1px;
+  line-height: 1.2;
+}
+
+.banner-hero-title__lower {
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.banner-hero-title__punct-after-upper {
+  position: absolute;
+  right: -0.8em;
+}
+
+.banner-hero-title__punct-after-lower {
+  position: absolute;
+  right: -1em;
+}
+
+.banner-hero-title--inner {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.banner-hero-subtitle {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-top: 1.8rem;
+  white-space: nowrap;
+}
+
+.banner-hero-subtitle__left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.banner-hero-subtitle__cite-upper {
+  font-size: 0.7em;
+  opacity: 0.7;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
+.banner-hero-subtitle__cite-lower {
+  font-size: 1.1em;
+  font-weight: 400;
+  line-height: 1;
+  position: relative;
+}
+
+.banner-hero-subtitle__dash {
+  position: absolute;
+  left: -2em;
+}
+
+.banner-hero-subtitle__aside {
+  padding-bottom: 2px;
+  font-size: 0.9em;
+  opacity: 0.8;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+}
+
+.banner-hero-subtitle--inner .banner-hero-subtitle__cite-lower {
+  line-height: 0.8;
+}
+
+.banner-hero-subtitle--inner .banner-hero-subtitle__aside {
+  padding-bottom: 1.6px;
+}
+
+/* 内页顶栏副标题不需要首页 hero 的上边距 */
+.banner-hero-subtitle.banner-hero-subtitle--inner {
+  margin-top: 0;
 }
 
 /* ============================================

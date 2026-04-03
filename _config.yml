@@ -13,153 +13,42 @@
 # ============================================
 # 一、Banner 配置（首页及分类页顶部横幅）
 # ============================================
-# Banner 显示在首页和分类页的顶部，支持自定义标题、副标题和背景图
+# 显示优先级（由 partial 实现）：
+# - 首页主标题：title_index_rows → 否则 config.title
+# - 内页主标题：title_inner_columns → 否则 config.title
+# - 副标题：subtitle_block（cite_upper / cite_lower / aside）→ 否则 config.subtitle
+# 文案均为纯文本，版式由 layout/partial/banner-hero-titles.ejs + custom.css 负责
 # ============================================
 banner:
-  # 是否启用 Banner
-  # 类型: Boolean
-  # 默认值: true
   enable: true
-  
-  # Banner 背景图片路径
-  # 类型: String
-  # 默认值: /image/banner.png
-  # 说明: 图片应放在 source/image/ 目录下，或使用绝对路径
-  # 提示: 主题会自动从 source/image/banner/ 目录随机选择图片作为首页背景
   image: /image/banner.jpeg
-  
-  # Banner 标题（用户可定制内容）
-  # 类型: String
-  # 默认值: "" (留空则使用站点标题 config.title)
-  # 说明: 这是用户个性化内容，不会进行国际化
-  # 示例: "Welcome to My Blog"
-  index_title: "
-    <div style='display:flex; flex-direction:column; align-items:center; width:100%;'>
-      
-      <div style='display:flex; flex-wrap:wrap; justify-content:center; margin-bottom:0.4em;'>
-        <div style='display:flex; flex-direction:column; align-items:center;'>
-          <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; margin-right:-1px; line-height:1.2;'>NOUS SOMMES</span>
-          <span style='font-size:1em; font-weight:400; line-height:1.2;'>我们是</span>
-        </div>
-        <div style='display:flex; flex-direction:column; align-items:center;'>
-          <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; line-height:1.2; position:relative;'>
-            DES ENFANTS<span style='position:absolute; right:-0.8em;'>,</span>
-          </span>
-          <span style='font-size:1em; font-weight:400; line-height:1.2; position:relative;'>
-            孩子<span style='position:absolute; right:-1em;'>，</span>
-          </span>
-        </div>
-      </div>
 
-      <div style='display:flex; flex-wrap:wrap; justify-content:center; margin-bottom:0.4em;'>
-        <div style='display:flex; flex-direction:column; align-items:center;'>
-          <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; margin-right:-1px; line-height:1.2;'>MAIS</span>
-          <span style='font-size:1em; font-weight:400; line-height:1.2;'>但</span>
-        </div>
-        <div style='display:flex; flex-direction:column; align-items:center;'>
-          <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; margin-right:-1px; line-height:1.2;'>DES ENFANTS</span>
-          <span style='font-size:1em; font-weight:400; line-height:1.2;'>我们</span>
-        </div>
-        <div style='display:flex; flex-direction:column; align-items:center;'>
-          <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; line-height:1.2; position:relative;'>
-            PROGRESSIFS<span style='position:absolute; right:-0.8em;'>,</span>
-          </span>
-          <span style='font-size:1em; font-weight:400; line-height:1.2; position:relative;'>
-            精力充沛<span style='position:absolute; right:-1em;'>，</span>
-          </span>
-        </div>
-      </div>
+  # 首页主标题：多行，每行为「列」数组；每列 upper=小字（法语）/ lower=大字（中文）
+  # punct_after_upper / punct_after_lower 可选，用于外挂标点（原内联绝对定位效果）
+  title_index_rows:
+    -
+      - { upper: "NOUS SOMMES", lower: "我们是" }
+      - { upper: "DES ENFANTS", lower: "孩子", punct_after_upper: ",", punct_after_lower: "，" }
+    -
+      - { upper: "MAIS", lower: "但" }
+      - { upper: "DES ENFANTS", lower: "我们" }
+      - { upper: "PROGRESSIFS", lower: "精力充沛", punct_after_upper: ",", punct_after_lower: "，" }
+    -
+      - { upper: "PLEINS DE FORCE ET DE COURAGE", lower: "勇往直前", punct_after_lower: "。" }
 
-      <div style='display:flex; flex-wrap:wrap; justify-content:center; margin-bottom:0;'>
-        <div style='display:flex; flex-direction:column; align-items:center;'>
-          <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; margin-right:-1px; line-height:1.2;'>PLEINS DE FORCE ET DE COURAGE</span>
-          <span style='font-size:1em; font-weight:400; line-height:1.2; position:relative;'>
-          勇往直前<span style='position:absolute; right:-1em;'>。</span>
-          </span>
-        </div>
-      </div>
+  # 分类/文章顶栏：单行横向，列结构与首页语义一致
+  title_inner_columns:
+    - { upper: "NOUS SOMMES", lower: "我们是" }
+    - { upper: "DES ENFANTS", lower: "孩子", punct_after_upper: ",", punct_after_lower: "，" }
+    - { upper: "MAIS", lower: "但" }
+    - { upper: "DES ENFANTS", lower: "我们" }
+    - { upper: "PROGRESSIFS", lower: "精力充沛", punct_after_upper: ",", punct_after_lower: "，" }
+    - { upper: "PLEINS DE FORCE ET DE COURAGE", lower: "勇往直前", punct_after_lower: "。" }
 
-    </div>"
-
-  index_subtitle: "
-    <div style='display:flex; justify-content:center; align-items:flex-end; gap:1.5rem; margin-top:1.8rem; white-space:nowrap;'>
-      
-      <div style='display:flex; flex-direction:column; align-items:center;'>
-        <span style='font-size:0.7em; opacity:0.7; letter-spacing:1px; margin-bottom:2px; text-transform:uppercase;'>ÉVARISTE GALOIS (1811-1832)</span>
-        <span style='font-size:1.1em; font-weight:400; line-height:1.0; position:relative;'>
-          <span style='position:absolute; left:-2em;'>—— </span>埃瓦里斯特 · 伽罗瓦
-        </span>
-      </div>
-
-      <div style='padding-bottom:2px; font-size:0.9em; opacity:0.8; font-weight:300; letter-spacing:0.5px; position:relative; padding:0 0.6em;'>
-        ，1831年 于巴黎政治审判庭上的辩护
-      </div>
-
-    </div>"
-    
-  title: "
-    <div style='display:flex; justify-content:center; align-items:flex-end; width:100%; white-space:nowrap;'>
-      
-      <div style='display:flex; flex-direction:column; align-items:center;'>
-        <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; margin-right:-1px; line-height:1.2;'>NOUS SOMMES</span>
-        <span style='font-size:1em; font-weight:400; line-height:1.2;'>我们是</span>
-      </div>
-
-      <div style='display:flex; flex-direction:column; align-items:center;'>
-        <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; line-height:1.2; position:relative;'>
-          DES ENFANTS<span style='position:absolute; right:-0.8em;'>,</span>
-        </span>
-        <span style='font-size:1em; font-weight:400; line-height:1.2; position:relative;'>
-          孩子<span style='position:absolute; right:-1em;'>，</span>
-        </span>
-      </div>
-
-      <div style='display:flex; flex-direction:column; align-items:center;'>
-        <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; margin-right:-1px; line-height:1.2;'>MAIS</span>
-        <span style='font-size:1em; font-weight:400; line-height:1.2;'>但</span>
-      </div>
-
-      <div style='display:flex; flex-direction:column; align-items:center;'>
-        <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; margin-right:-1px; line-height:1.2;'>DES ENFANTS</span>
-        <span style='font-size:1em; font-weight:400; line-height:1.2;'>我们</span>
-      </div>
-
-      <div style='display:flex; flex-direction:column; align-items:center;'>
-        <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; line-height:1.2; position:relative;'>
-          PROGRESSIFS<span style='position:absolute; right:-0.8em;'>,</span>
-        </span>
-        <span style='font-size:1em; font-weight:400; line-height:1.2; position:relative;'>
-          精力充沛<span style='position:absolute; right:-1em;'>，</span>
-        </span>
-      </div>
-
-      <div style='display:flex; flex-direction:column; align-items:center;'>
-        <span style='font-size:0.35em; opacity:0.7; text-transform:uppercase; letter-spacing:1px; margin-right:-1px; line-height:1.2;'>PLEINS DE FORCE ET DE COURAGE</span>
-        <span style='font-size:1em; font-weight:400; line-height:1.2;'>勇往直前<span style='position:absolute; right:-1em;'>。</span>
-        </span>
-      </div>
-
-    </div>"
-  # Banner 副标题（用户可定制内容）
-  # 类型: String
-  # 默认值: "" (留空则使用站点副标题 config.subtitle)
-  # 说明: 这是用户个性化内容，不会进行国际化
-  # 示例: "A simple and clean blog theme"
-  subtitle: "
-    <div style='display:flex; justify-content:center; align-items:flex-end; gap:1.5rem; white-space:nowrap;'>
-      
-      <div style='display:flex; flex-direction:column; align-items:center;'>
-        <span style='font-size:0.7em; opacity:0.7; letter-spacing:1px; text-transform:uppercase;'>ÉVARISTE GALOIS (1811-1832)</span>
-        <span style='font-size:1.1em; font-weight:400; line-height:0.8; position:relative;'>
-          <span style='position:absolute; left:-2em;'>—— </span>埃瓦里斯特 · 伽罗瓦
-        </span>
-      </div>
-
-      <div style='padding-bottom:1.6px; font-size:0.9em; opacity:0.8; font-weight:300; letter-spacing:0.5px; position:relative; padding:0 0.6em;'>
-        ，1831年 于巴黎政治审判庭上的辩护
-      </div>
-
-    </div>"
+  subtitle_block:
+    cite_upper: "ÉVARISTE GALOIS (1811-1832)"
+    cite_lower: "埃瓦里斯特 · 伽罗瓦"
+    aside: "，1831年 于巴黎政治审判庭上的辩护"
 
 # ============================================
 # 二、侧边栏配置
