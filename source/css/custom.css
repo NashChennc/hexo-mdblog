@@ -9,6 +9,8 @@
 :root {
   /* 使用 MDUI 自定义属性替代硬编码值 */
   --mdui-shape-corner-medium: 8px;
+  /* 与 mdui-top-app-bar 视觉高度对齐，用于锚点滚动与 sticky 侧栏 */
+  --app-top-bar-offset: 64px;
 }
 
 /* ============================================
@@ -16,7 +18,7 @@
  * ============================================ */
 /* 字体已在 body 标签的类中设置，这里只保留必要的全局样式 */
 html {
-  scroll-padding-top: 80px;
+  scroll-padding-top: var(--app-top-bar-offset);
   /* scroll-behavior: smooth; 已移除，防止首页自动下滑 */
 }
 
@@ -102,15 +104,73 @@ img {
 }
 
 /* ============================================
- * 粘性侧边栏工具类
- * （top / scroll-padding-top / .toc-full-height 均假设固定顶栏约 80px；
- *  Phase 4 替换为 mdui-top-app-bar 后请复测并统一调整。）
+ * 粘性侧边栏工具类（与 --app-top-bar-offset 一致）
  * ============================================ */
 .sticky-sidebar {
   position: -webkit-sticky;
   position: sticky;
-  top: 80px;
+  top: var(--app-top-bar-offset);
   z-index: 1;
+}
+
+/* ============================================
+ * 顶栏（mdui-top-app-bar + 分类导航）
+ * ============================================ */
+.app-top-bar {
+  width: 100%;
+}
+
+.topbar-spacer {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.topbar-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.125rem 0.5rem;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: min(100%, 72rem);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.topbar-nav__link {
+  flex-shrink: 0;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--mdui-shape-corner-medium, 8px);
+  font-size: 0.875rem;
+  line-height: 1.25;
+  text-decoration: none;
+  white-space: nowrap;
+  color: rgb(var(--mdui-color-on-surface));
+}
+
+.topbar-nav__link:hover {
+  background-color: color-mix(in srgb, rgb(var(--mdui-color-on-surface)) 8%, transparent);
+}
+
+.topbar-nav__link--active {
+  color: rgb(var(--mdui-color-primary));
+  background-color: color-mix(in srgb, rgb(var(--mdui-color-primary)) 14%, transparent);
+}
+
+/* ============================================
+ * 右下角 FAB 区（主 FAB + 菜单下拉）
+ * ============================================ */
+.site-fab-cluster {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 90;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.75rem;
 }
 
 /* ============================================
@@ -345,10 +405,38 @@ img {
   position: relative;
 }
 
+.sidebar-card {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+
+.sidebar-card-body {
+  text-align: center;
+  padding: 0 1rem 1rem;
+}
+
+.sidebar-author {
+  margin-top: 0.5rem;
+  font-size: var(--mdui-typescale-headline-small-size, 1.5rem);
+  font-weight: var(--mdui-typescale-headline-small-weight, 400);
+  line-height: var(--mdui-typescale-headline-small-line-height, 2rem);
+  color: rgb(var(--mdui-color-on-surface));
+}
+
+.sidebar-bio {
+  margin-top: 0.35rem;
+  font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
+  line-height: var(--mdui-typescale-body-medium-line-height, 1.25rem);
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
 .sidebar-avatar {
   width: 80px;
   height: 80px;
-  border: 2px solid white;
+  border: 2px solid rgb(var(--mdui-color-surface));
+  border-radius: 50%;
+  object-fit: cover;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -357,27 +445,45 @@ img {
 .sidebar-avatar--placeholder {
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: rgb(var(--mdui-color-surface-container-high));
 }
 
-.sidebar-avatar__icon {
+.sidebar-avatar--placeholder mdui-icon,
+.sidebar-avatar--placeholder .sidebar-avatar__icon {
   font-size: 40px;
-}
-
-.sidebar-social-link {
-  min-height: 40px;
+  width: 40px;
   height: 40px;
+  color: rgb(var(--mdui-color-on-surface-variant));
 }
 
-.sidebar-social-icon {
+.sidebar-social-list {
+  padding: 0.25rem 0 0.5rem;
+}
+
+.sidebar-social-icon-fa {
   font-size: 18px;
-  width: 20px;
+  width: 1.25rem;
   text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.sidebar-social-text {
-  font-size: 12.5px;
-  opacity: 0.8;
-  margin-left: 12px;
+/* 主题 social.color 仍可能引用 MDUI 1 工具类名，v2 包中无对应样式 */
+.sidebar-social-icon-fa.mdui-text-color-light-blue {
+  color: rgb(var(--mdui-color-tertiary));
+}
+
+.sidebar-social-icon-fa.mdui-text-color-blue {
+  color: rgb(var(--mdui-color-primary));
+}
+
+.sidebar-social-icon-fa.mdui-text-color-black {
+  color: rgb(var(--mdui-color-on-surface));
 }
 
 /* Banner 标题区：数据来自 YAML，版式由类名控制（Phase 1） */
@@ -506,7 +612,7 @@ img {
 .toc-full-height {
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 92px); /* 最大高度：80px (sticky top) */
+  max-height: calc(100vh - var(--app-top-bar-offset) - 28px);
 }
 
 .toc-card-content {

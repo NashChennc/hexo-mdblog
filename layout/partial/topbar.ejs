@@ -1,25 +1,20 @@
-<header class="appbar mdui-appbar mdui-appbar-fixed">
-    <div class="mdui-toolbar mdui-color-theme">
-        <% if (site.categories.length){ %>
-          <div class="mdui-toolbar-spacer"></div>
-            <div class="mdui-tab mdui-tab-full-width">
-                
-                <a href="/" class="mdui-ripple <%= is_home() ? 'mdui-color-indigo-400' : '' %>">
-                    <%= __('home') %>
-                </a>
-                
-                <% site.categories.sort('length').sort('-name').each(item=>{ %>
-                    <% if(item.posts.length){ %>
-                        <a href="/categories/<%= item.name %>" class="mdui-ripple <%= is_category() && page.category === item.name ? 'mdui-color-indigo-400' : '' %>">
-                            <%= item.name %> | <%= item.posts.length %>
-                        </a>
-                    <% } %>
-                <% }); %>
-            </div>
+<mdui-top-app-bar class="app-top-bar">
+  <% if (site.categories.length) { %>
+    <div class="topbar-spacer" aria-hidden="true"></div>
+    <nav class="topbar-nav">
+      <a href="<%- url_for('/') %>" class="topbar-nav__link<%= is_home() ? ' topbar-nav__link--active' : '' %>"><%= __('home') %></a>
+      <% site.categories.sort('length').sort('-name').each(item => { %>
+        <% if (item.posts.length) { %>
+          <a href="<%- url_for('categories/' + item.name) %>" class="topbar-nav__link<%= is_category() && page.category === item.name ? ' topbar-nav__link--active' : '' %>"><%= item.name %> | <%= item.posts.length %></a>
         <% } %>
-        <div class="mdui-toolbar-spacer"></div>
-        <a href="<%- url_for('/about') %>" class="mdui-btn mdui-btn-icon mdui-ripple" mdui-tooltip="{content: '<%= __('about') %>'}">
-            <i class="mdui-icon material-icons"> more_vert </i>
-        </a>
-    </div>
-</header>
+      <% }); %>
+    </nav>
+    <div class="topbar-spacer" aria-hidden="true"></div>
+  <% } else { %>
+    <mdui-top-app-bar-title><%= config.title %></mdui-top-app-bar-title>
+    <div style="flex-grow: 1"></div>
+  <% } %>
+  <mdui-tooltip content="<%= __('about').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;') %>" placement="bottom">
+    <mdui-button-icon icon="more_vert" href="<%- url_for('/about') %>"></mdui-button-icon>
+  </mdui-tooltip>
+</mdui-top-app-bar>

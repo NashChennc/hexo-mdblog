@@ -1,17 +1,13 @@
-<div id="exampleFab" class="mdui-fab-wrapper" mdui-fab="{trigger: 'hover'}">
-    <a class="mdui-fab mdui-ripple mdui-color-theme-accent" href="/archives" mdui-tooltip="{content: '<%= __('goto_archive') %>', position: 'left'}">
-        <i class="mdui-icon material-icons">bookmark</i>
-        <i class="mdui-icon mdui-fab-opened material-icons">bookmark</i>
-    </a>
-    <div class="mdui-fab-dial">
-        <a href="/about" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-teal">
-            <i class="mdui-icon material-icons">more_vert</i>
-        </a>
-        <a href="#top" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-blue-700" mdui-tooltip="{content: '<%= __('goto_top') %>', position: 'left'}">
-            <i class="mdui-icon material-icons">keyboard_arrow_up</i>
-        </a>
-        <a href="#page-bottom" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-indigo" mdui-tooltip="{content: '<%= __('goto_bottom') %>', position: 'left'}">
-            <i class="mdui-icon material-icons">keyboard_arrow_down</i>
-        </a>
-    </div>
+<div class="site-fab-cluster" id="exampleFab">
+  <mdui-dropdown placement="top-end" trigger="hover">
+    <mdui-button-icon slot="trigger" icon="menu"></mdui-button-icon>
+    <mdui-menu>
+      <mdui-menu-item href="<%- url_for('/about') %>" icon="more_vert"><%= __('about') %></mdui-menu-item>
+      <mdui-menu-item href="#top" icon="keyboard_arrow_up"><%= __('goto_top') %></mdui-menu-item>
+      <mdui-menu-item href="#page-bottom" icon="keyboard_arrow_down"><%= __('goto_bottom') %></mdui-menu-item>
+    </mdui-menu>
+  </mdui-dropdown>
+  <mdui-tooltip content="<%= __('goto_archive').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;') %>" placement="left">
+    <mdui-fab icon="bookmark" href="<%- url_for('/archives') %>" variant="primary"></mdui-fab>
+  </mdui-tooltip>
 </div>

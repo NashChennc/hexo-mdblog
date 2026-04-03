@@ -1,54 +1,39 @@
-<div class="mdui-card mdui-shadow-1">
-  <div class="mdui-card-media sidebar-card-media">
-    <img src="<%- theme.sidebar_config.image || theme.banner.image %>" class="mdui-img-fluid sidebar-card-media__img" alt="">
+<mdui-card variant="elevated" class="sidebar-card">
+  <div class="sidebar-card-media">
+    <img src="<%- theme.sidebar_config.image || theme.banner.image %>" class="sidebar-card-media__img" alt="">
   </div>
 
-  <div class="mdui-card-content mdui-text-center sidebar-card-content--main">
+  <div class="sidebar-card-content--main sidebar-card-body">
     <% if (theme.sidebar_config.avatar || theme.avatar) { %>
-      <img src="<%- theme.sidebar_config.avatar || theme.avatar %>" class="mdui-img-circle mdui-shadow-4 sidebar-avatar-offset sidebar-avatar" alt="">
+      <img src="<%- theme.sidebar_config.avatar || theme.avatar %>" class="sidebar-avatar-offset sidebar-avatar" alt="">
     <% } else { %>
-      <div class="mdui-img-circle mdui-shadow-4 mdui-color-white sidebar-avatar-offset mdui-flex mdui-flex-center mdui-flex-middle sidebar-avatar sidebar-avatar--placeholder">
-         <i class="material-icons mdui-text-color-theme sidebar-avatar__icon">person</i>
+      <div class="sidebar-avatar-offset sidebar-avatar sidebar-avatar--placeholder">
+        <mdui-icon name="person" class="sidebar-avatar__icon"></mdui-icon>
       </div>
     <% } %>
 
-    <div class="mdui-typo-headline mdui-m-t-2"><%= config.author %></div>
-    <div class="mdui-typo-caption mdui-text-color-grey-600 mdui-m-t-1">
+    <div class="sidebar-author"><%= config.author %></div>
+    <div class="sidebar-bio">
       <%= theme.sidebar_config.description || config.description || __('welcome') %>
     </div>
   </div>
 
-  <!-- <div class="mdui-divider"></div>
+  <mdui-divider></mdui-divider>
 
-  <div class="mdui-row mdui-text-center mdui-p-y-2">
-    <div class="mdui-col-xs-4">
-      <div class="mdui-typo-subheading"><%= site.posts.length %></div>
-      <div class="mdui-typo-caption mdui-text-color-grey-600"><%= __('posts_count') %></div>
-    </div>
-    <div class="mdui-col-xs-4">
-      <div class="mdui-typo-subheading"><%= site.categories.length %></div>
-      <div class="mdui-typo-caption mdui-text-color-grey-600"><%= __('categories') %></div>
-    </div>
-    <div class="mdui-col-xs-4">
-      <div class="mdui-typo-subheading"><%= site.tags.length %></div>
-      <div class="mdui-typo-caption mdui-text-color-grey-600"><%= __('tags') %></div>
-    </div>
-  </div>
-
-  <div class="mdui-divider"></div> -->
-
-  <div class="mdui-divider"></div>
-
-  <div class="mdui-list mdui-list-dense mdui-p-y-0">
-    <% if (theme.social) { %>
-        <% for (var i in theme.social) { %>
-            <a href="<%- url_for(theme.social[i].link) %>" target="_blank" class="mdui-list-item mdui-ripple sidebar-social-link">
-                <i class="mdui-list-item-icon <%- theme.social[i].icon %> <%- theme.social[i].color %> sidebar-social-icon"></i>
-                <div class="mdui-list-item-content mdui-text-truncate sidebar-social-text">
-                    <%- theme.social[i].text || theme.social[i].link %>
-                </div>
-            </a>
-        <% } %>
-    <% } %>
-  </div>
-  </div>
+  <% if (theme.social) { %>
+    <mdui-list class="sidebar-social-list">
+      <% for (var i in theme.social) { %>
+        <mdui-list-item
+          href="<%- url_for(theme.social[i].link) %>"
+          target="_blank"
+          rel="noopener noreferrer"
+          alignment="start"
+          headline-line="1"
+        >
+          <i slot="icon" class="<%- theme.social[i].icon %> <%- theme.social[i].color %> sidebar-social-icon-fa"></i>
+          <%- theme.social[i].text || theme.social[i].link %>
+        </mdui-list-item>
+      <% } %>
+    </mdui-list>
+  <% } %>
+</mdui-card>
