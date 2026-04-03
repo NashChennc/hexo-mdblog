@@ -41,7 +41,7 @@ html {
   min-height: var(--app-top-bar-row);
   padding: 0 0.875rem;
   font-size: 1rem;
-  font-weight: 200;
+  font-weight: 300;
   letter-spacing: 0.01em;
   line-height: 1.2;
   white-space: nowrap;
@@ -50,7 +50,7 @@ html {
 }
 
 .mdui-prose--inline-nav a[aria-current='page'] {
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .mdui-prose--inline-nav a:hover,

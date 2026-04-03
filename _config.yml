@@ -29,11 +29,11 @@ banner:
   title_index_rows:
     -
       - { upper: "NOUS SOMMES", lower: "我们是" }
-      - { upper: "DES ENFANTS", lower: "孩子", punct_after_upper: ",", punct_after_lower: "，" }
+      - { upper: "DES ENFANTS", lower: "孩子", punct_after_lower: "，" }
     -
       - { upper: "MAIS", lower: "但" }
       - { upper: "DES ENFANTS", lower: "我们" }
-      - { upper: "PROGRESSIFS", lower: "精力充沛", punct_after_upper: ",", punct_after_lower: "，" }
+      - { upper: "PROGRESSIFS", lower: "精力充沛", punct_after_lower: "，" }
     -
       - { upper: "PLEINS DE FORCE ET DE COURAGE", lower: "勇往直前", punct_after_lower: "。" }
 
