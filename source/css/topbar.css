@@ -5,9 +5,19 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  padding-inline: max(4px, env(safe-area-inset-left)) max(6px, env(safe-area-inset-right));
+  padding-inline: max(var(--app-top-bar-pad-x), env(safe-area-inset-left, 0px))
+    max(var(--app-top-bar-pad-x), env(safe-area-inset-right, 0px));
+  padding-top: calc(var(--app-top-bar-pad-y-top) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--app-top-bar-pad-y-bottom) + env(safe-area-inset-bottom, 0px));
+  min-height: calc(
+    var(--app-top-bar-pad-y-top) + var(--app-top-bar-pad-y-bottom) + var(--app-top-bar-row) + env(safe-area-inset-top, 0px) +
+      env(safe-area-inset-bottom, 0px)
+  );
+  height: auto;
   /* 去掉 Material 涟漪层，避免顶栏像可按下块而非链接 */
   --mdui-comp-ripple-state-layer-color: transparent;
+  /* MDUI :host 默认 align-items:flex-start */
+  align-items: center;
 }
 
 .topbar-spacer {
@@ -22,33 +32,43 @@
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  margin-inline-end: 0.25rem;
+  margin-inline-end: 0.5rem;
 }
 
 /* 相对顶栏水平居中：左右预留首页槽位 + 右侧控件区 */
 .topbar-nav {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: calc(50% + (var(--app-top-bar-pad-y-top) - var(--app-top-bar-pad-y-bottom)) / 2);
   transform: translate(-50%, -50%);
   z-index: 0;
   display: flex;
   flex-wrap: nowrap;
   flex: none;
-  gap: 0.35rem 0.65rem;
-  align-items: stretch;
+  gap: 0.4rem 0.9rem;
+  align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  max-width: min(72rem, calc(100% - 10.5rem - var(--topbar-home-reserve, 5.5rem)));
+  max-width: min(72rem, calc(100% - 12rem - var(--topbar-home-reserve, 5.5rem)));
   width: max-content;
   overflow-x: auto;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
+  /* 横向滚动条占一条底边，会让整块分类区「上轻下重」；仍可滑动/滚轮滚动 */
+  scrollbar-width: none;
   pointer-events: auto;
+}
+
+.topbar-nav::-webkit-scrollbar {
+  display: none;
 }
 
 mdui-button.topbar-nav-btn {
   flex-shrink: 0;
+  /* 与 ::part(button) 及 --app-top-bar-row 一致，避免宿主与内部 hover 错位 */
+  box-sizing: border-box;
+  min-height: var(--app-top-bar-row);
+  height: var(--app-top-bar-row);
   font-size: 0.875rem;
   font-weight: 500;
   white-space: nowrap;
@@ -56,13 +76,18 @@ mdui-button.topbar-nav-btn {
 }
 
 mdui-button.topbar-nav-btn::part(button) {
-  min-height: 44px;
-  padding: 0.5rem 0.75rem;
+  min-height: var(--app-top-bar-row);
+  /* 纵向交给 flex 居中，避免再叠一层 padding 造成字块上下留白不均 */
+  padding: 0 0.875rem;
   border-radius: var(--mdui-shape-corner-medium, 8px);
   border: none;
   background: transparent;
   box-shadow: none;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 mdui-button.topbar-nav-btn--active {
@@ -82,8 +107,9 @@ mdui-button.topbar-nav-btn--active::part(button) {
   align-items: center;
   flex-shrink: 0;
   gap: 0.125rem;
-  margin-left: 0.35rem;
-  margin-right: max(0.5rem, env(safe-area-inset-right, 0px));
+  margin-left: 0.5rem;
+  /* 右缘留白由 .app-top-bar padding-inline + safe-area 承担 */
+  margin-right: 0;
 }
 
 .topbar-profile-cluster {
@@ -109,12 +135,15 @@ mdui-button-icon.topbar-profile-social-bar__btn {
 }
 
 mdui-button-icon.topbar-profile-social-bar__btn::part(button) {
-  min-width: 40px;
-  min-height: 40px;
+  min-width: var(--app-top-bar-row);
+  min-height: var(--app-top-bar-row);
   border-radius: var(--mdui-shape-corner-medium, 8px);
   border: none;
   background: transparent;
   box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .topbar-profile-social-bar__icon {
@@ -130,21 +159,27 @@ mdui-button-icon.topbar-profile-social-bar__btn::part(button) {
 
 mdui-button-icon.topbar-profile-trigger-btn {
   color: rgb(var(--mdui-color-on-surface-variant));
+  box-sizing: border-box;
+  width: var(--app-top-bar-row);
+  height: var(--app-top-bar-row);
 }
 
 mdui-button-icon.topbar-profile-trigger-btn::part(button) {
-  min-height: 44px;
-  min-width: 44px;
+  min-height: var(--app-top-bar-row);
+  min-width: var(--app-top-bar-row);
   padding: 0.2rem;
   border-radius: var(--mdui-shape-corner-medium, 8px);
   border: none;
   background: transparent;
   box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .topbar-profile-trigger__avatar {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
@@ -162,15 +197,21 @@ mdui-button-icon.topbar-profile-trigger-btn::part(button) {
 
 mdui-button-icon.topbar-theme-toggle {
   flex-shrink: 0;
-  margin-inline-end: 0.625rem;
+  margin-inline-end: 0.75rem;
   color: rgb(var(--mdui-color-on-surface-variant));
+  box-sizing: border-box;
+  width: var(--app-top-bar-row);
+  height: var(--app-top-bar-row);
 }
 
 mdui-button-icon.topbar-theme-toggle::part(button) {
-  min-height: 44px;
-  min-width: 44px;
+  min-height: var(--app-top-bar-row);
+  min-width: var(--app-top-bar-row);
   border-radius: var(--mdui-shape-corner-medium, 8px);
   border: none;
   background: transparent;
   box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
