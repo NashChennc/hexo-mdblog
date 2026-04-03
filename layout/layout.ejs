@@ -18,7 +18,9 @@
   <!-- Custom CSS (最小化，只包含无法用 MDUI 实现的部分) -->
   <link rel="stylesheet" href="<%- url_for('css/custom.css') %>">
 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- MDUI2 资源目录：Material Symbols Outlined（本地） + legacy material-icons 兼容 -->
+  <link rel="stylesheet" href="<%- url_for('mdui2/outlined.css') %>">
+  <link rel="stylesheet" href="<%- url_for('mdui2/material-icons-compat.css') %>">
 
   <meta name="theme-color" content="#3F51B5">
 </head>
@@ -70,5 +72,21 @@
         }
     });
   </script>
+  <% if (config.mermaid && config.mermaid.enable) { %>
+  <script src="<%- url_for('mermaid/mermaid.min.js') %>"></script>
+  <script>
+    (function () {
+      if (!window.mermaid) return;
+      var m = <%- JSON.stringify(config.mermaid) %>;
+      var opts = Object.assign({}, m);
+      delete opts.enable;
+      delete opts.version;
+      var nested = opts.options;
+      delete opts.options;
+      if (nested && typeof nested === 'object') Object.assign(opts, nested);
+      mermaid.initialize(opts);
+    })();
+  </script>
+  <% } %>
 </body>
 </html>

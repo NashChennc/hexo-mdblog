@@ -1,0 +1,12 @@
+{
+  "name": "hexo-theme-mdblog-vendor",
+  "private": true,
+  "scripts": {
+    "postinstall": "node scripts/vendor-mdui2.js",
+    "vendor": "node scripts/vendor-mdui2.js"
+  },
+  "dependencies": {
+    "material-symbols": "^0.43.0",
+    "mdui": "^2.1.4"
+  }
+}
