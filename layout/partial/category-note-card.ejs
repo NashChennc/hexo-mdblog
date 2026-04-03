@@ -1,0 +1,51 @@
+<%
+  var coverImageUrl = post_cover_url(post);
+  var descSource = post.description || post.excerpt || post.content;
+  var excerptPlain = strip_html(descSource).replace(/\s+/g, ' ').trim();
+  var tagLabel = '';
+  if (post.tags && post.tags.length) {
+    post.tags.each(function (tag) {
+      if (!tagLabel) {
+        tagLabel = tag.name;
+      }
+    });
+  }
+  if (!tagLabel) {
+    var _kind = __('category_card_kind');
+    if (_kind && _kind !== 'category_card_kind') {
+      tagLabel = String(_kind).trim();
+    }
+  }
+  var dateStr = date(post.updated, 'YYYY MMM DD');
+  var coverLoading =
+    typeof pageCurrent !== 'undefined' &&
+    pageCurrent === 1 &&
+    typeof i !== 'undefined' &&
+    i === 0
+      ? 'eager'
+      : 'lazy';
+%>
+<mdui-card clickable variant="elevated" href="<%- url_for(post.path) %>" class="note-card">
+  <% if (coverImageUrl) { %>
+  <img src="<%= coverImageUrl %>" class="note-cover" alt="<%= post.title %>" loading="<%= coverLoading %>">
+  <% } else { %>
+  <div class="note-cover-placeholder" aria-hidden="true">
+    <mdui-icon name="image" class="note-cover-placeholder__icon"></mdui-icon>
+  </div>
+  <% } %>
+  <div class="note-card-body">
+    <div class="note-content">
+      <h2 class="note-card-title"><%= post.blog_title || post.title %></h2>
+      <% if (excerptPlain) { %>
+      <p class="note-excerpt"><%= excerptPlain %></p>
+      <% } %>
+    </div>
+    <div class="note-meta">
+      <% if (tagLabel) { %>
+      <span class="note-tag"><%= tagLabel %></span>
+      <% } %>
+      <span class="note-date"><%= dateStr %></span>
+      <span class="note-read"><%= min2read(post.content, {cn: 200, en: 500}) %> <%= __('min_read') %></span>
+    </div>
+  </div>
+</mdui-card>

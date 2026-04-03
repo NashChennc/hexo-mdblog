@@ -135,77 +135,138 @@ mdui-button.post-nav__btn:hover::part(button) {
   white-space: nowrap;
 }
 
-/* 分类页文章卡片摘要（postinfo） */
-.postinfo-card {
-  margin-bottom: 1rem;
+/* 分类索引页（category.ejs）：Notes 式页头 + mdui-card 网格 */
+.notes-header {
+  margin: 4rem 0 3rem;
+  padding: 0 1rem;
+}
+
+.notes-title {
+  font-size: var(--mdui-typescale-display-medium-size, 2.8125rem);
+  line-height: var(--mdui-typescale-display-medium-line-height, 3.25rem);
+  font-weight: 700;
+  color: rgb(var(--mdui-color-on-background));
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.notes-subtitle {
+  font-size: var(--mdui-typescale-title-medium-size, 1rem);
+  line-height: 1.6;
+  color: rgb(var(--mdui-color-on-surface-variant));
+  margin: 0;
+  max-width: 650px;
+}
+
+.note-cover {
+  width: 100%;
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-bottom: 1px solid var(--app-divider-hairline);
+}
+
+.featured-post .note-cover {
+  aspect-ratio: 21 / 9;
+  max-height: min(400px, 50vw);
+}
+
+.note-cover-placeholder {
+  width: 100%;
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
+  background-color: rgb(var(--mdui-color-surface-container-high));
+  border-bottom: 1px solid var(--app-divider-hairline);
+}
+
+.featured-post .note-cover-placeholder {
+  aspect-ratio: 21 / 9;
+  max-height: min(400px, 50vw);
+}
+
+.note-cover-placeholder__icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+/* 封面下整块：占满卡片剩余高度，meta 用 margin-top:auto 贴底（避免 mdui-card 内部 slot 打断 flex） */
+.note-card-body {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 16px;
-}
-
-.postinfo-card__title-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px 16px;
-}
-
-.postinfo-card__title-link {
-  flex: 1;
-  min-width: 0;
-  color: rgb(var(--mdui-color-primary));
-  text-decoration: none;
-  font-size: var(--mdui-typescale-title-large-size, 1.375rem);
-  font-weight: 400;
-  line-height: var(--mdui-typescale-title-large-line-height, 1.75rem);
-}
-
-.postinfo-card__progress {
-  flex-shrink: 0;
-  font-size: var(--mdui-typescale-label-large-size, 0.875rem);
-  line-height: var(--mdui-typescale-label-large-line-height, 1.25rem);
-  color: rgb(var(--mdui-color-on-surface-variant));
-  white-space: nowrap;
-}
-
-.postinfo-card__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
-  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
-  color: rgb(var(--mdui-color-on-surface-variant));
-}
-
-.postinfo-card__meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.postinfo-card__meta-icon {
-  font-size: 16px;
-  width: 16px;
-  height: 16px;
-  color: rgb(var(--mdui-color-on-surface-variant));
-}
-
-.postinfo-card__stats {
-  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
-  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
-  color: rgb(var(--mdui-color-on-surface-variant));
-}
-
-/* 分类页：主栏内 postinfo 列表居中容器 */
-.category-page-centered {
-  box-sizing: border-box;
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
-  max-width: 42rem;
+  box-sizing: border-box;
+}
+
+.note-content {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  flex: 0 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.note-card-title {
+  font-size: var(--mdui-typescale-title-large-size, 1.375rem);
+  line-height: var(--mdui-typescale-title-large-line-height, 1.75rem);
+  font-weight: 600;
+  color: rgb(var(--mdui-color-primary));
+  margin: 0 0 0.75rem 0;
+}
+
+.note-excerpt {
+  font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
+  line-height: var(--mdui-typescale-body-medium-line-height, 1.25rem);
+  color: rgb(var(--mdui-color-on-surface-variant));
+  margin: 0;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.note-meta {
+  margin-top: auto;
+  flex-shrink: 0;
+  padding: 1rem 1.5rem 1.5rem;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
+  line-height: var(--mdui-typescale-label-medium-line-height, 1rem);
+}
+
+.note-tag {
+  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
+  line-height: var(--mdui-typescale-label-medium-line-height, 1rem);
+  font-weight: 500;
+  color: rgb(var(--mdui-color-on-surface-variant));
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--mdui-shape-corner-small, 8px);
+  border: 1px solid var(--app-divider-hairline);
+  background-color: transparent;
+}
+
+.note-date,
+.note-read {
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+.note-read {
   margin-left: auto;
-  margin-right: auto;
+}
+
+.category-index .paginator-wrap {
+  margin-top: 1.25rem;
 }
 
 footer.site-footer {
@@ -238,19 +299,3 @@ footer.site-footer {
   font-weight: 400;
 }
 
-.post-card-cover-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* 限制摘要行数 */
-.limit-lines {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.6;
-  height: calc(1.6em * 3);
-}

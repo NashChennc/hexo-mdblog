@@ -4,6 +4,10 @@
   --app-top-bar-offset: 64px;
   --post-content-pad: clamp(1.25rem, 5vw, 2rem);
 
+  /* 文章 + 目录两栏：固定最大正文栏与固定目录栏，避免大图撑开 grid 挤占 TOC */
+  --page-article-column-max-width: 56rem;
+  --page-toc-column-width: 15.5rem;
+
   /* 交互表面（与顶栏、侧栏社交等共用） */
   --app-hover-on-surface: color-mix(in srgb, rgb(var(--mdui-color-on-surface)) 14%, transparent);
   --app-hover-on-surface-subtle: color-mix(in srgb, rgb(var(--mdui-color-on-surface)) 8%, transparent);

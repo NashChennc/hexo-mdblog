@@ -28,6 +28,8 @@ read_full_article: 阅读全文
 articles: 篇文章
 current_category: 当前分类
 view_all_categories: 查看全部分类
+category_page_default_lede: ""
+category_card_kind: "笔记"
 prev_post: 上一篇
 next_post: 下一篇
 word_count: 字数

@@ -3,7 +3,5 @@ hexo.extend.filter.register('before_post_render', function(data) {
         var lastSlug = data.slug.split('/').pop();
         data.title = lastSlug;
     }
-    if (!data.priority)
-        data.priority = 0;
     return data;
 });

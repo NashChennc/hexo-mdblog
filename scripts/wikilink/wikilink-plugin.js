@@ -74,14 +74,14 @@ module.exports = function(hexo) {
         url = escapeUrl(url);
         const titleEscaped = escapeHtml(post.title || '');
 
-        return `<mdui-chip variant="assist" elevated href="${url}" title="${titleEscaped}">${displayEscaped}</mdui-chip>`;
+        return `<a href="${url}" title="${titleEscaped}">${displayEscaped}</a>`;
       }
 
       // Image Safety Net
       if (/\.(png|jpg|jpeg|gif|webp|svg)$/i.test(target)) return match;
 
       // Dead Link (Keep Debug Info)
-      return `<mdui-chip variant="assist" disabled title="${escapeHtml('Missing: ' + target + ' | Try Key: ' + nameKey)}">${displayEscaped}</mdui-chip>`;
+      return `<span title="${escapeHtml('Missing: ' + target + ' | Try Key: ' + nameKey)}">${displayEscaped}</span>`;
     });
 
     return data;

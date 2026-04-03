@@ -43,6 +43,19 @@
 
 .post-page-card__body {
   padding: 1.25rem var(--post-content-pad) var(--post-content-pad);
+  min-width: 0;
+  /* 宽表横向滚动放在卡片 body，避免整段 .mdui-prose 成滚动容器导致其后段落版式异常 */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 文章卡片与 MDUI host 一并约束，防止正文内大图/表格把侧栏挤出可视区 */
+mdui-card.post-page-card {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .post-page-card .post-nav {
@@ -56,6 +69,109 @@
   max-width: 100%;
   height: auto;
   border-radius: 12px;
+}
+
+/* 覆盖正文内联 style 的 width，避免撑破固定正文栏 */
+.post-page-card__body .mdui-prose img,
+.post-page-card__body .mdui-prose video {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.post-page-card__body .mdui-prose figure {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-page-card__body .mdui-prose {
+  max-width: 100%;
+}
+
+/* ============================================
+ * Markdown 表格（排除代码高亮 figure.highlight 内的 table）
+ * ============================================ */
+/* 表格外层若被 figure 包裹，由 figure 承担横向滚动，避免与后续段落混在同一滚动宽度里 */
+.mdui-prose figure:not(.highlight) {
+  display: block;
+  max-width: 100%;
+  margin: 1.25em 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mdui-prose > table,
+.mdui-prose figure:not(.highlight) > table {
+  border-collapse: collapse;
+  /* 至少占满一行，避免窄表收缩后后续文字「贴表」或误进同一排版流 */
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
+  line-height: var(--mdui-typescale-body-medium-line-height, 1.25rem);
+  color: rgb(var(--mdui-color-on-surface));
+  border: 1px solid var(--app-divider-hairline);
+  border-radius: var(--mdui-shape-corner-small, 8px);
+  overflow: hidden;
+  background-color: rgb(var(--mdui-color-surface));
+}
+
+.mdui-prose > table {
+  margin: 1.25em 0;
+}
+
+.mdui-prose > table caption,
+.mdui-prose figure:not(.highlight) > table caption {
+  caption-side: top;
+  padding: 0 0 0.5rem;
+  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
+  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
+  color: rgb(var(--mdui-color-on-surface-variant));
+  text-align: start;
+}
+
+.mdui-prose > table th,
+.mdui-prose > table td,
+.mdui-prose figure:not(.highlight) > table th,
+.mdui-prose figure:not(.highlight) > table td {
+  padding: 0.625rem 0.875rem;
+  text-align: start;
+  vertical-align: top;
+  border-bottom: 1px solid var(--app-divider-hairline);
+}
+
+.mdui-prose > table th,
+.mdui-prose figure:not(.highlight) > table th {
+  background-color: rgb(var(--mdui-color-surface-container-high));
+  color: rgb(var(--mdui-color-on-surface));
+  font-weight: 500;
+}
+
+.mdui-prose > table thead th,
+.mdui-prose figure:not(.highlight) > table thead th {
+  border-bottom-color: color-mix(in srgb, rgb(var(--mdui-color-on-surface)) 18%, transparent);
+}
+
+.mdui-prose > table tbody tr:last-child th,
+.mdui-prose > table tbody tr:last-child td,
+.mdui-prose figure:not(.highlight) > table tbody tr:last-child th,
+.mdui-prose figure:not(.highlight) > table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.mdui-prose > table tbody tr:nth-child(even) td,
+.mdui-prose figure:not(.highlight) > table tbody tr:nth-child(even) td {
+  background-color: color-mix(in srgb, rgb(var(--mdui-color-on-surface)) 4%, transparent);
+}
+
+/* 独立 Page 模板：横向滚动放在 main，避免 .mdui-prose 成滚动容器影响表后段落 */
+main.page-shell:has(.page-page__prose) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+main.page-shell .mdui-prose.page-page__prose {
+  max-width: 100%;
 }
 
 /* 文章侧栏目录：与正文卡片同内边距 + 长文时内部滚动 */

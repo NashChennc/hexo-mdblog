@@ -7,7 +7,7 @@
                         var cat = page.categories.data[0];
                         currentCatName = cat.name;
                         
-                        var posts = cat.posts.sort('title').sort('-updated').sort('-priority');
+                        var posts = cat.posts.sort('title').sort('-updated');
                         
                         var currentIndex = -1;
                         posts.forEach(function(p, i){

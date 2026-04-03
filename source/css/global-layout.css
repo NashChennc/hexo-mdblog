@@ -23,6 +23,30 @@ html {
   overflow-wrap: break-word;
 }
 
+/* 覆盖 MDUI 的 border-bottom 式「下划线」，改为 text-underline 并减小 offset，更贴近字形 */
+.mdui-prose a:hover,
+.mdui-prose a:focus {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--mdui-color-primary));
+  text-underline-offset: 0.08em;
+  text-decoration-thickness: 0.0625rem;
+}
+
+/* 横向一排的 mdui-prose 链接（顶栏分类等）：复用 mdui.css 里 .mdui-prose a，仅补布局与不断词 */
+.mdui-prose--inline-nav a {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
 /* Footer 间距（使用 MDUI 类可能不够精确） */
 footer {
   padding: 24px 0;
@@ -77,8 +101,12 @@ img {
 }
 
 @media (min-width: 840px) {
-  .page-grid {
-    grid-template-columns: 3fr 1fr;
+  /* minmax(0, …) 避免子项 min-content（如超宽图）撑开整列 */
+  .page-grid:not(.page-grid--single) {
+    grid-template-columns:
+      minmax(0, var(--page-article-column-max-width))
+      minmax(0, var(--page-toc-column-width));
+    justify-content: center;
     align-items: start;
   }
 
@@ -89,6 +117,20 @@ img {
 
 .page-main {
   min-width: 0;
+}
+
+@media (min-width: 840px) {
+  .page-grid:not(.page-grid--single) .page-main {
+    max-width: var(--page-article-column-max-width);
+    width: 100%;
+  }
+
+  .page-grid:not(.page-grid--single) .page-sidebar {
+    width: var(--page-toc-column-width);
+    max-width: 100%;
+    min-width: 0;
+    justify-self: stretch;
+  }
 }
 
 /* 侧边栏包装器响应式 */

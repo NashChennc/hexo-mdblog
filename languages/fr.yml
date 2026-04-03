@@ -28,6 +28,8 @@ read_full_article: Lire l'article complet
 articles: articles
 current_category: Catégorie actuelle
 view_all_categories: Voir toutes les catégories
+category_page_default_lede: ""
+category_card_kind: "Note"
 prev_post: Précédent
 next_post: Suivant
 word_count: Nombre de mots

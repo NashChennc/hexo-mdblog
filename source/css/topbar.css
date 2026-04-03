@@ -1,8 +1,8 @@
 /* ============================================
- * 顶栏（mdui-top-app-bar + 原生 mdui-button / mdui-button-icon）
- * 文案导航：当前页仅字色/字重；不在此文件写自定义 hover（避免链接式悬浮等）
+ * 顶栏（mdui-top-app-bar + 首页 mdui-button；分类为 <a>，样式复用 .mdui-prose a）
  * ============================================ */
 .app-top-bar {
+  position: relative;
   width: 100%;
   box-sizing: border-box;
   padding-inline: max(4px, env(safe-area-inset-left)) max(6px, env(safe-area-inset-right));
@@ -15,18 +15,36 @@
   min-width: 0;
 }
 
+/* 首页独立固定在左侧（与居中分类区分离） */
+.topbar-home {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  margin-inline-end: 0.25rem;
+}
+
+/* 相对顶栏水平居中：左右预留首页槽位 + 右侧控件区 */
 .topbar-nav {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
   display: flex;
   flex-wrap: nowrap;
+  flex: none;
   gap: 0.25rem 0.35rem;
   align-items: stretch;
   justify-content: center;
-  flex: 1 1 auto;
-  min-width: 0;
-  max-width: min(100%, 72rem);
+  box-sizing: border-box;
+  max-width: min(72rem, calc(100% - 10.5rem - var(--topbar-home-reserve, 5.5rem)));
+  width: max-content;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
+  pointer-events: auto;
 }
 
 mdui-button.topbar-nav-btn {
@@ -58,6 +76,8 @@ mdui-button.topbar-nav-btn--active::part(button) {
 }
 
 .topbar-end {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;

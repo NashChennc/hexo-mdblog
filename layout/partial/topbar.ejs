@@ -1,25 +1,24 @@
 <mdui-top-app-bar class="app-top-bar">
   <% if (site.categories.length) { %>
-    <div class="topbar-spacer" aria-hidden="true"></div>
-    <nav class="topbar-nav" aria-label="<%= __('categories') %>">
+    <div class="topbar-home">
       <mdui-button
         variant="text"
         href="<%- url_for('/') %>"
-        class="topbar-nav-btn<%= is_home() ? ' topbar-nav-btn--active' : '' %>"
+        class="topbar-nav-btn topbar-home__btn<%= is_home() ? ' topbar-nav-btn--active' : '' %>"
         <% if (is_home()) { %>aria-current="page"<% } %>
       ><%= __('home') %></mdui-button>
+    </div>
+    <div class="topbar-spacer" aria-hidden="true"></div>
+    <nav class="topbar-nav mdui-prose mdui-prose--inline-nav" aria-label="<%= __('categories') %>">
       <% site.categories.sort('length').sort('-name').each(item => { %>
         <% if (item.posts.length) { %>
-      <mdui-button
-        variant="text"
+      <a
         href="<%- url_for('categories/' + item.name) %>"
-        class="topbar-nav-btn<%= is_category() && page.category === item.name ? ' topbar-nav-btn--active' : '' %>"
         <% if (is_category() && page.category === item.name) { %>aria-current="page"<% } %>
-      ><%= item.name %> | <%= item.posts.length %></mdui-button>
+      ><%= item.name %> | <%= item.posts.length %></a>
         <% } %>
       <% }); %>
     </nav>
-    <div class="topbar-spacer" aria-hidden="true"></div>
   <% } else { %>
     <mdui-top-app-bar-title><%= config.title %></mdui-top-app-bar-title>
     <div class="topbar-spacer" aria-hidden="true"></div>

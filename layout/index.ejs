@@ -33,9 +33,11 @@
     <div class="page-grid page-grid--single">
         <main class="page-main">
             
-            <div class="post-index-grid">
-                <% page.posts.sort('title').sort('-updated').sort('-priority').each(function(post, i){ %>
-                    <%- partial('partial/post-index-card', { post: post, i: i }) %>
+            <div class="notes-grid">
+                <% page.posts.each(function(post, i){ %>
+                    <div class="notes-grid__cell scroll-reveal <%= (i === 0 && page.current === 1) ? 'featured-post' : '' %>">
+                        <%- partial('partial/category-note-card', { post: post, i: i, pageCurrent: page.current }) %>
+                    </div>
                 <% }) %>
             </div>
 

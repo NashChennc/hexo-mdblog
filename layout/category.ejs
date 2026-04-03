@@ -4,10 +4,45 @@
 <div class="page-shell mdui-container mdui-p-t-3 mdui-p-b-5">
     <div class="page-grid page-grid--single">
         <main class="page-main">
-            <div class="category-page-centered">
-                <% page.posts.sort('title').sort('-updated').sort('-priority').each(function(post){ %>
-                    <%- partial("partial/postinfo", {post: post}) %>
-                <% })%>
+            <div class="category-index">
+                <%
+                    var catName = page.category;
+                    var presets = (theme.category_page && theme.category_page.by_category) ? theme.category_page.by_category : {};
+                    var preset = presets[catName];
+                    var displayTitle = catName;
+                    if (preset && preset.class_name) {
+                        var _cn = String(preset.class_name).trim();
+                        if (_cn) {
+                            displayTitle = _cn;
+                        }
+                    }
+                    var categoryLede = '';
+                    if (preset && preset.class_description) {
+                        categoryLede = String(preset.class_description).trim();
+                    }
+                    if (!categoryLede && theme.category_page && theme.category_page.lede) {
+                        categoryLede = String(theme.category_page.lede).trim();
+                    }
+                    if (!categoryLede) {
+                        var _ledeI18n = __('category_page_default_lede');
+                        if (_ledeI18n && _ledeI18n !== 'category_page_default_lede') {
+                            categoryLede = String(_ledeI18n).trim();
+                        }
+                    }
+                %>
+                <header class="notes-header">
+                    <h1 class="notes-title"><%= displayTitle %></h1>
+                    <% if (categoryLede) { %>
+                    <p class="notes-subtitle"><%= categoryLede %></p>
+                    <% } %>
+                </header>
+                <div class="notes-grid">
+                <% page.posts.sort('title').sort('-updated').each(function(post){ %>
+                    <div class="notes-grid__cell">
+                        <%- partial('partial/category-note-card', { post: post }) %>
+                    </div>
+                <% }) %>
+                </div>
                 <% if (page.total > 1){ %>
                     <%- partial('partial/paginator') %>
                 <% } %>

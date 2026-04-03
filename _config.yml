@@ -78,6 +78,33 @@ sidebar_config:
   description: ""
 
 # ============================================
+# 分类索引页（categories/:name/，Notes / 数字花园式卡片网格）
+#
+# lede：全站分类页默认副标题；留空则尝试 i18n category_page_default_lede；仍空则不显示
+#
+# by_category：按「分类名」覆盖该分类页的展示（键必须与 front-matter categories 名称完全一致）
+#   class_name：页面主标题（<h1>），不填则用 Hexo 分类名 page.category
+#   class_description：该类的副标题说明（<p class="notes-subtitle">），不填则回退到 lede / i18n
+#
+# 数字花园范例（将 Notes 改成你站点上的实际分类名即可生效）：
+# ============================================
+category_page:
+  lede: ""
+  by_category:
+    笔记:
+      class_name: 笔记  Notes
+      class_description: 记录我尚未完全理解的事物。
+    散文:
+      class_name: 散文  Essays
+      class_description: 只是一些比较长的文字。
+    碎碎念:
+      class_name: 碎碎念  Ephemera
+      class_description: 突发奇想，还有突发恶疾。
+    专栏:
+      class_name: 专栏  Columns
+      class_description: 一些连续的文章。
+
+# ============================================
 # KaTeX 数学公式（主题注入的客户端渲染）
 # enable: false 时全站不加载 KaTeX，无公式页面可减小体积
 # ============================================
