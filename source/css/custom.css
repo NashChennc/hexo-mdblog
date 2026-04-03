@@ -216,7 +216,7 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.82) 100%);
   z-index: 1;
 }
 
@@ -231,7 +231,14 @@ img {
 
 .hero-content--index {
   color: #fff;
-  padding-bottom: 2rem;
+  padding: 1.25rem 1.5rem 2rem;
+  max-width: min(92vw, 42rem);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: var(--mdui-shape-corner-large, 16px);
+  background-color: rgba(0, 0, 0, 0.38);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .hero-content--index .hero-content__title {
@@ -277,11 +284,7 @@ mdui-card.post-card {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-mdui-card.post-card:hover {
-  transform: translateY(-6px);
+  transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .post-card-media {
@@ -594,6 +597,11 @@ mdui-card.post-card:hover {
 /* 分类页文章卡片摘要（postinfo） */
 .postinfo-card {
   margin-bottom: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
 }
 
 .postinfo-card__title-row {
@@ -601,42 +609,49 @@ mdui-card.post-card:hover {
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 0.5rem 1rem;
-  padding: 1rem 1rem 0;
+  gap: 12px 16px;
 }
 
-.postinfo-card__title-row a {
+.postinfo-card__title-link {
+  flex: 1;
+  min-width: 0;
   color: rgb(var(--mdui-color-primary));
   text-decoration: none;
-  font-size: var(--mdui-typescale-title-medium-size, 1rem);
+  font-size: var(--mdui-typescale-title-large-size, 1.375rem);
   font-weight: 500;
+  line-height: var(--mdui-typescale-title-large-line-height, 1.75rem);
 }
 
-.postinfo-card__rate {
-  text-align: right;
-  font-size: var(--mdui-typescale-title-small-size, 0.875rem);
-  color: rgb(var(--mdui-color-on-surface-variant));
-}
-
-.postinfo-card__rate-label {
-  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
-  margin-left: 0.25rem;
+.postinfo-card__progress-chip {
+  flex-shrink: 0;
 }
 
 .postinfo-card__meta {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.35rem 1rem;
-  padding: 0.35rem 1rem 0;
-  font-size: var(--mdui-typescale-label-large-size, 0.875rem);
+  gap: 8px 16px;
+  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
+  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+.postinfo-card__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.postinfo-card__meta-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
   color: rgb(var(--mdui-color-on-surface-variant));
 }
 
 .postinfo-card__stats {
-  padding: 0.75rem 1rem 1rem;
-  font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
-  color: rgb(var(--mdui-color-on-surface));
+  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
+  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
+  color: rgb(var(--mdui-color-on-surface-variant));
 }
 
 /* 分类页侧栏当前分类 */
@@ -793,10 +808,10 @@ footer.site-footer {
 }
 
 /* ============================================
- * 侧边栏头像负边距（无法用 MDUI 类实现）
+ * 侧边栏头像顶间距（与卡片内容区对齐）
  * ============================================ */
 .sidebar-avatar-offset {
-  margin-top: -50px;
+  margin-top: 16px;
 }
 
 .sidebar-card-media {
