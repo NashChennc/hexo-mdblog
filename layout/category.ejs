@@ -1,35 +1,18 @@
 <!-- 全宽 Banner -->
 <!-- <%- partial('partial/banner') %> -->
-<%- partial('partial/fab') %>
 
 <div class="page-shell mdui-container mdui-p-t-3 mdui-p-b-5">
-    <div class="page-grid">
+    <div class="page-grid page-grid--single">
         <main class="page-main">
-            <% page.posts.sort('title').sort('-updated').sort('-priority').each(function(post){ %>
-                <%- partial("partial/postinfo", {post: post}) %>
-            <% })%>
-            
-            <% if (page.total > 1){ %>
-                <%- partial('partial/paginator') %>
-            <% } %>
+            <div class="category-page-centered">
+                <% page.posts.sort('title').sort('-updated').sort('-priority').each(function(post){ %>
+                    <%- partial("partial/postinfo", {post: post}) %>
+                <% })%>
+                <% if (page.total > 1){ %>
+                    <%- partial('partial/paginator') %>
+                <% } %>
+            </div>
         </main>
-        <aside class="page-sidebar sticky-sidebar">
-            <%- partial('partial/sidebar') %>
-            <mdui-card variant="filled" class="category-aside-card">
-                <div class="category-aside-card__inner">
-                    <mdui-icon name="folder_open" class="category-aside-card__icon"></mdui-icon>
-                    <div class="category-aside-card__label"><%= __('current_category') %></div>
-                    <div class="category-aside-card__name"><%= page.category %></div>
-                    <mdui-divider></mdui-divider>
-                    <div class="category-aside-card__count">
-                        <%= page.posts.length %> <%= __('articles') %>
-                    </div>
-                    <div class="category-aside-card__actions">
-                        <a href="<%- url_for('/archives') %>" class="category-aside-card__link"><%= __('view_all_categories') %></a>
-                    </div>
-                </div>
-            </mdui-card>
-        </aside>
     </div>
 </div>
 <div id="page-bottom" aria-hidden="true"></div>

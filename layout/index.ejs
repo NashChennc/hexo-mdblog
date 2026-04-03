@@ -30,7 +30,7 @@
 
 <!-- 2. 主要内容区域 -->
 <div class="page-shell mdui-container mdui-p-t-4 mdui-p-b-5">
-    <div class="page-grid">
+    <div class="page-grid page-grid--single">
         <main class="page-main">
             
             <div class="post-index-grid">
@@ -43,11 +43,6 @@
                 <%- partial('partial/paginator', { paginatorWrapClass: 'scroll-reveal' }) %>
             <% } %>
         </main>
-
-        <!-- 侧边栏：保持在右侧但增加粘性效果 -->
-        <aside class="page-sidebar sticky-sidebar">
-            <%- partial('partial/sidebar') %>
-        </aside>
     </div>
 </div>
 <div id="page-bottom" aria-hidden="true"></div>

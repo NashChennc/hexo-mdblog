@@ -2,6 +2,24 @@
 <html lang="<%= config.language || 'zh-CN' %>" class="mdui-theme-auto">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function () {
+      var KEY = 'mdblog-theme';
+      var el = document.documentElement;
+      try {
+        var t = localStorage.getItem(KEY);
+        el.classList.remove('mdui-theme-auto', 'mdui-theme-light', 'mdui-theme-dark');
+        if (t === 'light' || t === 'dark') {
+          el.classList.add('mdui-theme-' + t);
+        } else {
+          el.classList.add('mdui-theme-auto');
+        }
+      } catch (err) {
+        el.classList.remove('mdui-theme-light', 'mdui-theme-dark');
+        if (!el.classList.contains('mdui-theme-auto')) el.classList.add('mdui-theme-auto');
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><%= page.title ? page.title + ' - ' : '' %><%= config.title %></title>
@@ -40,10 +58,19 @@
   <!-- Scripts -->
   <script src="<%- url_for('mdui2/mdui.global.js') %>"></script>
   <script>
-    if (typeof mdui !== 'undefined' && typeof mdui.setTheme === 'function') {
-      mdui.setTheme('auto');
-    }
+    (function () {
+      if (typeof mdui === 'undefined' || typeof mdui.setTheme !== 'function') return;
+      var KEY = 'mdblog-theme';
+      try {
+        var t = localStorage.getItem(KEY);
+        if (t === 'light' || t === 'dark') mdui.setTheme(t);
+        else mdui.setTheme('auto');
+      } catch (err) {
+        mdui.setTheme('auto');
+      }
+    })();
   </script>
+  <script src="<%- url_for('/js/theme-toggle.js') %>" defer></script>
   <% if (!theme.katex || theme.katex.enable !== false) { %>
   <script src="<%- url_for('katex/katex.min.js') %>"></script>
   <script src="<%- url_for('katex/contrib/auto-render.min.js') %>"></script>

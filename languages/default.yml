@@ -42,6 +42,11 @@ folder_not_found: "Folder not found: source/%s"
 read_dir_failed: Failed to read directory
 no_files: No files available.
 page_not_created: Page not created
+topbar_profile_open: Open author profile and social links
+topbar_social_links: Social links
+theme_toggle_to_dark: Switch to dark mode
+theme_toggle_to_light: Switch to light mode
+theme_toggle_follow_system: Use system theme (Shift+click to restore)
 default_site_title: My Blog
 default_site_subtitle: A simple and clean blog
 default_author: Author

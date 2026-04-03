@@ -42,6 +42,11 @@ folder_not_found: "Carpeta no encontrada: source/%s"
 read_dir_failed: Error al leer el directorio
 no_files: No hay archivos disponibles.
 page_not_created: Página no creada
+topbar_profile_open: Abrir perfil del autor y enlaces sociales
+topbar_social_links: Enlaces sociales
+theme_toggle_to_dark: Cambiar a modo oscuro
+theme_toggle_to_light: Cambiar a modo claro
+theme_toggle_follow_system: Usar tema del sistema (Mayús+clic para restaurar)
 default_site_title: Mi Blog
 default_site_subtitle: Un blog simple y limpio
 default_author: Autor

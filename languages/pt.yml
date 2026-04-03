@@ -42,6 +42,11 @@ folder_not_found: "Pasta não encontrada: source/%s"
 read_dir_failed: Falha ao ler diretório
 no_files: Nenhum arquivo disponível.
 page_not_created: Página não criada
+topbar_profile_open: Abrir perfil do autor e links sociais
+topbar_social_links: Links sociais
+theme_toggle_to_dark: Mudar para modo escuro
+theme_toggle_to_light: Mudar para modo claro
+theme_toggle_follow_system: Tema do sistema (Shift+clique para restaurar)
 default_site_title: Meu Blog
 default_site_subtitle: Um blog simples e limpo
 default_author: Autor

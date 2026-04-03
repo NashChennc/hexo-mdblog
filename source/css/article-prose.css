@@ -49,10 +49,6 @@
   padding: 0.75rem var(--post-content-pad) var(--post-content-pad);
 }
 
-.post-page-sidebar-stack {
-  margin-top: 1rem;
-}
-
 /* ============================================
  * 正文内图片（mdui-prose）
  * ============================================ */

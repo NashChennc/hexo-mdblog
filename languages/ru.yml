@@ -42,6 +42,11 @@ folder_not_found: "Папка не найдена: source/%s"
 read_dir_failed: Не удалось прочитать каталог
 no_files: Нет доступных файлов.
 page_not_created: Страница не создана
+topbar_profile_open: Открыть профиль автора и соцсети
+topbar_social_links: Соцсети
+theme_toggle_to_dark: Переключить на тёмную тему
+theme_toggle_to_light: Переключить на светлую тему
+theme_toggle_follow_system: Системная тема (Shift+клик — сброс)
 default_site_title: Мой Блог
 default_site_subtitle: Простой и чистый блог
 default_author: Автор

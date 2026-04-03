@@ -42,6 +42,11 @@ folder_not_found: "Ordner nicht gefunden: source/%s"
 read_dir_failed: Verzeichnis konnte nicht gelesen werden
 no_files: Keine Dateien verfügbar.
 page_not_created: Seite nicht erstellt
+topbar_profile_open: Autorenprofil und Social-Links öffnen
+topbar_social_links: Social-Links
+theme_toggle_to_dark: Zu Dunkelmodus wechseln
+theme_toggle_to_light: Zu Hellmodus wechseln
+theme_toggle_follow_system: Systemthema (Umschalt+Klick zum Zurücksetzen)
 default_site_title: Mein Blog
 default_site_subtitle: Ein einfacher und sauberer Blog
 default_author: Autor

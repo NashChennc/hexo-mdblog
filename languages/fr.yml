@@ -42,6 +42,11 @@ folder_not_found: "Dossier introuvable: source/%s"
 read_dir_failed: Échec de la lecture du répertoire
 no_files: Aucun fichier disponible.
 page_not_created: Page non créée
+topbar_profile_open: Ouvrir le profil de l’auteur et les liens sociaux
+topbar_social_links: Liens sociaux
+theme_toggle_to_dark: Passer en mode sombre
+theme_toggle_to_light: Passer en mode clair
+theme_toggle_follow_system: Thème système (Maj+clic pour rétablir)
 default_site_title: Mon Blog
 default_site_subtitle: Un blog simple et épuré
 default_author: Auteur

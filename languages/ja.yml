@@ -42,6 +42,11 @@ folder_not_found: "フォルダが見つかりません: source/%s"
 read_dir_failed: ディレクトリの読み取りに失敗しました
 no_files: ファイルがありません。
 page_not_created: ページが作成されていません
+topbar_profile_open: 作者プロフィールとSNSリンクを開く
+topbar_social_links: SNSリンク
+theme_toggle_to_dark: ダークモードに切り替え
+theme_toggle_to_light: ライトモードに切り替え
+theme_toggle_follow_system: システムに合わせる（Shift+クリックで戻す）
 default_site_title: 私のブログ
 default_site_subtitle: シンプルでクリーンなブログ
 default_author: 作者

@@ -1,10 +1,8 @@
 <!-- 全宽 Banner -->
 <%- partial('partial/banner') %>
-<!-- FAB -->
-<%- partial('partial/fab') %>
 
 <div class="page-shell mdui-container">
-    <div class="page-grid mdui-p-t-1 mdui-p-b-1">
+    <div class="page-grid mdui-p-t-1 mdui-p-b-1<%= page.toc === false ? ' page-grid--single' : '' %>">
         <!-- 文章内容 -->
 
         <main class="page-main mdui-p-t-1 mdui-p-b-4">
@@ -31,22 +29,18 @@
                 <%- partial('partial/link') %>
             </mdui-card>
         </main>
-        <!-- 侧边栏 -->
+        <% if (page.toc !== false) { %>
         <aside class="page-sidebar mdui-p-t-1 mdui-p-b-4 sticky-sidebar" id="post-sidebar">
-            <% if (page.toc !== false) { %>
-                <mdui-card variant="elevated" class="post-toc-card toc-full-height">
-                    <div class="post-toc-inner">
-                        <div class="post-toc__title"><%= __('toc') %></div>
-                        <div class="post-toc-scroll mdui-prose">
-                            <%- toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 }) %>
-                        </div>
+            <mdui-card variant="elevated" class="post-toc-card toc-full-height">
+                <div class="post-toc-inner">
+                    <div class="post-toc__title"><%= __('toc') %></div>
+                    <div class="post-toc-scroll mdui-prose">
+                        <%- toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 }) %>
                     </div>
-                </mdui-card>
-            <% } %>
-            <div class="post-page-sidebar-stack">
-                <%- partial('partial/sidebar') %>
-            </div>
+                </div>
+            </mdui-card>
         </aside>
+        <% } %>
     </div>
 </div>
 <div id="page-bottom" aria-hidden="true"></div>

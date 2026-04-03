@@ -42,6 +42,11 @@ folder_not_found: "目錄不存在: source/%s"
 read_dir_failed: 讀取目錄失敗
 no_files: 暫無文件。
 page_not_created: 頁面未創建
+topbar_profile_open: 開啟作者名片與社交連結
+topbar_social_links: 社交連結
+theme_toggle_to_dark: 切換到深色模式
+theme_toggle_to_light: 切換到淺色模式
+theme_toggle_follow_system: 使用系統主題（按住 Shift 並點擊可恢復）
 default_site_title: 我的博客
 default_site_subtitle: 一個簡潔的博客
 default_author: 作者

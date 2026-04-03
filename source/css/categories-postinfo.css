@@ -180,61 +180,13 @@
   color: rgb(var(--mdui-color-on-surface-variant));
 }
 
-/* 分类页侧栏当前分类 */
-.category-aside-card {
-  margin-top: 1rem;
-  margin-bottom: 0.75rem;
-}
-
-.category-aside-card__inner {
-  position: relative;
-  padding: 1rem;
-}
-
-.category-aside-card__icon {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  font-size: 48px;
-  width: 48px;
-  height: 48px;
-  opacity: 0.45;
-  color: rgb(var(--mdui-color-primary));
-  pointer-events: none;
-}
-
-.category-aside-card__label {
-  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
-  color: rgb(var(--mdui-color-on-surface-variant));
-}
-
-.category-aside-card__name {
-  margin: 0.35rem 0 0.5rem;
-  font-size: var(--mdui-typescale-headline-small-size, 1.5rem);
-  font-weight: 400;
-  color: rgb(var(--mdui-color-primary));
-}
-
-.category-aside-card__count {
-  font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
-  color: rgb(var(--mdui-color-on-surface-variant));
-}
-
-.category-aside-card__actions {
-  margin-top: 0.75rem;
-  text-align: center;
-}
-
-.category-aside-card__link {
-  display: inline-block;
-  font-size: var(--mdui-typescale-label-large-size, 0.875rem);
-  color: rgb(var(--mdui-color-primary));
-  text-decoration: none;
-}
-
-.category-aside-card__link:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
+/* 分类页：主栏内 postinfo 列表居中容器 */
+.category-page-centered {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 footer.site-footer {

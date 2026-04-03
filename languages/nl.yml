@@ -43,6 +43,11 @@ folder_not_found: "Map niet gevonden: source/%s"
 read_dir_failed: Kan map niet lezen
 no_files: Geen bestanden beschikbaar.
 page_not_created: Pagina niet gemaakt
+topbar_profile_open: Auteursprofiel en sociale links openen
+topbar_social_links: Sociale links
+theme_toggle_to_dark: Schakel naar donkere modus
+theme_toggle_to_light: Schakel naar lichte modus
+theme_toggle_follow_system: Systeemthema (Shift+klik om te herstellen)
 default_site_title: Mijn Blog
 default_site_subtitle: Een eenvoudige en schone blog
 default_author: Auteur

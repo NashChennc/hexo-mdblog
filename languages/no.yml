@@ -42,6 +42,11 @@ folder_not_found: "Mappe ikke funnet: source/%s"
 read_dir_failed: Kunne ikke lese mappe
 no_files: Ingen filer tilgjengelig.
 page_not_created: Side ikke opprettet
+topbar_profile_open: Åpne forfatterprofil og sosiale lenker
+topbar_social_links: Sosiale lenker
+theme_toggle_to_dark: Bytt til mørk modus
+theme_toggle_to_light: Bytt til lys modus
+theme_toggle_follow_system: Systemtema (Shift+klikk for å tilbakestille)
 default_site_title: Min Blogg
 default_site_subtitle: En enkel og ren blogg
 default_author: Forfatter

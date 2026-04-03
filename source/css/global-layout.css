@@ -81,6 +81,10 @@ img {
     grid-template-columns: 3fr 1fr;
     align-items: start;
   }
+
+  .page-grid--single {
+    grid-template-columns: 1fr;
+  }
 }
 
 .page-main {
