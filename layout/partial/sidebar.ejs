@@ -5,7 +5,7 @@
 
   <div class="sidebar-card-content--main sidebar-card-body">
     <% if (theme.sidebar_config.avatar || theme.avatar) { %>
-      <img src="<%- theme.sidebar_config.avatar || theme.avatar %>" class="sidebar-avatar-offset sidebar-avatar" alt="">
+      <img src="<%- theme.sidebar_config.avatar || theme.avatar %>" class="sidebar-avatar-offset sidebar-avatar" alt="<%= config.author || config.title %>">
     <% } else { %>
       <div class="sidebar-avatar-offset sidebar-avatar sidebar-avatar--placeholder">
         <mdui-icon name="person" class="sidebar-avatar__icon"></mdui-icon>

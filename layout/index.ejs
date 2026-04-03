@@ -19,9 +19,9 @@
     <div class="hero-mask"></div>
     
     <div class="hero-content hero-content--index">
-        <div class="hero-content__title">
+        <h1 class="hero-content__title">
             <%- partial('partial/banner-hero-titles', { variant: 'index', role: 'title' }) %>
-        </div>
+        </h1>
         <div class="hero-content__subtitle hero-content__subtitle--spaced">
             <%- partial('partial/banner-hero-titles', { variant: 'index', role: 'subtitle' }) %>
         </div>
@@ -89,7 +89,7 @@
                             <!-- 卡片头部：图片 -->
                             <a href="<%- url_for(post.path) %>" class="post-card-media">
                                 <% if (coverImageUrl) { %>
-                                    <img src="<%= coverImageUrl %>" class="post-card-cover-img" alt="">
+                                    <img src="<%= coverImageUrl %>" class="post-card-cover-img" alt="<%= post.title %>" loading="<%= (page.current === 1 && i === 0) ? 'eager' : 'lazy' %>">
                                 <% } else { %>
                                     <div class="post-card-cover-placeholder">
                                         <mdui-icon name="image" class="post-card-cover-placeholder__icon"></mdui-icon>

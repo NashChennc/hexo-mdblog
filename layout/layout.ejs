@@ -2,7 +2,7 @@
 <html lang="<%= config.language || 'zh-CN' %>" class="mdui-theme-auto">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><%= page.title ? page.title + ' - ' : '' %><%= config.title %></title>
 
@@ -15,15 +15,17 @@
   <!-- Font Awesome 6 for brand icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- KaTeX CSS (If needed) -->
+  <% if (!theme.katex || theme.katex.enable !== false) { %>
+  <!-- KaTeX CSS -->
   <link rel="stylesheet" href="<%- url_for('katex/katex.min.css') %>">
+  <% } %>
 
   <!-- Custom CSS (最小化，只包含无法用 MDUI 实现的部分) -->
   <link rel="stylesheet" href="<%- url_for('css/custom.css') %>">
 
   <meta name="theme-color" content="#3F51B5">
 </head>
-<body>
+<body id="top">
   
   <!-- Header/AppBar -->
   <%- partial('partial/topbar') %>
@@ -42,9 +44,9 @@
       mdui.setTheme('auto');
     }
   </script>
+  <% if (!theme.katex || theme.katex.enable !== false) { %>
   <script src="<%- url_for('katex/katex.min.js') %>"></script>
   <script src="<%- url_for('katex/contrib/auto-render.min.js') %>"></script>
-  
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       renderMathInElement(document.body, {
@@ -58,6 +60,7 @@
       });
     });
   </script>
+  <% } %>
   <% if (config.mermaid && config.mermaid.enable) { %>
   <script src="<%- url_for('mermaid/mermaid.min.js') %>"></script>
   <script>

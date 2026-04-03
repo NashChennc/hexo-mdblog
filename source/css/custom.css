@@ -201,6 +201,7 @@ img {
 }
 
 .hero-content__title {
+  margin: 0;
   font-weight: 300;
   letter-spacing: 2px;
 }
@@ -268,6 +269,19 @@ img {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content {
+    animation: none;
+    animation-delay: 0s;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-bg {
+    transition: none;
   }
 }
 
@@ -446,10 +460,10 @@ mdui-card.post-card {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 40px;
-  height: 40px;
+  min-width: 44px;
+  height: 44px;
   padding: 0 0.35rem;
-  border-radius: 20px;
+  border-radius: 22px;
   text-decoration: none;
   font-size: 0.875rem;
   color: rgb(var(--mdui-color-primary));
@@ -757,6 +771,15 @@ footer.site-footer {
 .scroll-reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ============================================
