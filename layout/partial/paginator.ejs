@@ -1,9 +1,4 @@
 <% var _wrapClass = typeof paginatorWrapClass !== 'undefined' ? paginatorWrapClass : ''; %>
 <div class="paginator-wrap<%= _wrapClass ? ' ' + _wrapClass : '' %>">
-  <%- paginator({
-    prev_text: '<mdui-icon name="chevron_left"></mdui-icon>',
-    next_text: '<mdui-icon name="chevron_right"></mdui-icon>',
-    escape: false,
-    class: 'mdui-btn-group'
-  }) %>
+  <%- paginator_mdui() %>
 </div>

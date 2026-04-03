@@ -46,6 +46,37 @@
   color: rgb(var(--mdui-color-on-surface-variant));
 }
 
+.topbar-profile-about-wrap {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+mdui-button.topbar-profile-about {
+  --mdui-comp-ripple-state-layer-color: transparent;
+  color: rgb(var(--mdui-color-primary));
+  font-size: var(--mdui-typescale-label-large-size, 0.875rem);
+  font-weight: 500;
+}
+
+mdui-button.topbar-profile-about::part(button) {
+  min-height: 44px;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--mdui-shape-corner-medium, 8px);
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+mdui-button.topbar-profile-about[aria-current='page'] {
+  font-weight: 600;
+}
+
+mdui-button.topbar-profile-about[aria-current='page']::part(button) {
+  background: transparent;
+}
+
 .sidebar-avatar {
   width: 80px;
   height: 80px;
@@ -73,66 +104,6 @@
   width: 40px;
   height: 40px;
   color: rgb(var(--mdui-color-on-surface-variant));
-}
-
-/* 社交链：与正文侧栏内边距对齐，图标列 + 文案列均左对齐 */
-.sidebar-social {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0.125rem;
-  padding: 0.35rem 1rem 0.75rem;
-  box-sizing: border-box;
-}
-
-.sidebar-social-link {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0.35rem 0.5rem;
-  border-radius: var(--mdui-shape-corner-medium, 8px);
-  text-decoration: none;
-  color: rgb(var(--mdui-color-on-surface));
-  font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
-  line-height: var(--mdui-typescale-body-medium-line-height, 1.25rem);
-}
-
-.sidebar-social-link:hover {
-  background-color: var(--app-hover-on-surface-subtle);
-}
-
-.sidebar-social-link__label {
-  flex: 1 1 auto;
-  min-width: 0;
-  text-align: left;
-  word-break: break-word;
-}
-
-.sidebar-social-icon-fa {
-  flex-shrink: 0;
-  font-size: 18px;
-  width: 1.25rem;
-  text-align: left;
-  display: inline-flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 0.1em;
-}
-
-/* 主题 social.color 仍可能引用 MDUI 1 工具类名，v2 包中无对应样式 */
-.sidebar-social-icon-fa.mdui-text-color-light-blue {
-  color: rgb(var(--mdui-color-tertiary));
-}
-
-.sidebar-social-icon-fa.mdui-text-color-blue {
-  color: rgb(var(--mdui-color-primary));
-}
-
-.sidebar-social-icon-fa.mdui-text-color-black {
-  color: rgb(var(--mdui-color-on-surface));
 }
 
 .topbar-profile-panel.sidebar-card {

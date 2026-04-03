@@ -5,6 +5,7 @@ tagcloud: Tag Cloud
 tweets: Tweets
 prev: Prev
 next: Next
+pagination_nav: Pagination
 comment: Comments
 archive_a: Archives
 archive_b: "Archives: %s"

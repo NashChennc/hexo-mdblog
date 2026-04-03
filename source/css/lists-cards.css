@@ -153,53 +153,58 @@ mdui-card.post-card {
   margin-top: 1.5rem;
 }
 
-/* Hexo paginator：原生 a/span，轻量文本导航（非按钮块） */
-.mdui-btn-group {
+/* Hexo 分页：<mdui-button> + <mdui-button-icon>（paginator_mdui helper） */
+.post-paginator {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.125rem 0.35rem;
+  gap: 0.25rem 0.35rem;
 }
 
-.mdui-btn-group a,
-.mdui-btn-group span {
-  box-sizing: border-box;
-}
-
-.mdui-btn-group .page-number,
-.mdui-btn-group .extend {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.75rem;
-  min-height: 1.75rem;
-  padding: 0.2rem 0.4rem;
-  border-radius: var(--mdui-shape-corner-medium, 8px);
-  text-decoration: none;
+.post-paginator mdui-button.post-paginator__page {
+  color: rgb(var(--mdui-color-primary));
   font-size: var(--mdui-typescale-label-large-size, 0.875rem);
-  color: rgb(var(--mdui-color-primary));
-  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.mdui-btn-group .page-number:hover,
-.mdui-btn-group .extend:hover {
-  background-color: var(--app-hover-primary-subtle);
+.post-paginator mdui-button.post-paginator__page::part(button) {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--mdui-shape-corner-medium, 8px);
 }
 
-.mdui-btn-group .current {
-  background-color: transparent;
+.post-paginator mdui-button.post-paginator__page:hover {
   color: rgb(var(--mdui-color-primary));
+}
+
+.post-paginator mdui-button.post-paginator__page--current {
   font-weight: 600;
+  color: rgb(var(--mdui-color-primary));
+}
+
+.post-paginator mdui-button.post-paginator__page--current::part(button) {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
 
-.mdui-btn-group .space {
+.post-paginator mdui-button-icon.post-paginator__icon {
+  color: rgb(var(--mdui-color-primary));
+}
+
+.post-paginator mdui-button-icon.post-paginator__icon::part(button) {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border-radius: var(--mdui-shape-corner-medium, 8px);
+}
+
+.post-paginator .post-paginator__ellipsis {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 1.5rem;
+  padding: 0 0.25rem;
+  font-size: var(--mdui-typescale-label-large-size, 0.875rem);
   color: rgb(var(--mdui-color-on-surface-variant));
   user-select: none;
 }

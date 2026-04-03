@@ -5,6 +5,7 @@ tagcloud: 标签云
 tweets: 推文
 prev: 上一页
 next: 下一页
+pagination_nav: 分页导航
 comment: 留言
 archive_a: 归档
 archive_b: 归档：%s

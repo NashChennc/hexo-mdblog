@@ -5,6 +5,7 @@ tagcloud: Nuage de mot-clés
 tweets: Tweets
 prev: Précédent
 next: Suivant
+pagination_nav: Pagination
 comment: Commentaires
 archive_a: Archives
 archive_b: "Archives: %s"

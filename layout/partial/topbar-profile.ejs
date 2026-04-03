@@ -6,22 +6,19 @@
     open-delay="180"
     close-delay="280"
   >
-    <div
+    <mdui-button-icon
       slot="trigger"
-      class="topbar-profile-trigger"
-      tabindex="0"
-      role="button"
+      variant="standard"
+      class="topbar-profile-trigger-btn"
       aria-haspopup="true"
       aria-label="<%- __('topbar_profile_open') %>"
     >
       <% if (theme.sidebar_config.avatar || theme.avatar) { %>
         <img src="<%- theme.sidebar_config.avatar || theme.avatar %>" class="topbar-profile-trigger__avatar" alt="" width="36" height="36" decoding="async">
       <% } else { %>
-        <span class="topbar-profile-trigger__avatar topbar-profile-trigger__avatar--placeholder" aria-hidden="true">
-          <mdui-icon name="person" class="topbar-profile-trigger__avatar-icon"></mdui-icon>
-        </span>
+        <mdui-icon name="person" class="topbar-profile-trigger__avatar-icon"></mdui-icon>
       <% } %>
-    </div>
+    </mdui-button-icon>
 
     <mdui-card variant="elevated" class="sidebar-card topbar-profile-panel">
       <div class="sidebar-card-media">
@@ -41,33 +38,24 @@
         <div class="sidebar-bio">
           <%= theme.sidebar_config.description || config.description || __('welcome') %>
         </div>
+        <div class="topbar-profile-about-wrap">
+          <mdui-button
+            variant="text"
+            href="<%- url_for('/about') %>"
+            class="topbar-profile-about"
+            <% if (typeof page !== 'undefined' && page.path && /^about(\/|$)/.test(page.path)) { %>aria-current="page"<% } %>
+          ><%= __('about') %></mdui-button>
+        </div>
       </div>
-
-      <mdui-divider></mdui-divider>
-
-      <% if (theme.social) { %>
-        <nav class="sidebar-social" aria-label="<%= __('topbar_social_links') %>">
-          <% for (var j in theme.social) { %>
-            <a
-              class="sidebar-social-link"
-              href="<%- url_for(theme.social[j].link) %>"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="<%- theme.social[j].icon %> <%- theme.social[j].color %> sidebar-social-icon-fa" aria-hidden="true"></i>
-              <span class="sidebar-social-link__label"><%- theme.social[j].text || theme.social[j].link %></span>
-            </a>
-          <% } %>
-        </nav>
-      <% } %>
     </mdui-card>
   </mdui-dropdown>
 
   <% if (theme.social) { %>
     <nav class="topbar-profile-social-bar" aria-label="<%= __('topbar_social_links') %>">
       <% for (var k in theme.social) { %>
-        <a
-          class="topbar-profile-social-bar__link"
+        <mdui-button-icon
+          class="topbar-profile-social-bar__btn"
+          variant="standard"
           href="<%- url_for(theme.social[k].link) %>"
           target="_blank"
           rel="noopener noreferrer"
@@ -75,7 +63,7 @@
           aria-label="<%- theme.social[k].text || theme.social[k].link %>"
         >
           <i class="<%- theme.social[k].icon %> <%- theme.social[k].color %> topbar-profile-social-bar__icon" aria-hidden="true"></i>
-        </a>
+        </mdui-button-icon>
       <% } %>
     </nav>
   <% } %>

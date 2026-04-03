@@ -1,11 +1,21 @@
 <mdui-top-app-bar class="app-top-bar">
   <% if (site.categories.length) { %>
     <div class="topbar-spacer" aria-hidden="true"></div>
-    <nav class="topbar-nav">
-      <a href="<%- url_for('/') %>" class="topbar-nav__link<%= is_home() ? ' topbar-nav__link--active' : '' %>"<% if (is_home()) { %> aria-current="page"<% } %>><%= __('home') %></a>
+    <nav class="topbar-nav" aria-label="<%= __('categories') %>">
+      <mdui-button
+        variant="text"
+        href="<%- url_for('/') %>"
+        class="topbar-nav-btn<%= is_home() ? ' topbar-nav-btn--active' : '' %>"
+        <% if (is_home()) { %>aria-current="page"<% } %>
+      ><%= __('home') %></mdui-button>
       <% site.categories.sort('length').sort('-name').each(item => { %>
         <% if (item.posts.length) { %>
-          <a href="<%- url_for('categories/' + item.name) %>" class="topbar-nav__link<%= is_category() && page.category === item.name ? ' topbar-nav__link--active' : '' %>"<% if (is_category() && page.category === item.name) { %> aria-current="page"<% } %>><%= item.name %> | <%= item.posts.length %></a>
+      <mdui-button
+        variant="text"
+        href="<%- url_for('categories/' + item.name) %>"
+        class="topbar-nav-btn<%= is_category() && page.category === item.name ? ' topbar-nav-btn--active' : '' %>"
+        <% if (is_category() && page.category === item.name) { %>aria-current="page"<% } %>
+      ><%= item.name %> | <%= item.posts.length %></mdui-button>
         <% } %>
       <% }); %>
     </nav>
@@ -15,18 +25,16 @@
     <div class="topbar-spacer" aria-hidden="true"></div>
   <% } %>
   <div class="topbar-end">
-    <a href="<%- url_for('/about') %>" class="topbar-about-link"<% if (typeof page !== 'undefined' && page.path && /^about(\/|$)/.test(page.path)) { %> aria-current="page"<% } %>><%= __('about') %></a>
-    <button
-      type="button"
+    <mdui-button-icon
       id="theme-toggle"
+      variant="standard"
+      icon="dark_mode"
       class="topbar-theme-toggle"
       data-label-dark="<%= __('theme_toggle_to_dark') %>"
       data-label-light="<%= __('theme_toggle_to_light') %>"
       data-label-follow="<%= __('theme_toggle_follow_system') %>"
       aria-label="<%= __('theme_toggle_to_dark') %>"
-    >
-      <mdui-icon name="dark_mode" class="topbar-theme-toggle__icon"></mdui-icon>
-    </button>
+    ></mdui-button-icon>
     <%- partial('partial/topbar-profile') %>
   </div>
 </mdui-top-app-bar>

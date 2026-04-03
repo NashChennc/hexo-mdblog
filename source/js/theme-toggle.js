@@ -46,13 +46,12 @@
     var dark = isEffectivelyDark();
     var labelDark = btn.getAttribute('data-label-dark') || 'Dark mode';
     var labelLight = btn.getAttribute('data-label-light') || 'Light mode';
-    var icon = btn.querySelector('mdui-icon');
     if (dark) {
       btn.setAttribute('aria-label', labelLight);
-      if (icon) icon.setAttribute('name', 'light_mode');
+      btn.setAttribute('icon', 'light_mode');
     } else {
       btn.setAttribute('aria-label', labelDark);
-      if (icon) icon.setAttribute('name', 'dark_mode');
+      btn.setAttribute('icon', 'dark_mode');
     }
   }
 
