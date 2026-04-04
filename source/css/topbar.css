@@ -167,8 +167,9 @@ mdui-button-icon.topbar-profile-trigger-btn {
 mdui-button-icon.topbar-profile-trigger-btn::part(button) {
   min-height: var(--app-top-bar-row);
   min-width: var(--app-top-bar-row);
-  padding: 0.2rem;
-  border-radius: var(--mdui-shape-corner-medium, 8px);
+  padding: 0;
+  /* 与头像同为正圆，避免 8px 圆角裁切导致「不圆」 */
+  border-radius: 50%;
   border: none;
   background: transparent;
   box-shadow: none;
@@ -178,10 +179,12 @@ mdui-button-icon.topbar-profile-trigger-btn::part(button) {
 }
 
 .topbar-profile-trigger__avatar {
-  width: 40px;
-  height: 40px;
+  /* 行高减去左右各 2px 描边，避免大于可点区域被裁切、上下错位 */
+  width: calc(var(--app-top-bar-row) - 4px);
+  height: calc(var(--app-top-bar-row) - 4px);
   border-radius: 50%;
   object-fit: cover;
+  object-position: center center;
   flex-shrink: 0;
   border: 2px solid rgb(var(--mdui-color-surface-container-high));
   box-sizing: border-box;

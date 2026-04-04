@@ -1,21 +1,31 @@
-<div
-  id="site-search-dock"
-  class="site-search-dock"
-  hidden
+<mdui-dialog
+  id="search-palette"
+  class="search-palette-dialog"
+  close-on-esc
   data-search-url="<%- url_for((config.search && config.search.path) ? config.search.path : 'search.json') %>"
   data-search-no-results="<%= __('search_no_results') %>"
+  data-search-empty-hint="<%= __('search_placeholder') %>"
 >
-  <div class="site-search-dock__inner">
+  <div class="palette-container">
     <mdui-text-field
-      id="site-search-field"
-      class="site-search-dock__field"
+      id="palette-input"
+      class="palette-input"
       variant="outlined"
       type="search"
-      label="<%= __('search') %>"
+      icon="search"
       placeholder="<%= __('search_placeholder') %>"
       clearable
       aria-label="<%= __('search_aria_input') %>"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false"
     ></mdui-text-field>
-    <div id="site-search-results" class="site-search-results" role="region" aria-live="polite"></div>
+
+    <mdui-list id="palette-results" class="palette-results" hidden></mdui-list>
+
+    <div id="palette-empty-state" class="palette-empty-state">
+      <mdui-icon name="manage_search" class="palette-empty-state__icon"></mdui-icon>
+      <p class="palette-empty-state__text"><%= __('search_placeholder') %></p>
+    </div>
   </div>
-</div>
+</mdui-dialog>
