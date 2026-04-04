@@ -1,0 +1,73 @@
+<%
+  var taxonomyShowCategories = taxonomyShowCategories === false ? false : true;
+  var taxonomyShowTags = taxonomyShowTags === false ? false : true;
+
+  /* 标签：仅统计当前页 page.posts 内出现的标签及本页篇数 */
+  var pageTagList = [];
+  if (typeof page !== 'undefined' && page.posts && page.posts.length) {
+    var _tagMap = {};
+    page.posts.each(function (post) {
+      if (post.tags && post.tags.length) {
+        post.tags.each(function (tag) {
+          var n = tag.name;
+          if (!_tagMap[n]) {
+            _tagMap[n] = { name: tag.name, path: tag.path, count: 0 };
+          }
+          _tagMap[n].count += 1;
+        });
+      }
+    });
+    for (var _k in _tagMap) {
+      if (Object.prototype.hasOwnProperty.call(_tagMap, _k)) {
+        pageTagList.push(_tagMap[_k]);
+      }
+    }
+    pageTagList.sort(function (a, b) {
+      if (b.count !== a.count) return b.count - a.count;
+      return String(a.name).localeCompare(String(b.name), undefined, { sensitivity: 'base' });
+    });
+  }
+
+  var hasCatBlock = taxonomyShowCategories && site.categories.length;
+  var hasTagBlock = taxonomyShowTags && pageTagList.length;
+%>
+<% if (hasCatBlock || hasTagBlock) { %>
+<section class="index-taxonomy" aria-label="<%= __('index_taxonomy_nav') %>">
+  <% if (hasCatBlock) { %>
+  <div class="index-taxonomy__block"<% if (!is_home()) { %> aria-label="<%= __('categories') %>"<% } %>>
+    <% if (is_home()) { %>
+    <h2 class="index-taxonomy__heading" id="index-taxonomy-categories-heading"><%= __('categories') %></h2>
+    <% } %>
+    <div class="index-taxonomy__chips" role="list">
+      <% site.categories.sort('length').sort('-name').each(function (item) { %>
+        <% if (item.posts.length) { %>
+      <a
+        role="listitem"
+        class="index-taxonomy__chip"
+        href="<%- url_for('categories/' + item.name) %>"
+        <% if (typeof page !== 'undefined' && is_category() && page.category === item.name) { %>aria-current="page"<% } %>
+      ><%= item.name %> · <%= item.posts.length %></a>
+        <% } %>
+      <% }); %>
+    </div>
+  </div>
+  <% } %>
+  <% if (hasTagBlock) { %>
+  <div class="index-taxonomy__block index-taxonomy__block--tags"<% if (!is_home()) { %> aria-label="<%= __('tags') %>"<% } %>>
+    <% if (is_home()) { %>
+    <h2 class="index-taxonomy__heading" id="index-taxonomy-tags-heading"><%= __('tags') %></h2>
+    <% } %>
+    <div class="index-taxonomy__chips" role="list">
+      <% pageTagList.forEach(function (item) { %>
+      <a
+        role="listitem"
+        class="index-taxonomy__chip"
+        href="<%- url_for(item.path) %>"
+        <% if (typeof page !== 'undefined' && is_tag() && page.tag === item.name) { %>aria-current="page"<% } %>
+      ><%= item.name %> · <%= item.count %></a>
+      <% }); %>
+    </div>
+  </div>
+  <% } %>
+</section>
+<% } %>

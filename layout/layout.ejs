@@ -47,6 +47,7 @@
   
   <!-- Header/AppBar -->
   <%- partial('partial/topbar') %>
+  <%- partial('partial/site-search-dock') %>
 
   <!-- Main Content (Layout control moved to individual views) -->
   <div id="main-content">
@@ -72,6 +73,7 @@
   </script>
   <script src="<%- url_for('/js/note-card-layout.js') %>" defer></script>
   <script src="<%- url_for('/js/theme-toggle.js') %>" defer></script>
+  <script src="<%- url_for('/js/site-search.js') %>" defer></script>
   <% if (!theme.katex || theme.katex.enable !== false) { %>
   <script src="<%- url_for('katex/katex.min.js') %>"></script>
   <script src="<%- url_for('katex/contrib/auto-render.min.js') %>"></script>

@@ -1,5 +1,9 @@
 categories: 카테고리
 search: 검색
+search_placeholder: 글 검색…
+search_no_results: 일치하는 글이 없습니다
+search_aria_input: 글 검색
+index_taxonomy_nav: 분류 및 태그
 tags: 태그
 tagcloud: 태그 클라우드
 tweets: 트윗
@@ -53,3 +57,5 @@ theme_toggle_follow_system: 시스템 테마 사용(Shift+클릭으로 복원)
 default_site_title: 내 블로그
 default_site_subtitle: 간단하고 깔끔한 블로그
 default_author: 작성자
+category_page_default_lede: ""
+tag_page_default_lede: ""

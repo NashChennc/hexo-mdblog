@@ -1,5 +1,9 @@
 categories: カテゴリ
 search: 検索
+search_placeholder: 記事を検索…
+search_no_results: 該当する記事がありません
+search_aria_input: 記事を検索
+index_taxonomy_nav: カテゴリとタグ
 tags: タグ
 tagcloud: タグクラウド
 tweets: ツイート
@@ -53,3 +57,5 @@ theme_toggle_follow_system: システムに合わせる（Shift+クリックで�
 default_site_title: 私のブログ
 default_site_subtitle: シンプルでクリーンなブログ
 default_author: 作者
+category_page_default_lede: ""
+tag_page_default_lede: ""

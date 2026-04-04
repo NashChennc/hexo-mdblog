@@ -1,5 +1,9 @@
 categories: Catégories
 search: Rechercher
+search_placeholder: Rechercher des articles…
+search_no_results: Aucun article correspondant
+search_aria_input: Rechercher des articles
+index_taxonomy_nav: Catégories et mots-clés
 tags: Mot-clés
 tagcloud: Nuage de mot-clés
 tweets: Tweets
@@ -32,6 +36,7 @@ articles: articles
 current_category: Catégorie actuelle
 view_all_categories: Voir toutes les catégories
 category_page_default_lede: ""
+tag_page_default_lede: ""
 category_card_kind: "Note"
 prev_post: Précédent
 next_post: Suivant

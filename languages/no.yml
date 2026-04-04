@@ -1,5 +1,9 @@
 categories: Kategorier
 search: Søk
+search_placeholder: Søk i innlegg…
+search_no_results: Ingen treff
+search_aria_input: Søk i innlegg
+index_taxonomy_nav: Kategorier og stikkord
 tags: Tags
 tagcloud: Tag Cloud
 tweets: Tweets
@@ -53,3 +57,5 @@ theme_toggle_follow_system: Systemtema (Shift+klikk for å tilbakestille)
 default_site_title: Min Blogg
 default_site_subtitle: En enkel og ren blogg
 default_author: Forfatter
+category_page_default_lede: ""
+tag_page_default_lede: ""

@@ -1,6 +1,10 @@
 
 categories: Categorieën
 search: Zoeken
+search_placeholder: Berichten zoeken…
+search_no_results: Geen overeenkomende berichten
+search_aria_input: Berichten zoeken
+index_taxonomy_nav: Categorieën en labels
 tags: Labels
 tagcloud: Tag Cloud
 tweets: Tweets
@@ -54,3 +58,5 @@ theme_toggle_follow_system: Systeemthema (Shift+klik om te herstellen)
 default_site_title: Mijn Blog
 default_site_subtitle: Een eenvoudige en schone blog
 default_author: Auteur
+category_page_default_lede: ""
+tag_page_default_lede: ""

@@ -1,5 +1,9 @@
 categories: 分類
 search: 搜尋
+search_placeholder: 搜尋文章…
+search_no_results: 沒有符合的文章
+search_aria_input: 搜尋文章
+index_taxonomy_nav: 分類與標籤
 tags: 標籤
 tagcloud: 標籤雲
 tweets: 推文
@@ -53,3 +57,5 @@ theme_toggle_follow_system: 使用系統主題（按住 Shift 並點擊可恢復
 default_site_title: 我的博客
 default_site_subtitle: 一個簡潔的博客
 default_author: 作者
+category_page_default_lede: ""
+tag_page_default_lede: ""

@@ -1,0 +1,94 @@
+/* 首页分类 / 标签索引（基础样式） */
+.index-taxonomy {
+  /* chip 区域与下方文章网格的间距 */
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.index-taxonomy__block + .index-taxonomy__block {
+  margin-top: 1.25rem;
+}
+
+.index-taxonomy__heading {
+  margin: 0 0 0.5rem;
+  font-size: var(--mdui-typescale-title-medium-size, 1rem);
+  line-height: var(--mdui-typescale-title-medium-line-height, 1.5rem);
+  font-weight: 600;
+  color: rgb(var(--mdui-color-on-surface));
+}
+
+.index-taxonomy__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  /* 最后一行 chip 与区块下沿留白 */
+  padding-bottom: 0.25rem;
+}
+
+.index-taxonomy__chip {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.75rem;
+  min-height: calc(var(--mdui-typescale-label-large-line-height, 1.25rem) + 0.75rem);
+  border-radius: var(--mdui-shape-corner-large, 1rem);
+  font-size: var(--mdui-typescale-label-large-size, 0.875rem);
+  line-height: var(--mdui-typescale-label-large-line-height, 1.25rem);
+  /* 与 .mdui-prose a:hover 下划线解耦，避免悬停时行盒/单元格高度抖动 */
+  text-decoration: none;
+  text-underline-offset: 0;
+  text-decoration-thickness: 0;
+  color: rgb(var(--mdui-color-primary));
+  background-color: rgb(var(--mdui-color-surface-container-high));
+  border: 1px solid color-mix(in srgb, rgb(var(--mdui-color-outline)) 28%, transparent);
+}
+
+.index-taxonomy__chip[aria-current='page'] {
+  background-color: color-mix(in srgb, rgb(var(--mdui-color-primary)) 14%, rgb(var(--mdui-color-surface-container-high)));
+  border-color: var(--app-active-primary-border, color-mix(in srgb, rgb(var(--mdui-color-primary)) 35%, transparent));
+  font-weight: 600;
+}
+
+.index-taxonomy__chip:hover,
+.index-taxonomy__chip:focus,
+.index-taxonomy__chip:focus-visible {
+  background-color: color-mix(in srgb, rgb(var(--mdui-color-primary)) 10%, rgb(var(--mdui-color-surface-container-high)));
+  outline: none;
+  text-decoration: none;
+  text-underline-offset: 0;
+  text-decoration-thickness: 0;
+}
+
+/* 正文内 #标签 链接：与首页 chip 同形，覆盖 .mdui-prose a 下划线 */
+.mdui-prose a.index-taxonomy__chip {
+  word-break: normal;
+  vertical-align: middle;
+  margin: 0.1em 0.15em 0.1em 0;
+}
+
+.mdui-prose a.index-taxonomy__chip:hover,
+.mdui-prose a.index-taxonomy__chip:focus,
+.mdui-prose a.index-taxonomy__chip:focus-visible {
+  text-decoration: none;
+  border-bottom: none;
+  text-underline-offset: 0;
+  text-decoration-thickness: 0;
+}
+
+/* 表格内仅有一个 chip 时：单元格垂直居中，避免 top 对齐 + 行内盒在 hover 时顶行跳动 */
+.mdui-prose table td:has(> a.index-taxonomy__chip:only-child),
+.mdui-prose table th:has(> a.index-taxonomy__chip:only-child),
+.mdui-prose figure:not(.highlight) > table td:has(> a.index-taxonomy__chip:only-child),
+.mdui-prose figure:not(.highlight) > table th:has(> a.index-taxonomy__chip:only-child) {
+  vertical-align: middle;
+}
+
+.mdui-prose table td a.index-taxonomy__chip,
+.mdui-prose table th a.index-taxonomy__chip,
+.mdui-prose figure:not(.highlight) > table td a.index-taxonomy__chip,
+.mdui-prose figure:not(.highlight) > table th a.index-taxonomy__chip {
+  vertical-align: middle;
+  margin-top: 0;
+  margin-bottom: 0;
+}

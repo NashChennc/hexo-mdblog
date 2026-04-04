@@ -195,6 +195,27 @@ mdui-button-icon.topbar-profile-trigger-btn::part(button) {
   color: rgb(var(--mdui-color-on-surface-variant));
 }
 
+mdui-button-icon.topbar-search-toggle {
+  flex-shrink: 0;
+  margin-inline-end: 0.5rem;
+  color: rgb(var(--mdui-color-on-surface-variant));
+  box-sizing: border-box;
+  width: var(--app-top-bar-row);
+  height: var(--app-top-bar-row);
+}
+
+mdui-button-icon.topbar-search-toggle::part(button) {
+  min-height: var(--app-top-bar-row);
+  min-width: var(--app-top-bar-row);
+  border-radius: var(--mdui-shape-corner-medium, 8px);
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 mdui-button-icon.topbar-theme-toggle {
   flex-shrink: 0;
   margin-inline-end: 0.875rem;

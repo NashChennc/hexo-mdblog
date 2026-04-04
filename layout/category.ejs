@@ -36,6 +36,7 @@
                     <p class="notes-subtitle"><%= categoryLede %></p>
                     <% } %>
                 </header>
+                <%- partial('partial/index-taxonomy', { taxonomyShowCategories: false }) %>
                 <div class="notes-grid">
                 <% page.posts.sort('title').sort('-updated').each(function(post){ %>
                     <div class="notes-grid__cell">

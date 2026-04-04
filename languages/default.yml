@@ -1,5 +1,9 @@
 categories: Categories
 search: Search
+search_placeholder: Search posts…
+search_no_results: No matching posts
+search_aria_input: Search posts
+index_taxonomy_nav: Categories and tags
 tags: Tags
 tagcloud: Tag Cloud
 tweets: Tweets
@@ -32,6 +36,7 @@ articles: articles
 current_category: Current Category
 view_all_categories: View All Categories
 category_page_default_lede: ""
+tag_page_default_lede: ""
 category_card_kind: "Note"
 prev_post: Previous
 next_post: Next

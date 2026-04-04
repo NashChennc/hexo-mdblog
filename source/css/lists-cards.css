@@ -36,6 +36,11 @@ mdui-card.note-card:hover {
   margin-bottom: 0.5rem;
 }
 
+/* 首页：分类/标签区与卡片网格之间留白 */
+.notes-grid--index {
+  padding-top: 2rem;
+}
+
 .notes-grid .featured-post {
   grid-column: 1 / -1;
 }

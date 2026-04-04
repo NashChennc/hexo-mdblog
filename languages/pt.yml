@@ -1,5 +1,9 @@
 categories: Categorias
 search: Buscar
+search_placeholder: Pesquisar posts…
+search_no_results: Nenhum post correspondente
+search_aria_input: Pesquisar posts
+index_taxonomy_nav: Categorias e tags
 tags: Tags
 tagcloud: Nuvem de Tags
 tweets: Tweets
@@ -53,3 +57,5 @@ theme_toggle_follow_system: Tema do sistema (Shift+clique para restaurar)
 default_site_title: Meu Blog
 default_site_subtitle: Um blog simples e limpo
 default_author: Autor
+category_page_default_lede: ""
+tag_page_default_lede: ""

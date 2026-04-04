@@ -1,0 +1,21 @@
+<div
+  id="site-search-dock"
+  class="site-search-dock"
+  hidden
+  data-search-url="<%- url_for((config.search && config.search.path) ? config.search.path : 'search.json') %>"
+  data-search-no-results="<%= __('search_no_results') %>"
+>
+  <div class="site-search-dock__inner">
+    <mdui-text-field
+      id="site-search-field"
+      class="site-search-dock__field"
+      variant="outlined"
+      type="search"
+      label="<%= __('search') %>"
+      placeholder="<%= __('search_placeholder') %>"
+      clearable
+      aria-label="<%= __('search_aria_input') %>"
+    ></mdui-text-field>
+    <div id="site-search-results" class="site-search-results" role="region" aria-live="polite"></div>
+  </div>
+</div>

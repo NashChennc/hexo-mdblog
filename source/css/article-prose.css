@@ -91,6 +91,23 @@ mdui-card.post-page-card {
   max-width: 100%;
 }
 
+/* 文章卡片内表格：不沿用全站 max-content/min-width:100%，限制在正文栏宽内；超宽由 .post-page-card__body 横向滚动 */
+.post-page-card__body .mdui-prose > table,
+.post-page-card__body .mdui-prose figure:not(.highlight) > table {
+  width: auto;
+  max-width: 100%;
+  min-width: 0;
+  table-layout: auto;
+}
+
+.post-page-card__body .mdui-prose > table th,
+.post-page-card__body .mdui-prose > table td,
+.post-page-card__body .mdui-prose figure:not(.highlight) > table th,
+.post-page-card__body .mdui-prose figure:not(.highlight) > table td {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
 /* ============================================
  * Markdown 表格（排除代码高亮 figure.highlight 内的 table）
  * ============================================ */

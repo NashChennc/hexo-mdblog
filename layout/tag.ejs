@@ -1,0 +1,34 @@
+<div class="page-shell mdui-container mdui-p-t-3 mdui-p-b-5">
+    <div class="page-grid page-grid--single">
+        <main class="page-main">
+            <div class="category-index">
+                <%
+                    var tagName = page.tag;
+                    var tagLede = '';
+                    var _tagLedeI18n = __('tag_page_default_lede');
+                    if (_tagLedeI18n && _tagLedeI18n !== 'tag_page_default_lede') {
+                        tagLede = String(_tagLedeI18n).trim();
+                    }
+                %>
+                <header class="notes-header">
+                    <h1 class="notes-title"><%= tagName %></h1>
+                    <% if (tagLede) { %>
+                    <p class="notes-subtitle"><%= tagLede %></p>
+                    <% } %>
+                </header>
+                <%- partial('partial/index-taxonomy', { taxonomyShowCategories: false }) %>
+                <div class="notes-grid">
+                <% page.posts.sort('title').sort('-updated').each(function(post){ %>
+                    <div class="notes-grid__cell">
+                        <%- partial('partial/category-note-card', { post: post }) %>
+                    </div>
+                <% }) %>
+                </div>
+                <% if (page.total > 1){ %>
+                    <%- partial('partial/paginator') %>
+                <% } %>
+            </div>
+        </main>
+    </div>
+</div>
+<div id="page-bottom" aria-hidden="true"></div>

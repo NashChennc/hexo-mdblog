@@ -32,8 +32,8 @@
 <div class="page-shell mdui-container mdui-p-t-4 mdui-p-b-5">
     <div class="page-grid page-grid--single">
         <main class="page-main">
-            
-            <div class="notes-grid">
+            <%- partial('partial/index-taxonomy') %>
+            <div class="notes-grid notes-grid--index">
                 <% page.posts.each(function(post, i){ %>
                     <div class="notes-grid__cell scroll-reveal <%= (i === 0 && page.current === 1) ? 'featured-post' : '' %>">
                         <%- partial('partial/category-note-card', { post: post, i: i, pageCurrent: page.current }) %>

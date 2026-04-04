@@ -1,0 +1,76 @@
+/* 顶栏下方居中搜索条 */
+.site-search-dock {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem max(var(--app-top-bar-pad-x, 1rem), env(safe-area-inset-left, 0px))
+    0.75rem max(var(--app-top-bar-pad-x, 1rem), env(safe-area-inset-right, 0px));
+  background-color: rgb(var(--mdui-color-surface-container-low));
+  border-bottom: 1px solid rgb(var(--mdui-color-outline-variant));
+}
+
+.site-search-dock[hidden] {
+  display: none !important;
+}
+
+.site-search-dock__inner {
+  width: 100%;
+  max-width: min(36rem, 100%);
+}
+
+.site-search-dock__field {
+  width: 100%;
+}
+
+.site-search-results {
+  margin-top: 0.5rem;
+  max-height: min(50vh, 20rem);
+  overflow: auto;
+}
+
+.site-search-results__empty {
+  margin: 0;
+  padding: 0.5rem 0;
+  font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+.site-search-results__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.site-search-results__item {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--mdui-shape-corner-medium, 8px);
+  text-decoration: none;
+  color: rgb(var(--mdui-color-primary));
+  background-color: rgb(var(--mdui-color-surface));
+  border: 1px solid color-mix(in srgb, rgb(var(--mdui-color-outline)) 22%, transparent);
+  font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
+  line-height: var(--mdui-typescale-body-medium-line-height, 1.25rem);
+}
+
+.site-search-results__item:hover,
+.site-search-results__item:focus-visible {
+  background-color: color-mix(in srgb, rgb(var(--mdui-color-primary)) 8%, rgb(var(--mdui-color-surface)));
+  outline: none;
+}
+
+.site-search-results__snippet {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
+  color: rgb(var(--mdui-color-on-surface-variant));
+  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
+}
+
+.site-search-mark {
+  background-color: color-mix(in srgb, rgb(var(--mdui-color-primary)) 22%, transparent);
+  color: inherit;
+  padding: 0 0.125rem;
+  border-radius: 2px;
+}

@@ -1,5 +1,9 @@
 categories: Категории
 search: Поиск
+search_placeholder: Поиск по записям…
+search_no_results: Ничего не найдено
+search_aria_input: Поиск по записям
+index_taxonomy_nav: Категории и метки
 tags: Метки
 tagcloud: Облако меток
 tweets: Твиты
@@ -53,3 +57,5 @@ theme_toggle_follow_system: Системная тема (Shift+клик — сб
 default_site_title: Мой Блог
 default_site_subtitle: Простой и чистый блог
 default_author: Автор
+category_page_default_lede: ""
+tag_page_default_lede: ""

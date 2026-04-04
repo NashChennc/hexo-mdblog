@@ -1,5 +1,9 @@
 categories: 分类
 search: 搜索
+search_placeholder: 搜索文章…
+search_no_results: 没有匹配的文章
+search_aria_input: 搜索文章
+index_taxonomy_nav: 分类与标签
 tags: 标签
 tagcloud: 标签云
 tweets: 推文
@@ -32,6 +36,7 @@ articles: 篇文章
 current_category: 当前分类
 view_all_categories: 查看全部分类
 category_page_default_lede: ""
+tag_page_default_lede: ""
 category_card_kind: "笔记"
 prev_post: 上一篇
 next_post: 下一篇
