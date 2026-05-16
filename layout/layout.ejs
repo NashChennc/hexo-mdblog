@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><%= page.title ? page.title + ' - ' : '' %><%= config.title %></title>
+  <% const tabPageTitle = page.blog_title || page.title; %>
+  <title><%= tabPageTitle ? tabPageTitle + ' - ' : '' %><%= config.title %></title>
 
   <!-- MDUI CSS -->
   <link rel="stylesheet" href="<%- url_for('mdui/css/mdui.min.css') %>">

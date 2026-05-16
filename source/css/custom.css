@@ -272,3 +272,30 @@ img {
   word-break: normal !important;
 }
 
+/* ==========================================================================
+   单行多图（Wikilink 同行为 2+ 图时自动 .md-gallery）
+   ========================================================================== */
+.md-gallery,
+.wikilink-img-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 2em 0;
+  width: 100%;
+}
+
+.md-gallery br,
+.wikilink-img-row br {
+  display: none !important;
+}
+
+.mdui-typo .md-gallery img,
+.mdui-typo .wikilink-img-row img {
+  margin: 0 !important;
+  flex: 1 1 0%;
+  min-width: 0;
+  height: auto;
+  border-radius: 8px;
+}
+
